@@ -1,12 +1,10 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 
 import { Navigate, Route, Routes } from "react-router-dom";
 import WebSocketComp from "./views/websockets";
-import { AuthRedirect, RequireAuth } from "./AuthRedirect";
-import { CreateUserPage } from "./views/userData";
+import { RequireAuth } from "./AuthRedirect";
+import { CreateUserPage } from "./views/user-registration";
 import { LoginPage } from "./views/login";
 import { UserProfilePage } from "./views/profile";
 import { Header } from "./components/header";

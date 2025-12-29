@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { useUserStore } from "../user-store";
+import { SERVER_ENDPOINT } from "../constants";
+import { globalStyle } from "../global-styles";
 
 export const UserProfilePage = () => {
   const { user, getUser } = useUserStore();
@@ -11,7 +13,7 @@ export const UserProfilePage = () => {
   useEffect(() => {
     getUser();
     console.log(user);
-  }, [])
+  }, [loading.valueOf()])
   
   useEffect(() => {
     if (!profilePic) return;
@@ -41,7 +43,7 @@ export const UserProfilePage = () => {
       const formData = new FormData();
       formData.append("profilePic", profilePic);
 
-      const res = await fetch("http://localhost:3000/user/upload-profile-pic", {
+      const res = await fetch(`${SERVER_ENDPOINT}/user/upload-profile-pic`, {
         method: "POST",
         credentials: "include", // send cookies
         body: formData,
@@ -59,50 +61,26 @@ export const UserProfilePage = () => {
   };
 
   return (
-    <div style={styles.page}>
-      <div style={styles.card}>
-        <h2 style={styles.title}>User Profile</h2>
-        <p><strong>Username:</strong> {user.username}</p>
-        <p><strong>Nation:</strong> {user.nation}</p>
-        {user.profile_pic_id&& <img src={`http://localhost:3000/blob/${user.profile_pic_id}`}></img>}
+    <div style={globalStyle.page}>
+      <div style={globalStyle.card}>
+        <h2 style={globalStyle.title}>User Profile</h2>
+        <p style={{...globalStyle.label, color:"black"}}><strong>Username:</strong> {user.username}</p>
+        <p style={{...globalStyle.label, color:"black"}}><strong>Nation:</strong> {user.nation}</p>
+        {user.profilePicId && <img style = {{alignSelf:"center", width: 250, height: 250, borderRadius: "50%", objectFit: "cover" }} src={`${SERVER_ENDPOINT}/blob/${user.profilePicId}`}></img>}
         <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 12 }}>
           {previewUrl && (
             <img src={previewUrl} alt="Preview" style={{ width: 150, height: 150, borderRadius: "50%", objectFit: "cover" }} />
           )}
           <input type="file" accept="image/*" onChange={handleFileChange} />
           <button type="submit" disabled={loading}>
-            {loading ? "Uploading..." : "Upload Profile Picture"}
+            {loading ? "Ülesse laadimine..." : "Lae ülesse profiili pilt"}
           </button>
         </form>
 
         {error && <p style={{ color: "red" }}>{error}</p>}
-        {success && <p style={{ color: "green" }}>Profile picture updated!</p>}
+        {success && <p style={{ color: "green" }}>Profiili pilti uuendati</p>}
       </div>
     </div>
   );
 };
 
-const styles = {
-  page: {
-    minHeight: "100vh",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    background: "#f5f7fa",
-    padding: 16,
-  },
-  card: {
-    width: 400,
-    padding: 24,
-    background: "#0e0e0eff",
-    borderRadius: 10,
-    boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
-    display: "flex",
-    flexDirection: "column" as const,
-    gap: 12,
-  },
-  title: {
-    textAlign: "center" as const,
-    marginBottom: 16,
-  },
-};

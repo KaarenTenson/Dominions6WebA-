@@ -3,6 +3,11 @@ import type { Message, WsMessage } from "../../types";
 import { useMessageStore } from "../messages-store";
 import { useUserStore } from "../user-store";
 import LobbyList from "../components/lobby-selection";
+import { useNavigate } from "react-router-dom";
+import { useLobbyStore } from "../lobbyStore";
+import { SERVER_ENDPOINT, WS_SERVER_ENDPOINT } from "../constants";
+import { ChatInput } from "../components/chat-input";
+import { MessageAttachement } from "../components/chat-message";
 
 function WebSocketComp() {
   const socketRef: RefObject<WebSocket | null> = useRef(null);
@@ -13,12 +18,15 @@ function WebSocketComp() {
     currentLobby,
     getAllMessagesFromLobby,
   } = useMessageStore();
+  const { lobbys } = useLobbyStore();
   const { getOtherUser, user, getUser } = useUserStore();
   const [input, setInput] = useState("");
   const [connected, setConnected] = useState(false);
+  const navigate = useNavigate();
+  
   useEffect(() => {
     getUser();
-    const url = new URL("ws://localhost:3000/ws");
+    const url = new URL(WS_SERVER_ENDPOINT);
     if (currentLobby) {
       url.searchParams.append("lobbyId", currentLobby);
     }
@@ -57,153 +65,217 @@ function WebSocketComp() {
     };
   }, [addMessage, currentLobby ? currentLobby.valueOf() : null]);
 
-  const sendMessage = () => {
-    if (!socketRef.current || !connected || !input.trim()) return;
-
-    const msg: WsMessage<Message> = {
-      data: {
-        type: "message",
-        data: {
-          id: "",
-          lobbyId: currentLobby,
-          text: input,
-          createdAt: 0,
-        },
-      },
-    };
-
-    socketRef.current.send(JSON.stringify(msg));
-    setInput("");
-  };
 
   return (
-    <div style={styles.rowContainer}>
-      <div style={styles.container}>
-        <div style={styles.header}>
-          <span>Status:</span>
-          <span style={{ color: connected ? "green" : "red" }}>
-            {connected ? "Connected" : "Disconnected"}
-          </span>
-        </div>
-
-        <ul style={styles.messages}>
-          {messages.map((msg, i) => (
-            <li
-              key={i}
+    <div style={styles.page}>
+      <div style={styles.chatLayout}>
+        {/* CHAT */}
+        <div style={styles.chatCard}>
+          <div style={styles.chatHeader}>
+            <div>
+              <strong>Chat</strong>
+              {currentLobby && (
+                <span style={styles.lobbyName}>
+                  {" "}
+                  · Lobby{" "}
+                  {lobbys.find((l) => l.id == currentLobby)?.name ||
+                    currentLobby}
+                </span>
+              )}
+            </div>
+            <span
               style={{
-                ...styles.messageBase,
-                ...(msg.userId === user.id
-                  ? styles.myMessage
-                  : styles.otherMessage),
+                ...styles.status,
+                color: connected ? "#22c55e" : "#ef4444",
               }}
             >
-              <div style={styles.username}>{msg.user?.username}</div>
-              <div>{msg.text}</div>
-            </li>
-          ))}
-        </ul>
+              {connected ? "● Connected" : "● Disconnected"}
+            </span>
+          </div>
 
-        <div style={styles.inputRow}>
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Type a message..."
-            style={styles.input}
-          />
-          <button
-            onClick={sendMessage}
-            disabled={!connected || !input.trim()}
-            style={styles.button}
-          >
-            Send
-          </button>
+          <ul style={styles.messages}>
+            {messages.map((msg, i) => {
+              const mine = msg.userId === user.id;
+              console.log(msg.user);
+
+              return (
+                <li
+                  key={i}
+                  style={{
+                    ...styles.messageRow,
+                    justifyContent: mine ? "flex-end" : "flex-start",
+                  }}
+                >
+                  {!mine && (
+                    <img
+                      src={
+                        msg.user?.profilePicId
+                          ? `${SERVER_ENDPOINT}/blob/${msg.user.profilePicId}`
+                          : "/default-avatar.png"
+                      }
+                      onClick={() => {
+                        navigate("/");
+                      }}
+                      alt="pfp"
+                      style={styles.avatar}
+                    />
+                  )}
+
+                  <div
+                    style={{
+                      ...styles.message,
+                      ...(mine ? styles.myMessage : styles.otherMessage),
+                    }}
+                  >
+                    {!mine && (
+                      <div style={styles.username}>{` ${msg.user? msg.user.username: ""} : ${msg.user?.nation}`}</div>
+                    )}
+                    {<></>}
+                    {msg.text&&msg.text.length > 0&&<div>{msg.text}</div>}
+                    {msg.fileMetaData&&<MessageAttachement msg={msg}/>}
+
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+
+           <ChatInput ws={socketRef.current} lobbyId={currentLobby}></ChatInput>
         </div>
-      </div>
-      <div style={styles.container}>
-        <LobbyList />
+
+        {/* SIDEBAR */}
+        <div style={styles.sidebar}>
+          <LobbyList />
+        </div>
       </div>
     </div>
   );
 }
-const styles = {
-  rowContainer: {
-    maxWidth: 1000,
-
-    margin: "10px auto",
-    padding: 5,
-    display: "flex",
-    flexDirection: "row" as const,
-    gap: 5,
-  },
-  container: {
-    flex: 1,
-    maxWidth: 500,
-    margin: "40px auto",
+const styles: { [key: string]: React.CSSProperties } = {
+  page: {
+    minHeight: "100vh",
+    background: "#f5f7fa",
     padding: 16,
-    border: "1px solid #ddd",
-    borderRadius: 8,
+  },
+
+  chatLayout: {
+    maxWidth: 1100,
+    margin: "0 auto",
+    display: "grid",
+    gridTemplateColumns: "1fr 280px",
+    gap: 16,
+  },
+
+  chatCard: {
+    background: "white",
+    borderRadius: 12,
+    boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
     display: "flex",
     flexDirection: "column" as const,
-    gap: 12,
+    height: "80vh",
   },
-  header: {
+
+  chatHeader: {
+    padding: "12px 16px",
+    borderBottom: "1px solid #e5e7eb",
     display: "flex",
     justifyContent: "space-between",
+    alignItems: "center",
+    fontSize: 14,
+  },
+
+  lobbyName: {
+    color: "#6b7280",
+    fontWeight: 400,
+  },
+
+  status: {
+    fontSize: 12,
     fontWeight: 500,
   },
-  messages: {
-    listStyle: "none",
-    padding: 0,
-    margin: 0,
-    flex: 1,
-    overflowY: "auto" as const,
-    border: "1px solid #eee",
-    borderRadius: 4,
+  messageRow: {
+    display: "flex",
+    alignItems: "flex-end",
+    gap: 8,
   },
-  messageBase: {
-    maxWidth: "75%",
+
+  avatar: {
+    width: 36,
+    height: 36,
+    borderRadius: "50%",
+    objectFit: "cover",
+    flexShrink: 0,
+  },
+
+  messages: {
+    flex: 1,
+    padding: 16,
+    margin: 0,
+    listStyle: "none",
+    overflowY: "auto" as const,
+    display: "flex",
+    flexDirection: "column" as const,
+    gap: 8,
+  },
+
+  message: {
+    maxWidth: "70%",
     padding: "8px 12px",
-    borderRadius: 12,
+    borderRadius: 14,
     fontSize: 14,
     lineHeight: 1.4,
-    wordBreak: "break-word" as const,
   },
 
   myMessage: {
-    alignSelf: "flex-end",
-    backgroundColor: "#4f46e5",
+    background: "#4f46e5",
     color: "white",
     borderBottomRightRadius: 4,
   },
 
-  message: {
-    padding: "6px 8px",
-    borderBottom: "1px solid #eee",
-  },
   otherMessage: {
-    alignSelf: "flex-start",
-    backgroundColor: "#e5e7eb",
+    background: "#e5e7eb",
     color: "#111",
     borderBottomLeftRadius: 4,
   },
 
   username: {
-    fontSize: 12,
-    opacity: 0.7,
-    marginBottom: 4,
+    fontSize: 11,
+    opacity: 0.6,
+    marginBottom: 2,
   },
+
   inputRow: {
+    borderTop: "1px solid #e5e7eb",
+    padding: 12,
     display: "flex",
     gap: 8,
   },
+
   input: {
     flex: 1,
-    padding: 8,
+    padding: "8px 10px",
+    borderRadius: 6,
+    border: "1px solid #d1d5db",
+    fontSize: 14,
   },
+
   button: {
-    padding: "8px 12px",
+    padding: "8px 14px",
+    borderRadius: 6,
+    border: "none",
+    background: "#4f46e5",
+    color: "white",
     cursor: "pointer",
+    fontSize: 14,
+  },
+
+  sidebar: {
+    background: "white",
+    borderRadius: 12,
+    boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
+    padding: 12,
+    height: "80vh",
+    overflowY: "auto" as const,
   },
 };
 

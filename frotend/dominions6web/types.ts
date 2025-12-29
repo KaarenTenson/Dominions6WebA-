@@ -1,16 +1,23 @@
 export type Message = {
-  id: string
-  text: string
+  id: string,
+  text?: string,
+  fileMetaData?: FileMetaData,  
   lobbyId?: string,
   userId?: string,
   user?: User,
   createdAt: number
 }
+export type FileMetaData = {
+    blobId: string;
+    mimeType: string;
+    fileSize: number;
+    fileName: string;
+}
 export type User = {
     id?: string;
     username: string;
     nation: string;
-    profile_pic_id?: string;
+    profilePicId?: string;
     created_at?: number;
 };
 export type Lobby = {
@@ -36,4 +43,10 @@ export type Success = {
 }
 export type Error = {
     error: string
+}
+export type Age = "EA" | "MA" | "LA";
+export type Nation = {
+    id: number,
+    name: string,
+    age: Age
 }

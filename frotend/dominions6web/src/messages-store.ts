@@ -3,6 +3,7 @@ import { create } from "zustand";
 
 import type { Message } from "../types";
 import { useUserStore } from "./user-store";
+import { SERVER_ENDPOINT } from "./constants";
 
 type MessageStore = {
   messages: Message[];
@@ -39,7 +40,7 @@ export const useMessageStore = create<MessageStore>((set) => ({
   getAllMessages: async () => {
     const userStore = useUserStore.getState();
 
-    const res = await fetch("http://localhost:3000/message", {
+    const res = await fetch(`${SERVER_ENDPOINT}/message`, {
       credentials: "include",
     });
 
@@ -65,7 +66,7 @@ export const useMessageStore = create<MessageStore>((set) => ({
    getAllMessagesFromLobby: async (lobbyId: string): Promise<string|null> => {
     const userStore = useUserStore.getState();
 
-    const res = await fetch(`http://localhost:3000/message/${lobbyId}`, {
+    const res = await fetch(`${SERVER_ENDPOINT}/message/${lobbyId}`, {
       credentials: "include",
     });
     const body = await res.json();

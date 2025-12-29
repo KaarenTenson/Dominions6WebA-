@@ -2,15 +2,14 @@ import { useState } from "react";
 import { useUserStore } from "../user-store";
 import { useNavigate } from "react-router-dom";
 import { globalStyle } from "../global-styles";
-
+import { SERVER_ENDPOINT } from "../constants";
 export const LoginPage = () => {
-  const { setUserName } = useUserStore();
+  const { setUserName, } = useUserStore();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,7 +23,7 @@ export const LoginPage = () => {
     setError(null);
 
     try {
-      const res = await fetch("http://localhost:3000/login", {
+      const res = await fetch(`${SERVER_ENDPOINT}/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include", // needed for HttpOnly cookie

@@ -3,6 +3,7 @@ import { create } from "zustand";
 
 import type { Lobby, Message, Error, Success } from "../types";
 import { useUserStore } from "./user-store";
+import { SERVER_ENDPOINT } from "./constants";
 
 type LobbyStore = {
   lobbys: Lobby[];
@@ -15,7 +16,7 @@ type LobbyStore = {
 export const useLobbyStore = create<LobbyStore>((set, get) => ({
   lobbys: [],
   addLobby: async (lobby) => {
-    const res = await fetch("http://localhost:3000/lobby", {
+    const res = await fetch(`${SERVER_ENDPOINT}/lobby`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -28,7 +29,7 @@ export const useLobbyStore = create<LobbyStore>((set, get) => ({
     await get().getAllLobbys();
   },
   getAllLobbys: async () => {
-    const res = await fetch("http://localhost:3000/lobby", {
+    const res = await fetch(`${SERVER_ENDPOINT}/lobby`, {
       credentials: "include",
     });
     const lobbys: Lobby[] = await res.json();
@@ -36,7 +37,7 @@ export const useLobbyStore = create<LobbyStore>((set, get) => ({
   },
   checkLobbyAcces: async (lobbydId: string) => {
     try {
-      const res = await fetch(`http://localhost:3000/lobby/auth/${lobbydId}`, {
+      const res = await fetch(`${SERVER_ENDPOINT}/lobby/auth/${lobbydId}`, {
         credentials: "include",
       });
       const jsonBody: Success | Error = await res.json();
@@ -55,7 +56,7 @@ export const useLobbyStore = create<LobbyStore>((set, get) => ({
   },
   loginToLobby: async (lobby: Lobby): Promise<boolean> => {
     try {
-      const res = await fetch(`http://localhost:3000/lobby/login/${lobby.id}`, {
+      const res = await fetch(`${SERVER_ENDPOINT}/lobby/login/${lobby.id}`, {
         credentials: "include",
         headers: {
           "Content-Type": "application/json",

@@ -1,30 +1,49 @@
 import { useEffect, useState } from "react";
-import type { User } from "../../types";
+import type { Nation, User } from "../../types";
 import { useUserStore } from "../user-store";
 import { useNavigate } from "react-router-dom";
 import { ToLoginButton } from "../components/to-login-button";
 import { globalStyle } from "../global-styles";
+import { SERVER_ENDPOINT } from "../constants";
 
 export const CreateUserPage = () => {
-  const { setNation, setUserName, user } = useUserStore();
+  const { setNation, setUserName, user, getDom6Nations } = useUserStore();
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [kasPass, setKasPass] = useState(true);
   const navigate = useNavigate();
+  const [nations, setNations] = useState<Nation[]>([]);
+  useEffect(() => {
+    const getNations = async () => {
+      setNations(await getDom6Nations());
+    };
+    getNations();
+  }, []);
 
   useEffect(() => {
     const hasCookie = document.cookie.includes("session=");
     if (hasCookie) {
-      navigate("/messages", { replace: true });
+      navigate("/", { replace: true });
     }
   }, [navigate]);
-
+  const nationLabel = (n: Nation) => `${n.name} (${n.age})`;
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!user.username.trim() || !user.nation.trim() || !password.trim() && kasPass) {
+    if (
+      !user.username.trim() ||
+      !user.nation.trim() ||
+      (!password.trim() && kasPass)
+    ) {
       setError("All fields are required");
+      return;
+    }
+    console.log(user.nation);
+    if (
+     !nations.find((n) => (`${n.name} (${n.age})` === user.nation))
+    ) {
+      setError("Vale nation");
       return;
     }
 
@@ -32,18 +51,21 @@ export const CreateUserPage = () => {
     setLoading(true);
 
     try {
-      const res = await fetch(`http://localhost:3000/${kasPass ? "register": "register_quest"}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include", // IMPORTANT for cookies
-        body: JSON.stringify({
-          username: user.username,
-          nation: user.nation,
-          password,
-        }),
-      });
+      const res = await fetch(
+        `${SERVER_ENDPOINT}/${kasPass ? "register" : "register_quest"}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include", // IMPORTANT for cookies
+          body: JSON.stringify({
+            username: user.username,
+            nation: user.nation,
+            password,
+          }),
+        }
+      );
 
       const data = await res.json();
 
@@ -80,14 +102,28 @@ export const CreateUserPage = () => {
         <label style={globalStyle.label}>
           Nation
           <input
-            type="text"
+            list="nation-list"
             value={user.nation}
-            onChange={(e) => setNation(e.target.value)}
-            placeholder="Nation"
+            onChange={(e) => {
+              const value = e.target.value;
+
+              // only allow nations that exist
+
+              setNation(value);
+            }}
+            placeholder="Select or type nation"
             style={globalStyle.input}
           />
+          <datalist id="nation-list">
+            {nations.map((nation) => (
+              <option
+                key={nation.id ?? nation.name}
+                value={nationLabel(nation)}
+              />
+            ))}
+          </datalist>
         </label>
-        <label style={{color: "black"}}>
+        <label style={{ color: "black" }}>
           Kass Pass?:
           <input
             type="checkbox"
@@ -117,4 +153,4 @@ export const CreateUserPage = () => {
     </div>
   );
 };
-const styles = {};
+

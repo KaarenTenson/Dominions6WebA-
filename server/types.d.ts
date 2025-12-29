@@ -2,11 +2,18 @@ import type { IncomingMessage } from "http";
 import type { Logger } from "pino";
 export type Message = {
     id: string;
-    text: string;
+    text?: string;
+    fileMetaData?: FileMetaData,  
     userId?: string;
     lobbyId?: string;
     createdAt: number;
 };
+export type FileMetaData = {
+    blobId: string;
+    mimeType: string;
+    fileSize: number;
+    fileName: string;
+}
 export type WsMessage<T> = {
     lobbyId?: string,
     data: WsData<T>
@@ -45,11 +52,13 @@ export type User = {
     created_at?: number;
 };
 
+
+
 export type QuestUser = {
     id?: string;
     username: string;
     nation?: string;
-    profile_pic_id?: string;
+    profilePicId?: string;
     token?: string;
     created_at?: number;
 };

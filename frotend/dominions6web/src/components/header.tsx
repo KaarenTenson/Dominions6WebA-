@@ -1,11 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
+import { SERVER_ENDPOINT } from "../constants";
 
 export const Header = () => {
   const navigate = useNavigate();
 
   const handleLogout = async() => {
     // example: clear auth cookie / call logout endpoint
-    await fetch("http://localhost:3000/logout", {
+    await fetch(`${SERVER_ENDPOINT}/logout`, {
       method: "POST",
       credentials: "include",
     });
