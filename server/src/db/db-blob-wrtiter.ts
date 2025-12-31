@@ -1,6 +1,7 @@
 import { Result } from "../../types.js";
 import { logger } from "../logger/logger.js";
 import { blobDB } from "./init.js";
+import { Table } from "./tables.js";
 export const writeBlob = (
   blobId: string,
   buffer: Buffer<ArrayBufferLike>,
@@ -8,7 +9,7 @@ export const writeBlob = (
 ): Result<void> => {
   try {
     blobDB
-      .prepare("INSERT INTO FILE VALUES (?, ?, ?, ?);")
+      .prepare(`INSERT INTO ${Table.file} VALUES (?, ?, ?, ?);`)
       .run(blobId, buffer, mime_type, Date.now());
     return {};
   } catch (error) {

@@ -4,9 +4,11 @@ import type { Database as SqliteDatabase } from "better-sqlite3";
 import { getNations } from "../../dominions6/dominions6-data";
 import { Nation } from "../../types";
 import {writeNations} from "./db-dom6.writers.js"
+import {Table} from "./tables";
+import { table } from "node:console";
 export const dom6DB: SqliteDatabase = new Database("dom6.sqlite");
 dom6DB.exec(`
-  CREATE TABLE IF NOT EXISTS NATION (
+  CREATE TABLE IF NOT EXISTS ${Table.nation} (
     id INTEGER PRIMARY KEY,
     name TEXT NOT NULL,
     age TEXT NOT NULL
@@ -15,7 +17,7 @@ dom6DB.exec(`
 writeNations(await getNations());
 export const blobDB: SqliteDatabase = new Database("blob.sqlite");
 blobDB.exec(`
-  CREATE TABLE IF NOT EXISTS FILE (
+  CREATE TABLE IF NOT EXISTS ${Table.file} (
     id TEXT PRIMARY KEY,
     data BLOB NOT NULL,
     mime_type TEXT NOT NULL,
@@ -24,23 +26,24 @@ blobDB.exec(`
 `);
 
 export const sqliteDB: SqliteDatabase = new Database("data.sqlite");
+//sqliteDB.exec(`DROP TABLE messages;`);
 sqliteDB.exec(`
-  CREATE TABLE IF NOT EXISTS messages (
+  CREATE TABLE IF NOT EXISTS ${Table.message} (
     id TEXT PRIMARY KEY,
     text TEXT NOT NULL,
     lobbyId TEXT,
     userId TEXT NOT NULL,
     blobId Text,
     fileName Text,
-    mimteType Text,
+    mimeType Text,
     fileSize INTEGER,
     created_at INTEGER NOT NULL,
-    FOREIGN KEY (lobbyId) REFERENCES lobby(id) ON DELETE CASCADE
+    FOREIGN KEY (lobbyId) REFERENCES ${Table.lobby}(id) ON DELETE CASCADE
   )
 `);
 //sqliteDB.exec(`DROP TABLE lobby;`);
 sqliteDB.exec(`
-  CREATE TABLE IF NOT EXISTS lobby (
+  CREATE TABLE IF NOT EXISTS ${Table.lobby} (
     id TEXT PRIMARY KEY,
     name TEXT,
     password TEXT,
@@ -54,22 +57,22 @@ sqliteDB.exec(`
     userId TEXT NOT NULL,
     created_at INTEGER NOT NULL,
    PRIMARY KEY (lobbyId, userId),
-    FOREIGN KEY (lobbyId) REFERENCES lobby(id) ON DELETE CASCADE,
-    FOREIGN KEY (userId) REFERENCES USER(id) ON DELETE CASCADE
+    FOREIGN KEY (lobbyId) REFERENCES ${Table.lobby}(id) ON DELETE CASCADE,
+    FOREIGN KEY (userId) REFERENCES ${Table.user}(id) ON DELETE CASCADE
   )
 `);
 sqliteDB.exec(`
-  CREATE TABLE IF NOT EXISTS SESSION_COOKIE (
+  CREATE TABLE IF NOT EXISTS ${Table.sessionCookie} (
     id TEXT PRIMARY KEY,
     userId TEXT,
     expiresAt INTEGER NOT NULL,
-    FOREIGN KEY (userId) REFERENCES USER(id) ON DELETE CASCADE
+    FOREIGN KEY (userId) REFERENCES ${Table.user}(id) ON DELETE CASCADE
 
   )
 `);
 
 sqliteDB.exec(`
-  CREATE TABLE IF NOT EXISTS USER (
+  CREATE TABLE IF NOT EXISTS ${Table.user} (
     id TEXT PRIMARY KEY,
     username TEXT unique,
     nation TEXT,

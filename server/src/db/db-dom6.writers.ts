@@ -1,11 +1,12 @@
 import { Nation } from "../../types";
 import { dom6DB } from "./init";
 import { logger } from "../logger/logger.js";
+import { Table } from "./tables.js";
 
 export const writeNations = (nations: Nation[]): void => {
   try {
     const insert = dom6DB.prepare(
-      "INSERT OR IGNORE INTO NATION (id, name, age) VALUES (?, ?, ?);"
+      `INSERT OR IGNORE INTO ${Table.nation} (id, name, age) VALUES (?, ?, ?);`
     );
     const insertMany = dom6DB.transaction((rows: Nation[]) => {
       for (const row of rows) {

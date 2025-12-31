@@ -16,14 +16,15 @@ export type FileMetaData = {
 }
 export type WsMessage<T> = {
     lobbyId?: string,
-    data: WsData<T>
-};
-export type WsDataType = "message"
-
-export type WsData<T> = {
+    data: T,
     type: WsDataType,
-    data: T
+};
+export type WsDataType = "message"|"delete"
+
+export type MessageDelete = {
+    messageId: string
 }
+
 export type Age = "EA" | "MA" | "LA";
 export type Nation = {
     id: number,
@@ -66,7 +67,8 @@ export type QuestUser = {
 export type SessionCookie = {
     sessionId: string,
     userId: string,
-    expiresAt: number
+    expiresAt: number,
+    isAdmin?:boolean
 }
 
 export type Result<T> = {

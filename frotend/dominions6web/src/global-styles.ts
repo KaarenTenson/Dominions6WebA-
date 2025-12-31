@@ -1,4 +1,4 @@
-export const globalStyle = {
+export const globalStyle: { [key: string]: React.CSSProperties }  = {
   page: {
     minHeight: "100vh",
     flex: 5,
@@ -11,7 +11,6 @@ export const globalStyle = {
     justifyContent: "center",
   },
 
-  
   card: {
     width: "100%",
     maxWidth: 800, // login form should be narrow
@@ -24,7 +23,7 @@ export const globalStyle = {
     gap: 16,
   },
 
-   title: {
+  title: {
     textAlign: "center" as const,
     fontSize: 22,
     marginBottom: 12,
@@ -38,7 +37,7 @@ export const globalStyle = {
     gap: 6,
   },
 
-    input: {
+  input: {
     padding: "12px 14px",
     fontSize: 15,
     borderRadius: 8,
@@ -72,5 +71,12 @@ export const globalStyle = {
     background: "#ecfeff",
     borderRadius: 12,
     border: "1px solid #67e8f9",
+  },
+  avatar: {
+    width: 36,
+    height: 36,
+    borderRadius: "50%",
+    objectFit: "cover",
+    flexShrink: 0,
   },
 };

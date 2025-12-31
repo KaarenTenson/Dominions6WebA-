@@ -6,7 +6,8 @@ import { useMessageStore } from "../messages-store";
 import { LobbyPasswordPrompt } from "./lobby-login";
 
 export default function LobbyList() {
-  const { lobbys, getAllLobbys, addLobby, checkLobbyAcces, loginToLobby } = useLobbyStore();
+  const { lobbys, getAllLobbys, addLobby, checkLobbyAcces, loginToLobby } =
+    useLobbyStore();
   const { setLobby } = useMessageStore();
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -24,20 +25,18 @@ export default function LobbyList() {
     } else {
       setPasswordPrompt(true);
       console.log(lobbys);
-      const lobby = lobbys.find((l) => (
-        l.id == lobbyId
-      ));
+      const lobby = lobbys.find((l) => l.id == lobbyId);
       console.log(lobby);
       setLobbyToLogin(lobby ? lobby : null);
     }
   };
-  const login = async (lobby: Lobby):Promise<boolean> =>{
+  const login = async (lobby: Lobby): Promise<boolean> => {
     if (!lobby.password) {
       return false;
     }
     setLobby(lobby.id);
     return await loginToLobby(lobby);
-  }
+  };
   const handleCreateLobby = async () => {
     if (name.length == 0) {
       alert("nimi ei tohi olla tühi");
@@ -100,26 +99,21 @@ export default function LobbyList() {
         <p>No lobbies available</p>
       ) : (
         <ul style={{ listStyle: "none", padding: 0 }}>
-          {lobbys.map((lobby) => (
-            <li
-              key={lobby.id}
-              style={{
-                padding: "10px",
-                border: "1px solid #ddd",
-                borderRadius: 6,
-                marginBottom: 8,
-              }}
-            >
-              <button
-                style={globalStyle.button}
-                onClick={() => accessLobby(lobby.id)}
-              >
-                <div>
-                  <strong>Nimi:</strong> {lobby.name}
-                </div>
-              </button>
-            </li>
-          ))}
+          <ul style={styles.list}>
+            {lobbys.map((lobby) => (
+              <li key={lobby.id}>
+                <button
+                  onClick={() => accessLobby(lobby.id)}
+                  style={styles.lobbyButton}
+                >
+                  <div style={styles.lobbyMain}>
+                    <span style={styles.lobbyName}>{lobby.name}</span>
+                    {lobby.password && <span style={styles.lock}>🔒</span>}
+                  </div>
+                </button>
+              </li>
+            ))}
+          </ul>
         </ul>
       )}
       {passwordPromt && lobbyToLogin && (
@@ -128,9 +122,52 @@ export default function LobbyList() {
           onCancel={() => {
             setPasswordPrompt(false);
           }}
-          onSubmit={async (lobby: Lobby) => {return await login(lobby)}}
+          onSubmit={async (lobby: Lobby) => {
+            return await login(lobby);
+          }}
         />
       )}
     </div>
   );
 }
+const styles: { [key: string]: React.CSSProperties } = {
+  list: {
+    listStyle: "none",
+    padding: 0,
+    margin: 0,
+    display: "flex",
+    flexDirection: "column",
+    gap: 8,
+  },
+
+  lobbyButton: {
+    width: "100%",
+    textAlign: "left",
+    padding: "10px 12px",
+    borderRadius: 12,
+    border: "1px solid #e5e7eb",
+    background: "white",
+    cursor: "pointer",
+    display: "flex",
+    alignItems: "center",
+    transition: "background 0.15s ease, border-color 0.15s ease",
+  },
+
+  lobbyMain: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: "100%",
+  },
+
+  lobbyName: {
+    fontSize: 14,
+    fontWeight: 500,
+    color: "#111",
+  },
+
+  lock: {
+    fontSize: 14,
+    opacity: 0.6,
+  },
+};

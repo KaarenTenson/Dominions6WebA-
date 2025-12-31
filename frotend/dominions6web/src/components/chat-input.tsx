@@ -59,8 +59,9 @@ export function ChatInput({ ws, lobbyId }: Props) {
 
     ws.send(
       JSON.stringify({
-        data: { data: msg },
+        data: msg ,
         lobbyId,
+        type: "message"
       })
     );
 
@@ -68,40 +69,134 @@ export function ChatInput({ ws, lobbyId }: Props) {
     setFileMeta(null);
   };
   
-  return (
-    <div className="chat-input">
+   return (
+    <div style={styles.wrapper}>
       {fileMeta && (
-        <div className="attachment-preview">
+        <div style={styles.attachment}>
           📎 {fileMeta.fileName}
-          <button onClick={() => setFileMeta(null)}>✕</button>
+          <button
+            style={styles.remove}
+            onClick={() => setFileMeta(null)}
+          >
+            ✕
+          </button>
         </div>
       )}
 
-      <input
-        type="text"
-        placeholder="Type a message…"
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-      />
+      <div style={styles.row}>
+        <input
+          style={styles.input}
+          type="text"
+          placeholder="Type a message…"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+        />
 
-      <input
-        ref={fileRef}
-        type="file"
-        hidden
-        onChange={handleFileSelect}
-      />
+        <input
+          ref={fileRef}
+          type="file"
+          hidden
+          onChange={(e) => {
+            const file = e.target.files?.[0];
+            if (!file) return;
+            setUploading(true);
+            uploadFile(file)
+              .then(setFileMeta)
+              .finally(() => {
+                setUploading(false);
+                if (fileRef.current) fileRef.current.value = "";
+              });
+          }}
+        />
 
-      <button onClick={() => fileRef.current?.click()}>
-        📎
-      </button>
+        <button
+          style={styles.iconButton}
+          onClick={() => fileRef.current?.click()}
+        >
+          📎
+        </button>
 
-      <button
-        onClick={sendMessage}
-        disabled={uploading || (!text && !fileMeta)}
-      >
-        Send
-      </button>
+        <button
+          style={{
+            ...styles.sendButton,
+            ...(uploading || (!text && !fileMeta)
+              ? styles.sendDisabled
+              : {}),
+          }}
+          onClick={sendMessage}
+          disabled={uploading || (!text && !fileMeta)}
+        >
+          Send
+        </button>
+      </div>
     </div>
   );
 }
+const styles: { [key: string]: React.CSSProperties } = {
+  wrapper: {
+    borderTop: "1px solid #e5e7eb",
+    padding: 12,
+    display: "flex",
+    flexDirection: "column",
+    gap: 8,
+  },
+
+  row: {
+    display: "flex",
+    alignItems: "center",
+    gap: 8,
+  },
+
+  input: {
+    flex: 1,
+    padding: "8px 12px",
+    borderRadius: 14,
+    border: "1px solid #d1d5db",
+    fontSize: 14,
+    outline: "none",
+  },
+
+  iconButton: {
+    background: "#f3f4f6",
+    border: "none",
+    borderRadius: "50%",
+    padding: "6px 8px",
+    cursor: "pointer",
+    fontSize: 16,
+  },
+
+  sendButton: {
+    background: "#4f46e5",
+    color: "white",
+    border: "none",
+    padding: "8px 14px",
+    borderRadius: 14,
+    fontSize: 14,
+    cursor: "pointer",
+  },
+
+  sendDisabled: {
+    opacity: 0.5,
+    cursor: "not-allowed",
+  },
+
+  attachment: {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: 6,
+    background: "#e5e7eb",
+    padding: "6px 10px",
+    borderRadius: 14,
+    fontSize: 13,
+    width: "fit-content",
+  },
+
+  remove: {
+    background: "none",
+    border: "none",
+    cursor: "pointer",
+    fontSize: 12,
+  },
+};
+

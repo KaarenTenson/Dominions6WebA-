@@ -1,7 +1,7 @@
 // src/ws-server.ts
 import { Server as HTTPServer } from "http";
 import WebSocket, { WebSocketServer } from "ws";
-import { Message, User, WsMessage} from "../../types";
+import { Message, User, WsMessage } from "../../types";
 import { logger } from "../logger/logger";
 import { writeMessage } from "../db/db-writer";
 import { parseCookies } from "../crypto/cookies";
@@ -23,30 +23,43 @@ export class UserWebsocketConnection {
     this.ws = ws;
   }
 
-  sendMessage(msg: Message) {
+  sendAction(msg: WsMessage<any>) {
     if (this.ws.readyState === WebSocket.OPEN) {
       this.ws.send(JSON.stringify(msg));
     }
   }
 
   handleMessage(msg: WsMessage<Message>) {
-    const user = msg.data.data.userId;
-    const result = writeMessage(msg.data.data);
+    const user = msg.data.userId;
+    const result = writeMessage(msg.data);
     if (!user) return;
     logger.info(msg, "got mesaage");
-    if (!msg.lobbyId) {
-      [...connectionsByUser.keys()].forEach((n) => {
-        if (connectionsByUser && connectionsByUser.get(n)) {
-          if (
-            this.lobbydId &&
-            connectionsByUser.get(n)?.lobbydId !== this.lobbydId
-          ) {
-            return;
-          }
-          connectionsByUser.get(n)!!.sendMessage(msg.data.data);
+
+    [...connectionsByUser.keys()].forEach((n) => {
+      if (connectionsByUser && connectionsByUser.get(n)) {
+        if (
+          this.lobbydId &&
+          connectionsByUser.get(n)?.lobbydId !== this.lobbydId
+        ) {
+          return;
         }
-      });
-    }
+        connectionsByUser.get(n)!!.sendAction(msg);
+      }
+    });
+  }
+    handleAction(msg: WsMessage<any>) {
+    logger.info(msg, "got mesaage");
+    [...connectionsByUser.keys()].forEach((n) => {
+      if (connectionsByUser && connectionsByUser.get(n)) {
+        if (
+          this.lobbydId &&
+          connectionsByUser.get(n)?.lobbydId !== this.lobbydId
+        ) {
+          return;
+        }
+        connectionsByUser.get(n)!!.sendAction(msg);
+      }
+    });
   }
 }
 
@@ -60,6 +73,7 @@ export function initWebSocket(server: HTTPServer) {
       return;
     }
     const url = new URL(req.url ?? "", "http://localhost");
+    
     const lobbyId = url.searchParams.get("lobbyId");
     if (lobbyId) {
       const result = checkLobbyAccess(userId, lobbyId);
@@ -82,14 +96,18 @@ export function initWebSocket(server: HTTPServer) {
     console.log(`User connected: ${userId}`);
 
     ws.on("message", (raw) => {
-      let msg: WsMessage<Message>;
+      let msg: WsMessage<any>;
       try {
         msg = JSON.parse(raw.toString());
       } catch {
         return;
       }
-      msg.data.data.userId = userId;
-      connection.handleMessage(msg);
+      if (msg.type == "message") {
+        msg.data.userId = userId;
+        connection.handleMessage(msg)
+      ;} else {
+        connection.handleAction(msg);
+      }
     });
 
     ws.on("close", () => {
@@ -117,6 +135,3 @@ const getUserId = (ws: WebSocket, req: IncomingMessage): string | null => {
   }
   return res.data.userId;
 };
-export function broadcast(message: Message) {
-  connectionsByUser.forEach((conn) => conn.sendMessage(message));
-}

@@ -9,6 +9,7 @@ import lobbyRoutes from "./routes/lobby.routes.ts";
 import messageRoutes from "./routes/message.routes.ts";
 import blobRoutes from "./routes/blob.routes.ts";
 import dom6Routes from "./routes/dom6.routes.ts";
+import adminRoutes from "./routes/admin.routes.ts";
 
 
 const app = express();
@@ -29,5 +30,6 @@ app.use(lobbyRoutes);
 app.use(messageRoutes);
 app.use(blobRoutes);
 app.use(dom6Routes);
+app.use(adminRoutes);
 
 export default app;

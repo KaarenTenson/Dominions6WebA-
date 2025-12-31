@@ -1,4 +1,4 @@
-import { log } from "node:console";
+import { log, table } from "node:console";
 import type {
   Result,
   Lobby,
@@ -9,13 +9,15 @@ import type {
 import { hashPassword } from "../crypto/crypto.js";
 import { logger } from "../logger/logger.js";
 import { sqliteDB } from "./init.js";
+import { mapMessage } from "./mappers.ts/messageMapper.js";
+import { Table } from "./tables.js";
 
 export const lobbys = new Map<string, Lobby>();
 
 export const checkIfUserExists = (user: User): Result<void> => {
   try {
     const result = sqliteDB
-      .prepare("SELECT id FROM USER WHERE username = ?;")
+      .prepare(`SELECT id FROM ${Table.user} WHERE username = ?;`)
       .pluck()
       .get(user.username) as string | undefined;
     console.log("check fi user eqists query" + result ? result : "null");
@@ -36,7 +38,7 @@ export const checkIfUserExists = (user: User): Result<void> => {
 export const authenticateUser = (user: User): Result<string> => {
   try {
     const userId = sqliteDB
-      .prepare("SELECT id from user where username = ? and password = ?;")
+      .prepare(`SELECT id from ${Table.user} where username = ? and password = ?;`)
       .get(user.username, hashPassword(user.password!!)) as { id: string };
     if (userId) {
       return { data: userId.id };
@@ -51,19 +53,9 @@ export const getAllMessagesFromMainLobby = (): Result<Message[]> => {
   try {
     const result = sqliteDB
       .prepare(
-        "SELECT * FROM messages where lobbyId IS NULL ORDER BY created_at desc LIMIT 50;"
+        `SELECT * FROM ${Table.message} where lobbyId IS NULL ORDER BY created_at asc LIMIT 50;`
       )
-      .all() as {
-      id: string;
-      text: string;
-      lobbyId: string;
-      userId: string;
-      blobId: string;
-      mimteType: string;
-      fileSize: number;
-      fileName: string;
-      created_at: number;
-    }[];
+      .all();
     console.log("check fi user eqists query" + result ? result : "null");
     if (!result) {
       return {
@@ -71,21 +63,7 @@ export const getAllMessagesFromMainLobby = (): Result<Message[]> => {
       };
     } else {
       return {
-        data: result.map((r) => ({
-          id: r.id,
-          text: r.text,
-          lobbyId: r.lobbyId,
-          userId: r.userId,
-          createdAt: r.created_at,
-          fileMetaData: r.blobId
-            ? {
-                blobId: r.blobId,
-                fileName: r.fileName,
-                fileSize: r.fileSize,
-                mimeType: r.mimteType,
-              }
-            : undefined,
-        })),
+        data: result.map((r) => mapMessage(r)),
       };
     }
   } catch (err) {
@@ -97,25 +75,29 @@ export const getAllMessagesFromMainLobby = (): Result<Message[]> => {
 export const getAllMessagesFromLobby = (lobbyId: string): Result<Message[]> => {
   try {
     const result = sqliteDB
-      .prepare("SELECT * FROM messages where lobbyId = ? LIMIT 50;")
-      .all(lobbyId) as Message[];
+      .prepare(
+        `SELECT * FROM ${Table.message} where lobbyId = ? ORDER BY created_at asc LIMIT 50;`
+      )
+      .all(lobbyId);
+    console.log("check fi user eqists query" + result ? result : "null");
     if (!result) {
       return {
-        error: "not messages",
+        error: "errror retriving messages",
       };
     } else {
-      console.log("check fi user eqists query" + result ? result : "null");
-      return { data: result };
+      return {
+        data: result.map((r) => mapMessage(r)),
+      };
     }
   } catch (err) {
-    logger.error(err, "failed to query messages");
-    return { error: "failed to query messages" };
+    logger.error(err, "failed to query message");
+    return { error: "failed to query message" };
   }
 };
 export const getAllLobbys = (): Result<Lobby[]> => {
   try {
     const result = sqliteDB
-      .prepare("SELECT id, name, password FROM lobby;")
+      .prepare(`SELECT id, name, password FROM ${Table.lobby};`)
       .all() as Lobby[];
     result.forEach((lobby) => {
       lobbys.set(lobby.name, lobby);
@@ -130,7 +112,7 @@ export const readSession = (sessionId: string): Result<SessionCookie> => {
   try {
     logger.info("pärin küpsiseid");
     const result = sqliteDB
-      .prepare("SELECT * FROM SESSION_COOKIE WHERE id = ?;")
+      .prepare(`SELECT * FROM ${Table.sessionCookie} WHERE id = ?;`)
       .get(sessionId) as SessionCookie;
     if (!result) {
       logger.info("pärin küpsist ei eksisteeri");
@@ -148,7 +130,7 @@ export const getUserById = (userId: string): Result<User> => {
     logger.info("pärin inimesi");
     const result = sqliteDB
       .prepare(
-        "SELECT id, username, nation, profile_pic_id FROM USER WHERE id = ?;"
+        `SELECT id, username, nation, profile_pic_id FROM ${Table.user} WHERE id = ?;`
       )
       .get(userId) as {
       id: string;
@@ -184,7 +166,7 @@ export const getUserFromToken = (sessionId: string): Result<User> => {
     logger.info("pärin küpsiseid");
     const result = sqliteDB
       .prepare(
-        "SELECT id, username, nation, profile_pic_id from user where id in (SELECT userId FROM SESSION_COOKIE WHERE id = ?);"
+        `SELECT id, username, nation, profile_pic_id from ${Table.user} where id in (SELECT userId FROM ${Table.sessionCookie} WHERE id = ?);`
       )
       .all(sessionId) as {
       id: string;
@@ -237,7 +219,7 @@ export const doesLobbyHaveAuth = (lobbyId: string): boolean => {
 export const getLobby = (lobbyId: string): Lobby | null => {
   try {
     const result = sqliteDB
-      .prepare("SELECT * from lobby where id = ?;")
+      .prepare(`SELECT ${Table.lobby} from lobby where id = ?;`)
       .get(lobbyId) as Lobby;
     logger.info(result, "andmebaasi lobby päring");
     return result;
@@ -256,7 +238,7 @@ export const checkLobbyAccess = (
       return {};
     }
     const result = sqliteDB
-      .prepare("SELECT 1 from lobbyToUser where userId = ? AND lobbyId = ?;")
+      .prepare(`SELECT 1 from ${Table.lobbyToUser} where userId = ? AND lobbyId = ?;`)
       .all(userId, lobbyId) as number[];
 
     if (!result || result.length <= 0) {

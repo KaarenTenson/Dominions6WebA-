@@ -1,13 +1,16 @@
 import { useEffect, useRef, useState, type RefObject } from "react";
-import type { Message, WsMessage } from "../../types";
+import type { Message, MessageDelete, WsMessage } from "../../types";
 import { useMessageStore } from "../messages-store";
 import { useUserStore } from "../user-store";
 import LobbyList from "../components/lobby-selection";
-import { useNavigate } from "react-router-dom";
+import { data, useNavigate } from "react-router-dom";
 import { useLobbyStore } from "../lobbyStore";
 import { SERVER_ENDPOINT, WS_SERVER_ENDPOINT } from "../constants";
 import { ChatInput } from "../components/chat-input";
 import { MessageAttachement } from "../components/chat-message";
+import { globalStyle } from "../global-styles";
+import { AdminLogin } from "../components/admin-login";
+import { checkAdminAccess } from "../auth";
 
 function WebSocketComp() {
   const socketRef: RefObject<WebSocket | null> = useRef(null);
@@ -16,14 +19,17 @@ function WebSocketComp() {
     addMessage,
     getAllMessages,
     currentLobby,
+    removeMessage,
     getAllMessagesFromLobby,
   } = useMessageStore();
   const { lobbys } = useLobbyStore();
   const { getOtherUser, user, getUser } = useUserStore();
   const [input, setInput] = useState("");
   const [connected, setConnected] = useState(false);
+  const [showAdminLogin, setShowAdminLogin] = useState(false);
+  const [messageToDelete, setMessageToDelete] = useState<Message | null>(null);
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     getUser();
     const url = new URL(WS_SERVER_ENDPOINT);
@@ -43,12 +49,18 @@ function WebSocketComp() {
     };
 
     socketRef.current.onmessage = async (event: MessageEvent<string>) => {
-      const msg: Message = JSON.parse(event.data);
-      const user = await getOtherUser(msg.userId!!);
-      if (user) {
-        msg.user = user;
+      const msg: WsMessage<any> = JSON.parse(event.data);
+      if (msg.type =="message") {
+        const user = await getOtherUser(msg.data.userId!!);
+        if (user) {
+          msg.data.user = user;
+        }
+        addMessage(msg.data);
+      } else if(msg.type == "delete") {
+        const data = msg.data as MessageDelete;
+        console.log(data, "deleting message");
+        removeMessage(data.messageId);
       }
-      addMessage(msg);
     };
 
     socketRef.current.onerror = (error) => {
@@ -63,14 +75,35 @@ function WebSocketComp() {
     return () => {
       socketRef.current?.close();
     };
-  }, [addMessage, currentLobby ? currentLobby.valueOf() : null]);
-
-
+  }, [currentLobby ? currentLobby.valueOf() : null]);
+  const deleteMessage = async (msg: Message) => {
+    if (await checkAdminAccess()) {
+      const res = await fetch(
+        `${SERVER_ENDPOINT}/admin/delete_message/${msg.id}`,
+        {
+          method: "DELETE",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const deleteSignal: WsMessage<MessageDelete> = {
+        data: { messageId: msg.id } ,
+        lobbyId: currentLobby,
+        type: "delete"
+      };
+      socketRef.current?.send(JSON.stringify(deleteSignal));
+    } else {
+      setMessageToDelete(msg);
+      setShowAdminLogin(true);
+    }
+  };
   return (
-    <div style={styles.page}>
+    <div style={globalStyle.page}>
       <div style={styles.chatLayout}>
         {/* CHAT */}
-        <div style={styles.chatCard}>
+        <div style={globalStyle.card}>
           <div style={styles.chatHeader}>
             <div>
               <strong>Chat</strong>
@@ -117,30 +150,48 @@ function WebSocketComp() {
                         navigate("/");
                       }}
                       alt="pfp"
-                      style={styles.avatar}
+                      style={globalStyle.avatar}
                     />
                   )}
 
                   <div
                     style={{
-                      ...styles.message,
-                      ...(mine ? styles.myMessage : styles.otherMessage),
+                      ...styles.messageWrapper,
+                      justifyContent: mine ? "flex-end" : "flex-start",
                     }}
                   >
-                    {!mine && (
-                      <div style={styles.username}>{` ${msg.user? msg.user.username: ""} : ${msg.user?.nation}`}</div>
-                    )}
-                    {<></>}
-                    {msg.text&&msg.text.length > 0&&<div>{msg.text}</div>}
-                    {msg.fileMetaData&&<MessageAttachement msg={msg}/>}
+                    <div
+                      style={{
+                        ...styles.message,
+                        ...(mine ? styles.myMessage : styles.otherMessage),
+                      }}
+                    >
+                      {!mine && (
+                        <div style={styles.username}>
+                          {`${msg.user ? msg.user.username : ""} : ${
+                            msg.user?.nation
+                          }`}
+                        </div>
+                      )}
 
+                      {msg.text && msg.text.length > 0 && <div>{msg.text}</div>}
+                      {msg.fileMetaData && <MessageAttachement msg={msg} />}
+                    </div>
+
+                    <button
+                      style={styles.deleteButton}
+                      onClick={() => deleteMessage(msg)}
+                      title="Delete message"
+                    >
+                      🗑
+                    </button>
                   </div>
                 </li>
               );
             })}
           </ul>
 
-           <ChatInput ws={socketRef.current} lobbyId={currentLobby}></ChatInput>
+          <ChatInput ws={socketRef.current} lobbyId={currentLobby}></ChatInput>
         </div>
 
         {/* SIDEBAR */}
@@ -148,31 +199,26 @@ function WebSocketComp() {
           <LobbyList />
         </div>
       </div>
+      {showAdminLogin && (
+        <AdminLogin
+          close={async () => {
+            setShowAdminLogin(false);
+            if ((await checkAdminAccess()) && messageToDelete) {
+              deleteMessage(messageToDelete);
+            }
+          }}
+        ></AdminLogin>
+      )}
     </div>
   );
 }
 const styles: { [key: string]: React.CSSProperties } = {
-  page: {
-    minHeight: "100vh",
-    background: "#f5f7fa",
-    padding: 16,
-  },
-
   chatLayout: {
     maxWidth: 1100,
     margin: "0 auto",
     display: "grid",
     gridTemplateColumns: "1fr 280px",
     gap: 16,
-  },
-
-  chatCard: {
-    background: "white",
-    borderRadius: 12,
-    boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
-    display: "flex",
-    flexDirection: "column" as const,
-    height: "80vh",
   },
 
   chatHeader: {
@@ -197,14 +243,6 @@ const styles: { [key: string]: React.CSSProperties } = {
     display: "flex",
     alignItems: "flex-end",
     gap: 8,
-  },
-
-  avatar: {
-    width: 36,
-    height: 36,
-    borderRadius: "50%",
-    objectFit: "cover",
-    flexShrink: 0,
   },
 
   messages: {
@@ -250,25 +288,6 @@ const styles: { [key: string]: React.CSSProperties } = {
     display: "flex",
     gap: 8,
   },
-
-  input: {
-    flex: 1,
-    padding: "8px 10px",
-    borderRadius: 6,
-    border: "1px solid #d1d5db",
-    fontSize: 14,
-  },
-
-  button: {
-    padding: "8px 14px",
-    borderRadius: 6,
-    border: "none",
-    background: "#4f46e5",
-    color: "white",
-    cursor: "pointer",
-    fontSize: 14,
-  },
-
   sidebar: {
     background: "white",
     borderRadius: 12,
@@ -276,6 +295,20 @@ const styles: { [key: string]: React.CSSProperties } = {
     padding: 12,
     height: "80vh",
     overflowY: "auto" as const,
+  },
+  messageWrapper: {
+    display: "flex",
+    alignItems: "center",
+    gap: 6,
+  },
+
+  deleteButton: {
+    background: "transparent",
+    border: "none",
+    cursor: "pointer",
+    fontSize: 12,
+    opacity: 0.4,
+    padding: 4,
   },
 };
 

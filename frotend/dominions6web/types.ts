@@ -28,15 +28,14 @@ export type Lobby = {
 };
 export type WsMessage<T> = {
     lobbyId?: string,
-    data: WsData<T>
-};
-export type WsDataType = "message"
-
-export type WsData<T> = {
+    data: T,
     type: WsDataType,
-    data: T
-}
+};
+export type WsDataType = "message"|"delete"
 
+export type MessageDelete = {
+    messageId: string
+}
 
 export type Success = {
     status: "ok"
