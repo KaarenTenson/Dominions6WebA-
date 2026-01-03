@@ -26,6 +26,22 @@ export type Lobby = {
     password?: string;
     createdAt?: number;
 };
+export type MapSize = {
+    width: number,
+    height: number
+}
+export type Thrones = {
+    level1: number,
+    level2: number,
+    level3: number
+}
+export type Dominions6Cofing = {
+    port: string,
+    mapSize: MapSize,
+    age: Age,
+    thrones: Thrones,
+    name: string,
+}
 export type WsMessage<T> = {
     lobbyId?: string,
     data: T,

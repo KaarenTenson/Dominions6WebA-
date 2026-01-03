@@ -2,6 +2,7 @@ import { Nation } from "../../types";
 import { dom6DB } from "./init";
 import { logger } from "../logger/logger.js";
 import { Table } from "./tables.js";
+import { randomUUID } from "crypto";
 
 export const writeNations = (nations: Nation[]): void => {
   try {
@@ -17,4 +18,10 @@ export const writeNations = (nations: Nation[]): void => {
   } catch (error) {
     logger.error(error, "ei õnnestnud nationeid kirjutada");
   }
+};
+
+export const writeLog = (msg: string, type: string) => {
+  const instert = dom6DB
+    .prepare(`INSERT INTO ${Table.log} (id, msg, type, created_at) VALUES (?, ?, ?, ?);`)
+    .run(randomUUID(), msg, type, Date.now());
 };

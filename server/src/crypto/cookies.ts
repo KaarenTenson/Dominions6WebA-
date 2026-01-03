@@ -43,7 +43,9 @@ export const getSession = (sessionId: string): SessionCookie | null => {
   }
   if (dbResult.error || !dbResult.data) return null;
   sessionCache.set(sessionId, dbResult.data);
-
+  if (dbResult.data.expiresAt < Date.now()) {
+    return null;
+  }
   return dbResult.data;
 };
 

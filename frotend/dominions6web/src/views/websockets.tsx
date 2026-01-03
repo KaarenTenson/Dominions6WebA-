@@ -50,13 +50,13 @@ function WebSocketComp() {
 
     socketRef.current.onmessage = async (event: MessageEvent<string>) => {
       const msg: WsMessage<any> = JSON.parse(event.data);
-      if (msg.type =="message") {
+      if (msg.type == "message") {
         const user = await getOtherUser(msg.data.userId!!);
         if (user) {
           msg.data.user = user;
         }
         addMessage(msg.data);
-      } else if(msg.type == "delete") {
+      } else if (msg.type == "delete") {
         const data = msg.data as MessageDelete;
         console.log(data, "deleting message");
         removeMessage(data.messageId);
@@ -89,9 +89,9 @@ function WebSocketComp() {
         }
       );
       const deleteSignal: WsMessage<MessageDelete> = {
-        data: { messageId: msg.id } ,
+        data: { messageId: msg.id },
         lobbyId: currentLobby,
-        type: "delete"
+        type: "delete",
       };
       socketRef.current?.send(JSON.stringify(deleteSignal));
     } else {
@@ -100,103 +100,110 @@ function WebSocketComp() {
     }
   };
   return (
-    <div style={globalStyle.page}>
-      <div style={styles.chatLayout}>
-        {/* CHAT */}
-        <div style={globalStyle.card}>
-          <div style={styles.chatHeader}>
-            <div>
-              <strong>Chat</strong>
-              {currentLobby && (
-                <span style={styles.lobbyName}>
-                  {" "}
-                  · Lobby{" "}
-                  {lobbys.find((l) => l.id == currentLobby)?.name ||
-                    currentLobby}
-                </span>
-              )}
+    <>
+      <div style={globalStyle.page}>
+        <div style={styles.chatLayout}>
+          {/* CHAT */}
+          <div style={globalStyle.card}>
+            <div style={styles.chatHeader}>
+              <div>
+                <strong>Chat</strong>
+                {currentLobby && (
+                  <span style={styles.lobbyName}>
+                    {" "}
+                    · Lobby{" "}
+                    {lobbys.find((l) => l.id == currentLobby)?.name ||
+                      currentLobby}
+                  </span>
+                )}
+              </div>
+              <span
+                style={{
+                  ...styles.status,
+                  color: connected ? "#22c55e" : "#ef4444",
+                }}
+              >
+                {connected ? "● Connected" : "● Disconnected"}
+              </span>
             </div>
-            <span
-              style={{
-                ...styles.status,
-                color: connected ? "#22c55e" : "#ef4444",
-              }}
-            >
-              {connected ? "● Connected" : "● Disconnected"}
-            </span>
-          </div>
 
-          <ul style={styles.messages}>
-            {messages.map((msg, i) => {
-              const mine = msg.userId === user.id;
-              console.log(msg.user);
+            <ul style={styles.messages}>
+              {messages.map((msg, i) => {
+                const mine = msg.userId === user.id;
+                console.log(msg.user);
 
-              return (
-                <li
-                  key={i}
-                  style={{
-                    ...styles.messageRow,
-                    justifyContent: mine ? "flex-end" : "flex-start",
-                  }}
-                >
-                  {!mine && (
-                    <img
-                      src={
-                        msg.user?.profilePicId
-                          ? `${SERVER_ENDPOINT}/blob/${msg.user.profilePicId}`
-                          : "/default-avatar.png"
-                      }
-                      onClick={() => {
-                        navigate("/");
-                      }}
-                      alt="pfp"
-                      style={globalStyle.avatar}
-                    />
-                  )}
-
-                  <div
+                return (
+                  <li
+                    key={i}
                     style={{
-                      ...styles.messageWrapper,
+                      ...styles.messageRow,
                       justifyContent: mine ? "flex-end" : "flex-start",
                     }}
                   >
+                    {!mine && (
+                      <img
+                        src={
+                          msg.user?.profilePicId
+                            ? `${SERVER_ENDPOINT}/blob/${msg.user.profilePicId}`
+                            : "/default-avatar.png"
+                        }
+                        onClick={() => {
+                          navigate("/");
+                        }}
+                        alt="pfp"
+                        style={globalStyle.avatar}
+                      />
+                    )}
+
                     <div
                       style={{
-                        ...styles.message,
-                        ...(mine ? styles.myMessage : styles.otherMessage),
+                        ...styles.messageWrapper,
+                        justifyContent: mine ? "flex-end" : "flex-start",
                       }}
                     >
-                      {!mine && (
-                        <div style={styles.username}>
-                          {`${msg.user ? msg.user.username : ""} : ${
-                            msg.user?.nation
-                          }`}
-                        </div>
-                      )}
+                      <div
+                        style={{
+                          ...styles.message,
+                          ...(mine ? styles.myMessage : styles.otherMessage),
+                        }}
+                      >
+                        {!mine && (
+                          <div style={styles.username}>
+                            {`${msg.user ? msg.user.username : ""} : ${
+                              msg.user?.nation
+                            }`}
+                          </div>
+                        )}
 
-                      {msg.text && msg.text.length > 0 && <div>{msg.text}</div>}
-                      {msg.fileMetaData && <MessageAttachement msg={msg} />}
+                        {msg.text && msg.text.length > 0 && (
+                          <div>{msg.text}</div>
+                        )}
+                        {msg.fileMetaData && <MessageAttachement msg={msg} />}
+                      </div>
+
+                      <button
+                        style={styles.deleteButton}
+                        onClick={() => deleteMessage(msg)}
+                        title="Delete message"
+                      >
+                        🗑
+                      </button>
                     </div>
+                  </li>
+                );
+              })}
+            </ul>
 
-                    <button
-                      style={styles.deleteButton}
-                      onClick={() => deleteMessage(msg)}
-                      title="Delete message"
-                    >
-                      🗑
-                    </button>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
+            <ChatInput
+              ws={socketRef.current}
+              lobbyId={currentLobby}
+            ></ChatInput>
+          </div>
 
-          <ChatInput ws={socketRef.current} lobbyId={currentLobby}></ChatInput>
-        </div>
-
-        {/* SIDEBAR */}
-        <div style={styles.sidebar}>
-          <LobbyList />
+          {/* SIDEBAR */}
+          <div style={styles.sidebar}>
+            <LobbyList />
+          </div>
         </div>
       </div>
       {showAdminLogin && (
@@ -207,9 +214,9 @@ function WebSocketComp() {
               deleteMessage(messageToDelete);
             }
           }}
-        ></AdminLogin>
+        />
       )}
-    </div>
+    </>
   );
 }
 const styles: { [key: string]: React.CSSProperties } = {

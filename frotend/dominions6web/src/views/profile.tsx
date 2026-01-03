@@ -64,8 +64,8 @@ export const UserProfilePage = () => {
     <div style={globalStyle.page}>
       <div style={globalStyle.card}>
         <h2 style={globalStyle.title}>User Profile</h2>
-        <p style={{...globalStyle.label, color:"black"}}><strong>Username:</strong> {user.username}</p>
-        <p style={{...globalStyle.label, color:"black"}}><strong>Nation:</strong> {user.nation}</p>
+        <p style={{...globalStyle.label}}><strong>Username:</strong> {user.username}</p>
+        <p style={{...globalStyle.label}}><strong>Nation:</strong> {user.nation}</p>
         {user.profilePicId && <img style = {{alignSelf:"center", width: 250, height: 250, borderRadius: "50%", objectFit: "cover" }} src={`${SERVER_ENDPOINT}/blob/${user.profilePicId}`}></img>}
         <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 12 }}>
           {previewUrl && (

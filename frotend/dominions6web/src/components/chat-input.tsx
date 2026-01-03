@@ -29,22 +29,6 @@ export function ChatInput({ ws, lobbyId }: Props) {
     return res.json();
   };
 
-  const handleFileSelect = async (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    setUploading(true);
-    try {
-      const meta = await uploadFile(file);
-      setFileMeta(meta);
-    } finally {
-      setUploading(false);
-      if (fileRef.current) fileRef.current.value = "";
-    }
-  };
-
   const sendMessage = () => {
     if (!text && !fileMeta) return;
     if (ws.readyState !== WebSocket.OPEN) return;
@@ -59,25 +43,22 @@ export function ChatInput({ ws, lobbyId }: Props) {
 
     ws.send(
       JSON.stringify({
-        data: msg ,
+        data: msg,
         lobbyId,
-        type: "message"
+        type: "message",
       })
     );
 
     setText("");
     setFileMeta(null);
   };
-  
-   return (
+
+  return (
     <div style={styles.wrapper}>
       {fileMeta && (
         <div style={styles.attachment}>
           📎 {fileMeta.fileName}
-          <button
-            style={styles.remove}
-            onClick={() => setFileMeta(null)}
-          >
+          <button style={styles.remove} onClick={() => setFileMeta(null)}>
             ✕
           </button>
         </div>
@@ -120,9 +101,7 @@ export function ChatInput({ ws, lobbyId }: Props) {
         <button
           style={{
             ...styles.sendButton,
-            ...(uploading || (!text && !fileMeta)
-              ? styles.sendDisabled
-              : {}),
+            ...(uploading || (!text && !fileMeta) ? styles.sendDisabled : {}),
           }}
           onClick={sendMessage}
           disabled={uploading || (!text && !fileMeta)}
@@ -199,4 +178,3 @@ const styles: { [key: string]: React.CSSProperties } = {
     fontSize: 12,
   },
 };
-

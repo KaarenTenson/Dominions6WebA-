@@ -1,27 +1,33 @@
 export const globalStyle: { [key: string]: React.CSSProperties }  = {
-  page: {
-    minHeight: "100vh",
-    flex: 5,
-    background: "#f5f7fa",
-    padding: "64px 24px",
-    maxWidth: 960,
-    minWidth: "100%",
-    margin: "0 auto",
-    display: "flex",
-    justifyContent: "center",
-  },
+page: {
+  minHeight: "100vh",
+  width: "100%",
+  background: "#f5f7fa",
+  padding: "64px 24px",
+  display: "flex",
+  justifyContent: "center",
+},
+modalOverlay: {
+  position: "fixed",
+  inset: 0,
+  background: "rgba(0,0,0,0.6)",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  zIndex: 1000,
+},
 
-  card: {
-    width: "100%",
-    maxWidth: 800, // login form should be narrow
-    padding: 32,
-    background: "#fff",
-    borderRadius: 12,
-    boxShadow: "0 12px 40px rgba(0,0,0,0.1)",
-    display: "flex",
-    flexDirection: "column" as const,
-    gap: 16,
-  },
+card: {
+  width: "100%",
+  maxWidth: 1200,
+  padding: 32,
+  background: "rgba(0, 0, 0, 1)",
+  borderRadius: 12,
+  boxShadow: "0 12px 40px rgba(0,0,0,0.1)",
+  display: "flex",
+  flexDirection: "column",
+  gap: 16,
+},
 
   title: {
     textAlign: "center" as const,

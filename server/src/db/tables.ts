@@ -6,5 +6,6 @@ export const Table = {
     lobbyToUser: "lobbyToUser",
     user: "USER",
     sessionCookie: "SESSION_COOKIE",
+    log: "LOG"
 
 } 

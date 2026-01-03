@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { SERVER_ENDPOINT } from "../constants";
+import { globalStyle } from "../global-styles";
 type AdminLoginProps = {
   close: () => void;
 };
@@ -39,34 +40,36 @@ export function AdminLogin({ close }: AdminLoginProps) {
   };
 
   return (
-    <div style={styles.card}>
-      <div style={styles.header}>
-        <h3 style={styles.title}>Admin Login</h3>
-        <button onClick={close} style={styles.closeButton}>
-          ✕
+    <div style={globalStyle.modalOverlay}>
+      <div style={styles.card}>
+        <div style={styles.header}>
+          <h3 style={styles.title}>Admin Login</h3>
+          <button onClick={close} style={styles.closeButton}>
+            ✕
+          </button>
+        </div>
+
+        <input
+          type="password"
+          placeholder="Admin password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          style={styles.input}
+        />
+
+        <button
+          onClick={login}
+          disabled={loading || password.length === 0}
+          style={{
+            ...styles.button,
+            ...(loading ? styles.disabled : {}),
+          }}
+        >
+          {loading ? "Logging in..." : "Login"}
         </button>
+
+        {error && <div style={styles.error}>{error}</div>}
       </div>
-
-      <input
-        type="password"
-        placeholder="Admin password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        style={styles.input}
-      />
-
-      <button
-        onClick={login}
-        disabled={loading || password.length === 0}
-        style={{
-          ...styles.button,
-          ...(loading ? styles.disabled : {}),
-        }}
-      >
-        {loading ? "Logging in..." : "Login"}
-      </button>
-
-      {error && <div style={styles.error}>{error}</div>}
     </div>
   );
 }

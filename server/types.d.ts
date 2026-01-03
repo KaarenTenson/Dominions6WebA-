@@ -1,85 +1,103 @@
 import type { IncomingMessage } from "http";
 import type { Logger } from "pino";
 export type Message = {
-    id: string;
-    text?: string;
-    fileMetaData?: FileMetaData,  
-    userId?: string;
-    lobbyId?: string;
-    createdAt: number;
+  id: string;
+  text?: string;
+  fileMetaData?: FileMetaData;
+  userId?: string;
+  lobbyId?: string;
+  createdAt: number;
 };
 export type FileMetaData = {
-    blobId: string;
-    mimeType: string;
-    fileSize: number;
-    fileName: string;
-}
-export type WsMessage<T> = {
-    lobbyId?: string,
-    data: T,
-    type: WsDataType,
+  blobId: string;
+  mimeType: string;
+  fileSize: number;
+  fileName: string;
 };
-export type WsDataType = "message"|"delete"
+export type WsMessage<T> = {
+  lobbyId?: string;
+  data: T;
+  type: WsDataType;
+};
+export type WsDataType = "message" | "delete";
 
 export type MessageDelete = {
-    messageId: string
-}
+  messageId: string;
+};
 
 export type Age = "EA" | "MA" | "LA";
 export type Nation = {
-    id: number,
-    name: string,
-    age: Age
-}
+  id: number;
+  name: string;
+  age: Age;
+};
 export type Lobby = {
-    id: string;
-    name: string;
-    password: string;
-    createdAt?: number;
+  id: string;
+  name: string;
+  password: string;
+  createdAt?: number;
 };
 export type HttpLoggerOptions = {
-    logger?: Logger;
-    customLogLevel?: (res?: IncomingMessage & {
-        statusCode?: number;
-    }, err?: unknown) => "fatal" | "error" | "warn" | "info" | "debug" | "trace" | "silent";
+  logger?: Logger;
+  customLogLevel?: (
+    res?: IncomingMessage & {
+      statusCode?: number;
+    },
+    err?: unknown
+  ) => "fatal" | "error" | "warn" | "info" | "debug" | "trace" | "silent";
 };
 export type User = {
-    id?: string;
-    username: string;
-    nation?: string;
-    password?: string;
-    profilePicId?: string;
-    token?: string;
-    created_at?: number;
+  id?: string;
+  username: string;
+  nation?: string;
+  password?: string;
+  profilePicId?: string;
+  token?: string;
+  created_at?: number;
 };
 
-
-
 export type QuestUser = {
-    id?: string;
-    username: string;
-    nation?: string;
-    profilePicId?: string;
-    token?: string;
-    created_at?: number;
+  id?: string;
+  username: string;
+  nation?: string;
+  profilePicId?: string;
+  token?: string;
+  created_at?: number;
 };
 
 export type SessionCookie = {
-    sessionId: string,
-    userId: string,
-    expiresAt: number,
-    isAdmin?:boolean
-}
+  sessionId: string;
+  userId: string;
+  expiresAt: number;
+  isAdmin?: boolean;
+};
 
 export type Result<T> = {
-    error?: string;
-    data?: T;
-}
+  error?: string;
+  data?: T;
+};
 export type Blob = {
-    mime_type: string,
-    data:any,
-}
+  mime_type: string;
+  data: any;
+};
 export type Error = {
-  status: string,
-  msg: string,
-}
+  status: string;
+  msg: string;
+};
+
+export type MapSize = {
+  width: number;
+  height: number;
+};
+export type Thrones = {
+  level1: number;
+  level2: number;
+  level3: number;
+};
+export type Dominions6Cofing = {
+  port: string;
+  mapSize: MapSize;
+  age: Age;
+  thrones: Thrones;
+  name: string;
+};

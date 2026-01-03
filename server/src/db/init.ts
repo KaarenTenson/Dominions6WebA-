@@ -14,6 +14,12 @@ dom6DB.exec(`
     age TEXT NOT NULL
   );
 `)
+
+dom6DB.exec(`CREATE TABLE IF NOT EXISTS ${Table.log} (
+  id TEXT PRIMARY KEY,
+  msg TEXT NOT NULL,
+  type TEXT,
+  created_at INTEGER NOT NULL);`)
 writeNations(await getNations());
 export const blobDB: SqliteDatabase = new Database("blob.sqlite");
 blobDB.exec(`
