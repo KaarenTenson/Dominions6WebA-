@@ -139,7 +139,7 @@ export const getUserById = (userId: string): Result<User> => {
       profile_pic_id: string;
     };
     if (!result) {
-      logger.info("wtf");
+      logger.info("quering users failed");
       return { error: "Midagi läks väga valesti" };
     }
 
@@ -175,7 +175,7 @@ export const getUserFromToken = (sessionId: string): Result<User> => {
       profile_pic_id: string;
     }[];
     if (!result || result.length < 1 || result.length > 2) {
-      logger.info(result, "wtf");
+      logger.info(result, "getUserFromToken failed");
       return { error: "Midagi läks väga valesti" };
     }
 
@@ -219,7 +219,7 @@ export const doesLobbyHaveAuth = (lobbyId: string): boolean => {
 export const getLobby = (lobbyId: string): Lobby | null => {
   try {
     const result = sqliteDB
-      .prepare(`SELECT ${Table.lobby} from lobby where id = ?;`)
+      .prepare(`SELECT * from ${Table.lobby} where id = ?;`)
       .get(lobbyId) as Lobby;
     logger.info(result, "andmebaasi lobby päring");
     return result;
@@ -242,7 +242,7 @@ export const checkLobbyAccess = (
       .all(userId, lobbyId) as number[];
 
     if (!result || result.length <= 0) {
-      logger.info(result, "wtf");
+      logger.info(result, "checking lobby access failed");
       return { error: "Ei ole luba lobbysse" };
     }
 

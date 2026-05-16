@@ -19,7 +19,39 @@ export type WsMessage<T> = {
   data: T;
   type: WsDataType;
 };
-export type WsDataType = "message" | "delete";
+export type ReadyMessage = {
+  userId: string;
+  ready: boolean;
+}
+export type ResetMessage = {
+  userId: string;
+  reset: boolean;
+}
+export type DraftEventType = "confirm"|"next_pack"|"ready"|"reset"|"start"|"user_data"|"ready_states"|"sync"|"confirm_event"|"card_selection";
+export type WsDataType = "message" | "delete" | DraftEventType;
+export type UserReadyState = {
+  ready: boolean;
+  userId: string;
+}
+export type UserConfirmationState = {
+  confirmed: boolean;
+  userId: string;
+}
+
+export type SyncData = {
+  currentPack: DraftCard<any>[];
+  confirmed: boolean;
+  ready: boolean;
+  selectedCards: DraftCard<any>[];
+}
+
+export type DraftCard<T> = {
+    userId?:string;
+    type :"unit"|"commander"|"magic_site"|"pretender";
+    id:string;
+    data: T;
+}
+
 
 export type MessageDelete = {
   messageId: string;

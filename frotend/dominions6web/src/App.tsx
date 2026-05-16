@@ -9,6 +9,7 @@ import { LoginPage } from "./views/login";
 import { UserProfilePage } from "./views/profile";
 import { Header } from "./components/header";
 import { AdminPage } from "./views/admin";
+import DraftLobby from "./Draft";
 
 function App() {
   return (
@@ -24,8 +25,9 @@ function App() {
           {/* Protected routes */}
           <Route element={<RequireAuth />}>
             <Route path="/profile" element={<UserProfilePage />} />
-            <Route path="/" element={<WebSocketComp />} />
+            <Route path="/" element={<DraftLobby/>} />
              <Route path="/admin" element={<AdminPage/>}/>
+             <Route path="draft" element = {<WebSocketComp/>}/>
           </Route>
          
 

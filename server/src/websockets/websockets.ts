@@ -1,16 +1,20 @@
 // src/ws-server.ts
 import { Server as HTTPServer } from "http";
 import WebSocket, { WebSocketServer } from "ws";
-import { Message, User, WsMessage } from "../../types";
+import { Message, User, WsMessage, DraftEventType, DraftCard, UserReadyState, SyncData, UserConfirmationState } from "../../types";
+import { DraftState, UserDraftSate } from "../classes/DraftState";
 import { logger } from "../logger/logger";
 import { writeMessage } from "../db/db-writer";
 import { parseCookies } from "../crypto/cookies";
-import { checkLobbyAccess, readSession } from "../db/db-reading";
+import { checkLobbyAccess, getUserById, readSession } from "../db/db-reading";
 import { IncomingMessage } from "http";
+import { generate_commander_pack, generate_magic_site_pack, generate_pretender_pack, generate_unit_pack } from "../card_generator";
+import { json } from "stream/consumers";
 
 let wss: WebSocketServer;
 
 const connectionsByUser = new Map<string, UserWebsocketConnection>();
+let draftSession: DraftState = new DraftState();
 
 export class UserWebsocketConnection {
   userId: string;
@@ -47,7 +51,7 @@ export class UserWebsocketConnection {
       }
     });
   }
-    handleAction(msg: WsMessage<any>) {
+  handleAction(msg: WsMessage<any>) {
     logger.info(msg, "got mesaage");
     [...connectionsByUser.keys()].forEach((n) => {
       if (connectionsByUser && connectionsByUser.get(n)) {
@@ -73,9 +77,10 @@ export function initWebSocket(server: HTTPServer) {
       return;
     }
     const url = new URL(req.url ?? "", "http://localhost");
-    
+
     const lobbyId = url.searchParams.get("lobbyId");
-    if (lobbyId) {
+    console.log(`user connected ${userId}, ${lobbyId}`);
+    if (lobbyId && lobbyId != "DRAFT") {
       const result = checkLobbyAccess(userId, lobbyId);
       if (result.error) {
         ws.close(3000, result.error);
@@ -94,7 +99,16 @@ export function initWebSocket(server: HTTPServer) {
 
     connectionsByUser.set(userId, connection);
     console.log(`User connected: ${userId}`);
-
+    if (lobbyId == "DRAFT") {
+      console.log("toDRAFT");
+      if (draftSession.userDraftStates.has(userId)) {
+        broadCastSyncInformation()
+      } else {
+        draftSession.userDraftStates.set(userId, new UserDraftSate(userId));
+        broadCastUsers();
+        brodCastReady();
+    }
+    }
     ws.on("message", (raw) => {
       let msg: WsMessage<any>;
       try {
@@ -105,17 +119,174 @@ export function initWebSocket(server: HTTPServer) {
       if (msg.type == "message") {
         msg.data.userId = userId;
         connection.handleMessage(msg)
-      ;} else {
+          ;
+      } else if (msg.type == "delete") {
         connection.handleAction(msg);
+      } else {
+        const userId = getUserId(ws, req);
+        handleDraftEvents(msg, userId!!);
       }
     });
 
     ws.on("close", () => {
       connectionsByUser.delete(userId);
       console.log(`User disconnected: ${userId}`);
+      if ([...draftSession.userDraftStates.keys()].includes(userId))
+        broadCastUsers();
     });
   });
 }
+const validateCardConfirmation = (cards: DraftCard<any>[]) => {
+  if (cards.length != 2 ||( cards.length == 2 && cards[0].id == cards[1].id)) {
+    console.log("card confirmation is not valid");
+    return false;
+  }
+  return true;
+}
+const handleDraftEvents = (msg: WsMessage<any>, userId: string) => {
+  if (msg.type == "confirm") {
+    if (!validateCardConfirmation(msg.data)) {
+      return;
+    }
+    draftSession.selectCards(msg.data, userId);
+    console.log(`got confirm msg from ${userId}`)
+    if (draftSession.checkConfirmed()) {
+      draftSession.addCards();
+      console.log("next turn");
+      nextTurn();
+    } else {
+      broacCastConfirm();
+    }
+  }
+  if (msg.type == "ready") {
+    const userState = draftSession.userDraftStates.get(userId);
+    userState!!.isReady = msg.data as boolean;
+    console.log(`User ready, userId: ${userId}, state: ${msg.data}`);
+    if (draftSession.checkIsReady() && draftSession.userDraftStates.size > 1) {
+      console.log(`Draft started`);
+      startEvent();
+      nextTurn();
+    } else {
+      brodCastReady();
+    }
+  }
+  if (msg.type == "reset") {
+    const userState = draftSession.userDraftStates.get(userId);
+    userState!!.isReady = true;
+    if (draftSession.checkWantsReset()) {
+      endDraft();
+    }
+  }
+  if (msg.type == "sync") {
+    broadCastSyncInformation();
+  }
+  
+}
+const broacCastConfirm = () => {
+  const msg:WsMessage<UserConfirmationState[]> = {type:"confirm_event", data:draftSession.getConfirmedStatus(), lobbyId:"DRAFT"};
+  broadcastDraftMsg(msg);
+}
+const broadcastDraftMsg = (msg:WsMessage<any>) => {
+  draftSession.userDraftStates.forEach((state, userId) => {
+      const conn = connectionsByUser.get(userId);
+      if (!conn) {
+        return;
+      }
+      conn!!.ws.send(JSON.stringify(msg)); 
+  })
+}
+const broadCastSyncInformation = () => {
+  broadCastUsers();
+  brodCastReady();
+  draftSession.userDraftStates.forEach((state, userId) => {
+      const data = state.toSyncInfo(draftSession.cardSelection);
+      const msg:WsMessage<SyncData> = {type:"sync", data:data, lobbyId:"DRAFT"};
+      const conn = connectionsByUser.get(userId);
+      conn!!.ws.send(JSON.stringify(msg)); 
+  })
+}
+const brodCastReady = () => {
+  const user_readyness:UserReadyState[] = [...draftSession.userDraftStates.values()].map((sess) => { 
+    return {userId: sess.user, ready:sess.isReady }
+  });
+  const msg: WsMessage<UserReadyState[]> = { lobbyId: "DRAFT", type: "ready_states", data: user_readyness };
+  broadcastDraftMsg(msg);
+}
+const broadCastUsers = () => {
+  const draftUserIds = [...draftSession.userDraftStates.values()].map((sess) => sess.user);
+  const users_results = draftUserIds.map(id => getUserById(id));
+  const error = users_results.find((res) => res.error != undefined);
+  if (error != undefined) {
+    console.log(error.data);
+    return;
+  }
+  console.log(users_results);
+  const users = users_results.map((r) => r.data!!);
+  const msg: WsMessage<User[]> = { lobbyId: "DRAFT", type: "user_data", data: users };
+  broadcastDraftMsg(msg);
+}
+const startEvent = () => {
+  broadCastUsers();
+  draftSession.userDraftStates.forEach(sess => {
+    const ws_conn = connectionsByUser.get(sess.user);
+    if (ws_conn?.lobbydId != "DRAFT") {
+      return;
+    }
+    const msg: WsMessage<null> = { lobbyId: "DRAFT", type: "start", data: null };
+    ws_conn?.ws.send(JSON.stringify(msg))
+  })
+}
+const nextTurn = () => {
+  draftSession.nextTurn();
+  if (draftSession.checkEmptyPacks()) {
+    new_pack_event();
+  } else {
+    draftSession.forward_packs();
+    draftSession.userDraftStates.forEach(sess => {
+      const ws_conn = connectionsByUser.get(sess.user);
+      if (ws_conn?.lobbydId != "DRAFT") {
+        return;
+      }
+      const msg: WsMessage<DraftCard<any>[]> = { lobbyId: "DRAFT", type: "next_pack", data: sess.current_pack };
+      ws_conn?.ws.send(JSON.stringify(msg))
+    })
+  }
+  broacCastConfirm();
+}
+
+const new_pack_event = () => {
+  draftSession.turn += 1;
+  if (draftSession.turn > 4) {
+    endDraft();
+  }
+  draftSession.userDraftStates.forEach(sess => {
+    const ws_conn = connectionsByUser.get(sess.user);
+    let pack: DraftCard<any>[];
+    if (draftSession.turn == 1) {
+      pack = generate_commander_pack();
+    } else if (draftSession.turn == 2) {
+      pack = generate_unit_pack();
+    } else if (draftSession.turn == 3) {
+      pack = generate_pretender_pack();
+    }else {
+      //pack = generate_magic_site_pack();
+      const msg:WsMessage<undefined> = {lobbyId:"DRAFT", type: "card_selection", data: undefined};
+      broadcastDraftMsg(msg);
+      broadCastSyncInformation();
+      return;
+    }
+    sess.current_pack = pack;
+
+    const msg: WsMessage<DraftCard<any>[]> = { lobbyId: "DRAFT", type: "next_pack", data: pack };
+    ws_conn?.ws.send(JSON.stringify(msg))
+
+  })
+}
+const endDraft = () => {
+  //TODO
+  draftSession = new DraftState();
+}
+
 const getUserId = (ws: WebSocket, req: IncomingMessage): string | null => {
   const cookies = parseCookies(req.headers.cookie);
   if (!cookies["session"]) {
