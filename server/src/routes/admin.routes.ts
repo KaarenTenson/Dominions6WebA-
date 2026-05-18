@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { getSession } from "../crypto/cookies";
-import { logger } from "../logger/logger";
-import { hashPassword } from "../crypto/crypto";
-import { getEnv } from "../utils/env-utils";
-import { deleteMessage } from "../db/db-writer";
-import { newGame } from "../../dominions6/dominions-game-manager";
-import { Dominions6Cofing } from "../../types";
+import { getSession } from "../crypto/cookies.js";
+import { logger } from "../logger/logger.js";
+import { hashPassword } from "../crypto/crypto.js";
+import { getEnv } from "../utils/env-utils.js";
+import { deleteMessage } from "../db/db-writer.js";
+import { newGame } from "../dominions6/dominions-game-manager.js";
+import { Dominions6Cofing } from "../types.js";
 const router = Router();
 router.get("/admin/is_admin", (req, res) => {
   const session = getSession(req.cookies.session);

@@ -3,13 +3,13 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
-import authRoutes from "./routes/auth.routes.ts";
-import userRoutes from "./routes/user.routes.ts";
-import lobbyRoutes from "./routes/lobby.routes.ts";
-import messageRoutes from "./routes/message.routes.ts";
-import blobRoutes from "./routes/blob.routes.ts";
-import dom6Routes from "./routes/dom6.routes.ts";
-import adminRoutes from "./routes/admin.routes.ts";
+import authRoutes from "./routes/auth.routes.js";
+import userRoutes from "./routes/user.routes.js";
+import lobbyRoutes from "./routes/lobby.routes.js";
+import messageRoutes from "./routes/message.routes.js";
+import blobRoutes from "./routes/blob.routes.js";
+import dom6Routes from "./routes/dom6.routes.js";
+import adminRoutes from "./routes/admin.routes.js";
 
 
 const app = express();
@@ -18,7 +18,8 @@ app.use(cookieParser());
 app.use(express.json());
 const allowedOrigins = [
   "http://localhost:5173",
-  "http://192.168.1.176:5173" // Add your network IP here
+  "http://192.168.1.176:5173",
+  `http://${process.env.HOST_IP}:5173`
 ];
 app.use(
   cors({

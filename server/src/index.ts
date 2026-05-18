@@ -1,6 +1,6 @@
 import express from "express";
 import { logger, httpLogger } from "./logger/logger.js";
-import type { Lobby, QuestUser, User } from "../types.js";
+import type { Lobby, QuestUser, User } from "./types.js";
 import {
   addUserToLobby,
   updateUserProfilePic,
@@ -22,7 +22,7 @@ import {
 } from "./db/db-reading.js";
 import { initWebSocket } from "./websockets/websockets.js";
 import { createServer } from "http";
-import app from "./app.ts";
+import app from "./app.js";
 app.get("/health", (_req, res) => {
   res.json({ status: "ok" });
 });

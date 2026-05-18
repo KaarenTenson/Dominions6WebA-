@@ -1,7 +1,8 @@
-import { useRef, useState, type RefObject } from "react";
-import { type UserConfirmationState, type DraftCard, type DraftCardType, type SyncData, type User, type UserReadyState, type WsMessage } from "../../types";
+import { useRef, useState} from "react";
+import { type UserConfirmationState, type DraftCard, type SyncData, type User, type UserReadyState, type WsMessage, type DraftedCardChoosingState, type ResetData, type StartLocation } from "../../types";
 import { DRAFT_WS_SERVER_ENDPOINT } from "../constants";
 import { useDraftStore } from "../draftStore";
+import { useUserStore } from "../user-store";
 
 // You cannot use hooks outside React components/hooks.
 // Move refs and state into a custom hook.
@@ -19,24 +20,35 @@ export const useDraftWebSocket = () => {
         addUnit,
         setPack,
         addPretender,
+        setCommanders,
+        setMagicSites,
+        setPretenders,
+        setUnits
     } = useDraftStore();
 
+    const { user} = useUserStore();
     const [connected, setConnected] = useState<boolean>(false);
     const [input, setInput] = useState<string>("");
     const [started, setStarted] = useState<boolean>(false);
-    
+
     const [users, setUsers] = useState<User[]>([]);
     const [confirmedState, setConfirmedState] = useState<UserConfirmationState[]>([]);
 
     const [usersReady, setUsersReady] = useState<UserReadyState[]>([]);
     const [ready, setReady] = useState<boolean>(false);
     const [selectedCards, setSelectedCards] = useState<DraftCard<any>[]>([]);
+    const [isCardSelection, setIsCardSelection] = useState<boolean>(false);
+    const [chosenDraftedCards, setChosenDraftedCards] = useState<DraftedCardChoosingState>({ pretenders: [], commanders: [], units: [], magicSites: [], heat: 0, startLocation: "land" });
+
+    const [resetState, setResetState] = useState<ResetData[]>([]);
+    const [isEnded, setIsEnded] = useState<boolean>(false);
+    const [blodId, setBlobId] = useState<string | undefined>("");
 
     const lobby = "DRAFT";
 
     const startDraftWsConnection = (): (() => void) => {
         const url = new URL(DRAFT_WS_SERVER_ENDPOINT);
-         url.searchParams.append("lobbyId", lobby);
+        url.searchParams.append("lobbyId", lobby);
         socketRef.current = new WebSocket(url.toString());
 
         socketRef.current.onopen = () => {
@@ -71,6 +83,9 @@ export const useDraftWebSocket = () => {
         if (msg.type === "start") {
             setStarted(true);
         }
+        if (msg.type === "reset") {
+            window.location.reload();
+        }
         if (msg.type === "user_data") {
             setUsers(msg.data as User[]);
         }
@@ -83,15 +98,37 @@ export const useDraftWebSocket = () => {
         if (msg.type === "confirm_event") {
             setConfirmedState(msg.data as UserConfirmationState[]);
         }
+        if (msg.type == "reset_event") {
+            setResetState(msg.data as ResetData[]);
+        }
+        if (msg.type === "card_selection") {
+            setIsCardSelection(true);
+        }
+        if (msg.type === "end") {
+            setIsEnded(true);
+            setBlobId(msg.data as string);
+        }
     };
 
-    const handelSync = (msg:WsMessage<SyncData>) => {
+    const handelSync = (msg: WsMessage<SyncData>) => {
         const syncData = msg.data;
         setSelectedCards(syncData.selectedCards);
         setReady(syncData.ready);
         setPack(syncData.currentPack);
+        setCommanders(syncData.commanders);
+        setPretenders(syncData.pretenders);
+        setMagicSites(syncData.magicSites);
+        setUnits(syncData.units);
+        setIsEnded(syncData.isEnded);
+        setBlobId(syncData.blobId);
+
         if (syncData.currentPack.length > 0) {
             setStarted(true);
+        }
+        if (syncData.cardSelection) {
+            setStarted(true);
+            setReady(true);
+            setIsCardSelection(true);
         }
 
     }
@@ -104,6 +141,31 @@ export const useDraftWebSocket = () => {
 
         socketRef.current?.send(JSON.stringify(confirmMsg));
     };
+    const confirmChosenDraftedCards = () => {
+        if (chosenDraftedCards.commanders.length != 8) {
+            alert("choosen 8 commanders");
+            return;
+        }
+        if (chosenDraftedCards.units.length != 8) {
+            alert("choosen 8 units");
+            return;
+        }
+        if (chosenDraftedCards.magicSites.length != 2) {
+            alert("choosen 2 sites");
+            return;
+        }
+        if (chosenDraftedCards.pretenders.length !=4) {
+            alert("choosen 4 pretendesr");
+            return;
+        }
+        const confirmMsg: WsMessage<DraftedCardChoosingState> = {
+            data: chosenDraftedCards,
+            lobbyId: lobby,
+            type: "confirm_drafted_cards",
+        };
+
+        socketRef.current?.send(JSON.stringify(confirmMsg));
+    }
 
     const confirmCards = (cards: DraftCard<any>[]): void => {
         if (cards.length < 1) {
@@ -123,6 +185,17 @@ export const useDraftWebSocket = () => {
         if (type === "pretender") {
             confirmPretenders(cards);
         }
+    }
+    const sendReset = () => {
+        const userId = user.id!!;
+        const currentUserResetState = resetState.find((state) => state.userId === userId);
+        const value = currentUserResetState === undefined ? true : !currentUserResetState.reset;
+        const resetMsg: WsMessage<boolean> = {
+            data: value,
+            lobbyId: lobby,
+            type: "reset",
+        };
+        socketRef.current?.send(JSON.stringify(resetMsg));
     }
     const confirmPretenders = (cards: DraftCard<any>[]): void => {
         try {
@@ -147,6 +220,7 @@ export const useDraftWebSocket = () => {
     };
     const selectCards = (card: DraftCard<any>): void => {
         if (selectedCards.some((c) => c.id == card.id)) {
+            setSelectedCards([...selectedCards.filter((c) => c.id != card.id)]);
             return;
         }
         if (selectedCards.length >= 2) {
@@ -154,6 +228,110 @@ export const useDraftWebSocket = () => {
         } else {
             setSelectedCards([...selectedCards, card]);
         }
+    }
+    const removeIfAlreadyChosen = (card: DraftCard<any>, state: DraftedCardChoosingState): boolean => {
+
+        if (state.commanders.some((c) => c.id === card.id)) {
+            setChosenDraftedCards(prev => {
+                const commanders = prev.commanders.filter((c) => c.id != card.id);
+                return {
+                    ...prev,
+                    commanders
+                };
+            })
+            return true;
+        }
+        if (state.units.some((c) => c.id === card.id)) {
+            setChosenDraftedCards(prev => {
+                const units = prev.units.filter((c) => c.id != card.id);
+                return {
+                    ...prev,
+                    units
+                };
+            })
+            return true;
+        }
+        if (state.pretenders.some((c) => c.id === card.id)) {
+            setChosenDraftedCards(prev => {
+                const pretenders = prev.pretenders.filter((c) => c.id != card.id);
+                return {
+                    ...prev,
+                    pretenders
+                };
+            })
+            return true;
+        }
+        if (state.magicSites.some((c) => c.id === card.id)) {
+            setChosenDraftedCards(prev => {
+                const magicSites = prev.magicSites.filter((c) => c.id != card.id);
+                return {
+                    ...prev,
+                    magicSites
+                };
+            })
+            return true;
+        }
+        return false;
+    }
+    const chooseDraftedCards = (card: DraftCard<any>): void => {
+        if (removeIfAlreadyChosen(card, chosenDraftedCards)) {
+            return;
+        }
+        setChosenDraftedCards(prev => {
+            if (card.type === "commander") {
+
+                const commanders = [...prev.commanders, card].slice(-8);
+
+                return {
+                    ...prev,
+                    commanders
+                };
+            }
+
+            if (card.type === "unit") {
+                const units = [...prev.units, card].slice(-8);
+
+                return {
+                    ...prev,
+                    units
+                };
+            }
+
+            if (card.type === "pretender") {
+                const pretenders = [...prev.pretenders, card].slice(-4);
+
+                return {
+                    ...prev,
+                    pretenders
+                };
+            }
+            if (card.type === "magic_site") {
+                const magicSites = [...prev.magicSites, card].slice(-2);
+                return {
+                    ...prev,
+                    magicSites
+                };
+            }
+
+
+            return prev;
+        });
+    };
+    const chooseHeat = (heat: number) => {
+        setChosenDraftedCards(prev => {
+            return {
+                ...prev,
+                heat:heat
+            };
+        })
+    }
+    const chooseStartingLocation = (location: StartLocation) => {
+        setChosenDraftedCards(prev => {
+            return {
+                ...prev,
+                startLocation:location
+            };
+        })
     }
     const confirmMagicSites = (cards: DraftCard<any>[]): void => {
         try {
@@ -179,7 +357,7 @@ export const useDraftWebSocket = () => {
     };
 
     const sendReadyEvent = (isReady: boolean) => {
-         const confirmMsg: WsMessage<boolean> = {
+        const confirmMsg: WsMessage<boolean> = {
             data: isReady,
             lobbyId: lobby,
             type: "ready",
@@ -192,7 +370,7 @@ export const useDraftWebSocket = () => {
         socketRef,
         users,
         started,
-        ready, 
+        ready,
         setReady,
         setUsers,
         usersReady,
@@ -212,6 +390,16 @@ export const useDraftWebSocket = () => {
         sendReadyEvent,
         confirmCards,
         selectCards,
-        confirmedState
+        confirmedState,
+        isCardSelection,
+        chooseDraftedCards,
+        confirmChosenDraftedCards,
+        chosenDraftedCards,
+        isEnded,
+        blodId,
+        sendReset,
+        resetState,
+        chooseHeat,
+        chooseStartingLocation
     };
 };

@@ -8,7 +8,6 @@ export function AdminLogin({ close }: AdminLoginProps) {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState(false);
 
   const login = async () => {
     setLoading(true);

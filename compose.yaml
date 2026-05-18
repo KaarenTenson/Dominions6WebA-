@@ -1,0 +1,22 @@
+services:
+  server:
+    build:
+      context: ./server
+    container_name: dom6app
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    environment:
+      - HOST_IP=${HOST_IP}
+
+  frontend:
+    build:
+      context: ./frotend/dominions6web
+      args:
+      - VITE_HOST_IP=${HOST_IP} 
+    container_name: dom6frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - server
+    restart: unless-stopped

@@ -1,10 +1,10 @@
 // src/routes/auth.routes.ts
 import { Router } from "express";
-import { authenticateUser, checkIfUserExists } from "../db/db-reading";
-import { createCookies, getSession } from "../crypto/cookies";
-import { QuestUser, User } from "../../types";
-import { logger } from "../logger/logger";
-import { writeQuest, writeUser } from "../db/db-writer";
+import { authenticateUser, checkIfUserExists } from "../db/db-reading.js";
+import { createCookies, getSession } from "../crypto/cookies.js";
+import { QuestUser, User } from "../types.js";
+import { logger } from "../logger/logger.js";
+import { writeQuest, writeUser } from "../db/db-writer.js";
 
 const router = Router();
 

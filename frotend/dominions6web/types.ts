@@ -1,11 +1,11 @@
 export type Message = {
-  id: string,
-  text?: string,
-  fileMetaData?: FileMetaData,  
-  lobbyId?: string,
-  userId?: string,
-  user?: User,
-  createdAt: number
+    id: string,
+    text?: string,
+    fileMetaData?: FileMetaData,
+    lobbyId?: string,
+    userId?: string,
+    user?: User,
+    createdAt: number
 }
 export type FileMetaData = {
     blobId: string;
@@ -47,28 +47,48 @@ export type WsMessage<T> = {
     data: T,
     type: WsDataType,
 };
-export type DraftEventType = "confirm"|"next_pack"|"ready"|"reset"|"start"|"user_data"|"ready_states"|"sync"|"confirm_event"|"card_selection";
+export type DraftEventType = "confirm" | "next_pack" | "ready" | "reset" | "reset_event" | "start" | "user_data" | "ready_states" | "sync" | "confirm_event" | "card_selection" | "confirm_drafted_cards" | "end";
 export type WsDataType = "message" | "delete" | DraftEventType;
-export type UserReadyState = {
-  ready: boolean;
+export type ResetData = {
+  reset: boolean;
   userId: string;
+}
+export type UserReadyState = {
+    ready: boolean;
+    userId: string;
 }
 export type UserConfirmationState = {
-  confirmed: boolean;
-  userId: string;
+    confirmed: boolean;
+    userId: string;
 }
-export type DraftCardType = "unit"|"commander"|"magic_site"|"pretender";
+export type DraftCardType = "unit" | "commander" | "magic_site" | "pretender";
 export type DraftCard<T> = {
-    userId?:string;
-    type :DraftCardType;
-    id:string;
+    userId?: string;
+    type: DraftCardType;
+    id: string;
     data: T;
 }
+export type DraftedCardChoosingState = {
+    pretenders: DraftCard<any>[],
+    units: DraftCard<any>[],
+    commanders: DraftCard<any>[],
+    magicSites: DraftCard<any>[],
+    startLocation:StartLocation;
+    heat: number;
+}
+export type StartLocation = "land"|"cave"|"water";
 export type SyncData = {
-  currentPack: DraftCard<any>[];
-  confirmed: boolean;
-  ready: boolean;
-  selectedCards: DraftCard<any>[];
+    currentPack: DraftCard<any>[];
+    confirmed: boolean;
+    ready: boolean;
+    selectedCards: DraftCard<any>[];
+    cardSelection: boolean;
+    commanders: DraftCard<any>[];
+    units: DraftCard<any>[];
+    pretenders: DraftCard<any>[];
+    magicSites: DraftCard<any>[];
+    isEnded: boolean;
+    blobId?: string;
 }
 
 export type MessageDelete = {

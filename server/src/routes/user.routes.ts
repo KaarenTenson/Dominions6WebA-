@@ -3,12 +3,12 @@ import {
   authenticateUser,
   getUserById,
   getUserFromToken,
-} from "../db/db-reading";
-import { createCookies, getSession } from "../crypto/cookies";
-import { writeBlob } from "../db/db-blob-wrtiter";
-import { updateUserProfilePic } from "../db/db-writer";
+} from "../db/db-reading.js";
+import { createCookies, getSession } from "../crypto/cookies.js";
+import { writeBlob } from "../db/db-blob-wrtiter.js";
+import { updateUserProfilePic } from "../db/db-writer.js";
 import multer from "multer";
-import { logger } from "../logger/logger";
+import { logger } from "../logger/logger.js";
 import sharp from "sharp";
 
 const router = Router();

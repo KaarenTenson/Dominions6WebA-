@@ -18,13 +18,16 @@ export const Header = () => {
       <nav style={styles.nav}>
         <div style={styles.left}>
           <Link to="/" style={styles.logo}>
-            MyApp
+            DOM&!"!#!"
           </Link>
         </div>
 
         <div style={styles.right}>
-          <Link to="/" style={styles.link}>
+          <Link to="/messages" style={styles.link}>
             Messages
+          </Link>
+          <Link to="/" style={styles.link}>
+            Draft
           </Link>
           <Link to="/profile" style={styles.link}>
             Profile

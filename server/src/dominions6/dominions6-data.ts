@@ -1,5 +1,5 @@
 import { parse } from "csv-parse";
-import { Age, Nation } from "../types";
+import { Age, Nation } from "../types.js";
 import * as fs from "node:fs";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -23,7 +23,7 @@ export const getNations = async(): Promise<Nation[]> => {
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = path.dirname(__filename);
 
-  const filePath = path.join(__dirname, "../dominions6/game-files/nations.csv");
+  const filePath = path.join(__dirname, "../../nations.csv");
   const rows: string[] = await readCsv(filePath);
 
   const nations: Nation[] = [];

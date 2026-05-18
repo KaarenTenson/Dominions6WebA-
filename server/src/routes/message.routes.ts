@@ -4,9 +4,9 @@ import {
   getAllMessagesFromLobby,
   getAllMessagesFromMainLobby,
   checkLobbyAccess,
-} from "../db/db-reading";
-import { getSession } from "../crypto/cookies";
-import { logger } from "../logger/logger";
+} from "../db/db-reading.js";
+import { getSession } from "../crypto/cookies.js";
+import { logger } from "../logger/logger.js";
 
 const router = Router();
 

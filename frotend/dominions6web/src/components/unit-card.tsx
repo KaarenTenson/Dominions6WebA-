@@ -1,5 +1,6 @@
 import React from "react";
 import type { Unit } from "../draftTypes/unit";
+import { C } from "../draft-shared";
 
 type UnitCardProps = {
     unit: Unit;
@@ -47,6 +48,8 @@ const s = {
         textAlign: "left" as const,
         display: "block",
         padding: 0,
+        borderRight: `1px solid ${C.border}`,
+        borderBottom: `1px solid ${C.border}`,
     } as React.CSSProperties,
 
     portrait: {
@@ -304,13 +307,13 @@ export default function UnitCard({ unit, selected, onClick }: UnitCardProps) {
                     {unit.pretender && (
                         <span style={s.badgeCommander}>Pretender</span>
                     )}
-                    {(unit.commander || unit.pretender) && unit.leader && unit.leader != 0 && (
+                    {(unit.commander || unit.pretender) && unit.leader != undefined && unit.leader != 0 && (
                         <span style={s.badgeCommander}>leader ship: {unit.leader}</span>
                     )}
-                    {(unit.commander || unit.pretender) && unit.magicleader && unit.magicleader != 0 && (
+                    {(unit.commander || unit.pretender) && unit.magicleader != undefined && unit.magicleader != 0 && (
                         <span style={s.badgeCommander}>magic leader ship: {unit.magicleader}</span>
                     )}
-                    {(unit.commander || unit.pretender) && unit.undeadleader && unit.undeadleader != 0 && (
+                    {(unit.commander || unit.pretender) && unit.undeadleader != undefined && unit.undeadleader && unit.undeadleader != 0 && (
                         <span style={s.badgeCommander}>undead leader ship: {unit.undeadleader}</span>
                     )}
                     {unit.capitalOnly && (

@@ -1,10 +1,10 @@
 // sqlite.ts
 import Database from "better-sqlite3";
 import type { Database as SqliteDatabase } from "better-sqlite3";
-import { getNations } from "../../dominions6/dominions6-data";
-import { Nation } from "../../types";
+import { getNations } from "../dominions6/dominions6-data.js";
+import { Nation } from "../types.js";
 import {writeNations} from "./db-dom6.writers.js"
-import {Table} from "./tables";
+import {Table} from "./tables.js";
 import { table } from "node:console";
 export const dom6DB: SqliteDatabase = new Database("dom6.sqlite");
 dom6DB.exec(`

@@ -1,7 +1,7 @@
-import { Nation } from "../../types"
-import { logger } from "../logger/logger";
-import { dom6DB } from "./init"
-import { Table } from "./tables";
+import { Nation } from "../types.js"
+import { logger } from "../logger/logger.js";
+import { dom6DB } from "./init.js"
+import { Table } from "./tables.js";
 
 export const getNations = ():Nation[] => {
     try {

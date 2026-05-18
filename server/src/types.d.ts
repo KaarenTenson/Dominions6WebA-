@@ -27,22 +27,42 @@ export type ResetMessage = {
   userId: string;
   reset: boolean;
 }
-export type DraftEventType = "confirm"|"next_pack"|"ready"|"reset"|"start"|"user_data"|"ready_states"|"sync"|"confirm_event"|"card_selection";
+export type DraftEventType = "confirm"|"next_pack"|"ready"|"reset"|"reset_event"|"start"|"user_data"|"ready_states"|"sync"|"confirm_event"|"card_selection"|"confirm_drafted_cards"|"end";
 export type WsDataType = "message" | "delete" | DraftEventType;
 export type UserReadyState = {
   ready: boolean;
+  userId: string;
+}
+export type ResetData = {
+  reset: boolean;
   userId: string;
 }
 export type UserConfirmationState = {
   confirmed: boolean;
   userId: string;
 }
+export type DraftedCardChoosingState = {
+    pretenders: DraftCard<any>[],
+    units: DraftCard<any>[],
+    commanders: DraftCard<any>[],
+    magicSites: DraftCard<any>[],
+    startLocation:StartLocation;
+    heat: number;
+}
+export type StartLocation = "land"|"cave"|"water";
 
 export type SyncData = {
   currentPack: DraftCard<any>[];
   confirmed: boolean;
   ready: boolean;
   selectedCards: DraftCard<any>[];
+  cardSelection:boolean;
+  commanders: DraftCard<any>[];
+  units: DraftCard<any>[];
+  pretenders: DraftCard<any>[];
+  magicSites: DraftCard<any>[]
+  isEnded: boolean;
+  blobId?: string;
 }
 
 export type DraftCard<T> = {

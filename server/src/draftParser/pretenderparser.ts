@@ -1,5 +1,5 @@
 import fs from "node:fs";
-import { Pretender, RandomMagicPath } from "../draftypes/pretender";
+import { Pretender, RandomMagicPath } from "../draftypes/pretender.js";
 
 function toNumber(value: string | undefined): number | undefined {
   if (value === undefined || value === null || value.trim() === "") {

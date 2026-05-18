@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLobbyStore } from "../lobbyStore";
 import type { Lobby } from "../../types";
-import { globalStyle } from "../global-styles";
 import { useMessageStore } from "../messages-store";
 import { LobbyPasswordPrompt } from "./lobby-login";
 

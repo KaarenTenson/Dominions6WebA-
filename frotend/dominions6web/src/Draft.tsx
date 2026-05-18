@@ -1,10 +1,12 @@
-import { useEffect, useMemo } from "react";
-import type { DraftCard, User, UserConfirmationState, UserReadyState } from "../types";
+import { useEffect} from "react";
+import type { DraftCard, ResetData, User, UserConfirmationState, UserReadyState } from "../types";
 import { useDraftWebSocket } from "./views/draftSockets";
 import { SERVER_ENDPOINT } from "./constants";
 import { useUserStore } from "./user-store";
 import UnitCard from "./components/unit-card";
-
+import CardSelection from "./components/card-selection";
+import { C, cinzel, crimson, Ornament, CheckIcon, SpinnerIcon, getConfirmedState } from "./draft-shared";
+import MagicSiteCard from "./components/magic-card";
 /* -------------------------------------------------------------------------- */
 /*  FONTS — add to index.html if not already present:
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Pro:wght@300;400;600&display=swap" rel="stylesheet">
@@ -14,52 +16,6 @@ import UnitCard from "./components/unit-card";
 /*  DESIGN TOKENS                                                              */
 /* -------------------------------------------------------------------------- */
 
-const C = {
-    bg:          "#080705",
-    surface:     "#0e0c0a",
-    surfaceAlt:  "#120f0b",
-    border:      "#2e2210",
-    borderBright:"#5a4020",
-    gold:        "#d4a847",
-    goldDim:     "#7a5c28",
-    goldFaint:   "#2a1e0e",
-    emerald:     "#4ade80",
-    emeraldDim:  "#166534",
-    emeraldFaint:"#052e16",
-    red:         "#f87171",
-    redFaint:    "#2a0a0a",
-    muted:       "#5a4a30",
-    text:        "#c8b090",
-    textDim:     "#7a6040",
-} as const;
-
-const cinzel: React.CSSProperties = {
-    fontFamily: "'Cinzel', 'Georgia', serif",
-};
-
-const crimson: React.CSSProperties = {
-    fontFamily: "'Crimson Pro', 'Georgia', serif",
-};
-
-/* -------------------------------------------------------------------------- */
-/*  ICONS                                                                      */
-/* -------------------------------------------------------------------------- */
-
-const CheckIcon = () => (
-    <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
-        stroke="currentColor" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round">
-        <path d="M5 13l4 4L19 7" />
-    </svg>
-);
-
-const SpinnerIcon = ({ size = 12 }: { size?: number }) => (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
-        stroke="currentColor" strokeWidth={2.5}
-        style={{ animation: "spin 1s linear infinite" }}>
-        <circle cx="12" cy="12" r="10" strokeOpacity={0.25} />
-        <path d="M12 2a10 10 0 0 1 10 10" />
-    </svg>
-);
 
 const WifiIcon = () => (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
@@ -83,8 +39,56 @@ const WifiOffIcon = () => (
 const getReadyState = (userId: string, readyStates: UserReadyState[]): boolean =>
     readyStates.find((u) => u.userId === userId)?.ready ?? false;
 
-const getConfirmedState = (userId: string, confirmedStates: UserConfirmationState[]): boolean =>
-    confirmedStates.find((u) => u.userId === userId)?.confirmed ?? false;
+function ResetButton({ resetState, sendReset, currentUserId }: {
+    resetState: ResetData[];
+    sendReset: () => void;
+    currentUserId: string;
+}) {
+    const hasVoted = resetState.some(r => r.userId === currentUserId && r.reset);
+    const voteCount = resetState.filter(r => r.reset).length;
+
+    return (
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: "6px" }}>
+            <button
+                onClick={() => { sendReset(); }}
+                style={{
+                    display: "flex", alignItems: "center", gap: "8px",
+                    ...cinzel, fontSize: "11px", letterSpacing: "0.12em",
+                    textTransform: "uppercase" as const,
+                    color: hasVoted ? "#932f2f" : C.red,
+                    background: "#5a2c2c",
+                    border: `1px solid "#5a1a1a"`,
+                    borderRadius: "3px", padding: "8px 16px",
+                    cursor: hasVoted ? "default" : "pointer",
+                    opacity: hasVoted ? 0.5 : 1,
+                    transition: "all 0.15s",
+                }}
+            >
+                ↺ Reset Game
+            </button>
+
+            {voteCount > 0 && (
+                <div style={{
+                    display: "flex", alignItems: "center", gap: "6px",
+                    ...cinzel, fontSize: "10px", letterSpacing: "0.1em",
+                    color: voteCount >= 2 ? C.red : "#5a3030",
+                }}>
+                    <span>{voteCount}/2 voted</span>
+                    <div style={{ display: "flex", gap: "4px" }}>
+                        {[0, 1].map(i => (
+                            <span key={i} style={{
+                                width: "8px", height: "8px", borderRadius: "50%",
+                                background: i < voteCount ? "#e41515" : "#973535",
+                                border: `1px solid ${i < voteCount ? "#ff0000" : "#c42929"}`,
+                                display: "inline-block",
+                            }} />
+                        ))}
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+}
 
 /* -------------------------------------------------------------------------- */
 /*  PLAYERS SECTION                                                            */
@@ -281,7 +285,7 @@ type DraftPackSectionProps = {
 const DraftPackSection = ({
     currentPack, selectedCards, selectCards, confirmCards, users, confirmedState,
 }: DraftPackSectionProps) => {
-    const confirmedCount = confirmedState.filter((u) => u.confirmed).length;
+    //const confirmedCount = confirmedState.filter((u) => u.confirmed).length;
 
     return (
         <div>
@@ -377,14 +381,21 @@ const DraftPackSection = ({
                     }}>
                         {currentPack.map((card) => {
                             const selected = selectedCards.some((c) => c.id === card.id);
-                            return (
-                                <UnitCard
-                                    key={card.id}
-                                    unit={card.data}
+                            if (card.type == "magic_site") {
+                                return <MagicSiteCard key={card.id}
+                                    site={card.data}
                                     selected={selected}
-                                    onClick={() => selectCards(card)}
-                                />
-                            );
+                                    onClick={() => selectCards(card)}></MagicSiteCard>
+                            } else {
+                                return (
+                                    <UnitCard
+                                        key={card.id}
+                                        unit={card.data}
+                                        selected={selected}
+                                        onClick={() => selectCards(card)}
+                                    />
+                                );
+                            }
                         })}
                     </div>
 
@@ -422,6 +433,7 @@ const DraftPackSection = ({
                     </div>
                 </>
             )}
+        <div style={{padding : "100px"}}/>    
         </div>
     );
 };
@@ -430,13 +442,7 @@ const DraftPackSection = ({
 /*  ORNAMENT                                                                   */
 /* -------------------------------------------------------------------------- */
 
-const Ornament = () => (
-    <div style={{ display: "flex", alignItems: "center", gap: "4px", opacity: 0.4 }}>
-        <div style={{ width: 20, height: 1, background: C.gold }} />
-        <div style={{ width: 4, height: 4, background: C.gold, transform: "rotate(45deg)" }} />
-        <div style={{ width: 20, height: 1, background: C.gold }} />
-    </div>
-);
+
 
 /* -------------------------------------------------------------------------- */
 /*  MAIN PAGE                                                                  */
@@ -446,7 +452,9 @@ export default function DraftLobby() {
     const {
         users, connected, started, currentPack, usersReady,
         startDraftWsConnection, sendReadyEvent, setReady,
-        selectedCards, selectCards, confirmCards, confirmedState,
+        selectedCards, selectCards, confirmCards, confirmedState, isCardSelection, chooseDraftedCards,
+        confirmChosenDraftedCards, chosenDraftedCards, isEnded, blodId, resetState, sendReset, chooseHeat,
+        chooseStartingLocation
     } = useDraftWebSocket();
 
     const { user, getUser } = useUserStore();
@@ -508,6 +516,7 @@ export default function DraftLobby() {
                             {connected ? <WifiIcon /> : <WifiOffIcon />}
                             {connected ? "Connected" : "Disconnected"}
                         </div>
+                        <ResetButton resetState={resetState} sendReset={sendReset} currentUserId={user.id!!}/>
                     </div>
 
                     {/* ── DIVIDER ────────────────────────────────────────── */}
@@ -518,6 +527,9 @@ export default function DraftLobby() {
                     }} />
 
                     {/* ── CONTENT ────────────────────────────────────────── */}
+                    {
+
+                    }
                     {!started ? (
                         <PlayersSection
                             users={users}
@@ -525,6 +537,16 @@ export default function DraftLobby() {
                             currentUserId={user.id ?? "0"}
                             setReady={setReady}
                             sendReadyEvent={sendReadyEvent}
+                        />
+                    ) : isEnded ? (<FileDownloadComponent blobId={blodId!!} />) : isCardSelection ? (
+                        <CardSelection
+                            chooseDraftedCards={chooseDraftedCards}
+                            confirmChosenDraftedCards={confirmChosenDraftedCards}
+                            chosenDraftedCards={chosenDraftedCards}
+                            users={users}
+                            confirmedState={confirmedState}
+                            chooseHeat={chooseHeat}
+                            chooseStartingLocation={chooseStartingLocation}
                         />
                     ) : (
                         <DraftPackSection
@@ -541,3 +563,249 @@ export default function DraftLobby() {
         </>
     );
 }
+type FileDownloadProps = {
+    blobId: string;
+};
+
+const DownloadIcon = () => (
+    <svg
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+    >
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+        <path d="M7 10l5 5 5-5" />
+        <path d="M12 15V3" />
+    </svg>
+);
+
+const TrophyIcon = () => (
+    <svg
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.8}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+    >
+        <path d="M8 21h8" />
+        <path d="M12 17v4" />
+        <path d="M7 4h10v5a5 5 0 0 1-10 0V4z" />
+        <path d="M17 5h3v2a4 4 0 0 1-4 4" />
+        <path d="M7 5H4v2a4 4 0 0 0 4 4" />
+    </svg>
+);
+
+const FileDownloadComponent = ({ blobId }: FileDownloadProps) => {
+    return (
+        <div
+            style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                minHeight: "420px",
+            }}
+        >
+            <div
+                style={{
+                    position: "relative",
+                    width: "100%",
+                    maxWidth: "620px",
+                    background: `linear-gradient(180deg, ${C.surfaceAlt} 0%, ${C.surface} 100%)`,
+                    border: `1px solid ${C.border}`,
+                    borderRadius: "6px",
+                    padding: "42px 36px",
+                    overflow: "hidden",
+                    boxShadow: "0 0 40px rgba(0,0,0,0.45)",
+                }}
+            >
+                {/* decorative corners */}
+                <div
+                    style={{
+                        position: "absolute",
+                        top: 10,
+                        left: 10,
+                        width: 24,
+                        height: 24,
+                        borderTop: `1px solid ${C.borderBright}`,
+                        borderLeft: `1px solid ${C.borderBright}`,
+                        opacity: 0.5,
+                    }}
+                />
+                <div
+                    style={{
+                        position: "absolute",
+                        top: 10,
+                        right: 10,
+                        width: 24,
+                        height: 24,
+                        borderTop: `1px solid ${C.borderBright}`,
+                        borderRight: `1px solid ${C.borderBright}`,
+                        opacity: 0.5,
+                    }}
+                />
+                <div
+                    style={{
+                        position: "absolute",
+                        bottom: 10,
+                        left: 10,
+                        width: 24,
+                        height: 24,
+                        borderBottom: `1px solid ${C.borderBright}`,
+                        borderLeft: `1px solid ${C.borderBright}`,
+                        opacity: 0.5,
+                    }}
+                />
+                <div
+                    style={{
+                        position: "absolute",
+                        bottom: 10,
+                        right: 10,
+                        width: 24,
+                        height: 24,
+                        borderBottom: `1px solid ${C.borderBright}`,
+                        borderRight: `1px solid ${C.borderBright}`,
+                        opacity: 0.5,
+                    }}
+                />
+
+                <div
+                    style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        textAlign: "center",
+                    }}
+                >
+                    {/* icon */}
+                    <div
+                        style={{
+                            width: 78,
+                            height: 78,
+                            borderRadius: "50%",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            background: C.goldFaint,
+                            border: `1px solid ${C.borderBright}`,
+                            color: C.gold,
+                            marginBottom: "24px",
+                            boxShadow: `0 0 30px ${C.goldFaint}`,
+                        }}
+                    >
+                        <TrophyIcon />
+                    </div>
+
+                    <div style={{ marginBottom: "18px" }}>
+                        <div
+                            style={{
+                                ...cinzel,
+                                fontSize: "28px",
+                                fontWeight: 700,
+                                color: C.gold,
+                                letterSpacing: "0.08em",
+                                textTransform: "uppercase",
+                                marginBottom: "10px",
+                            }}
+                        >
+                            Draft Complete
+                        </div>
+
+                        <div
+                            style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                marginBottom: "16px",
+                            }}
+                        >
+                            <Ornament />
+                        </div>
+
+                        <p
+                            style={{
+                                ...crimson,
+                                fontSize: "17px",
+                                lineHeight: 1.6,
+                                color: C.text,
+                                margin: 0,
+                                maxWidth: "460px",
+                                fontStyle: "italic",
+                            }}
+                        >
+                            The drafting session has concluded. Download the
+                            generated file to review the final roster and match
+                            results.
+                        </p>
+                    </div>
+
+                    {/* download button */}
+                    <a
+                        href={`${SERVER_ENDPOINT}/blob/${blobId}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        style={{
+                            textDecoration: "none",
+                        }}
+                    >
+                        <button
+                            style={{
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "12px",
+                                padding: "14px 28px",
+                                background: C.goldFaint,
+                                color: C.gold,
+                                border: `1px solid ${C.borderBright}`,
+                                borderRadius: "4px",
+                                cursor: "pointer",
+                                transition: "all 0.18s ease",
+                                textTransform: "uppercase",
+                                letterSpacing: "0.14em",
+                                fontWeight: 700,
+                                ...cinzel,
+                                fontSize: "12px",
+                            }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.background = "#2f2110";
+                                e.currentTarget.style.transform =
+                                    "translateY(-1px)";
+                                e.currentTarget.style.boxShadow =
+                                    "0 6px 20px rgba(212,168,71,0.15)";
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.background = C.goldFaint;
+                                e.currentTarget.style.transform =
+                                    "translateY(0px)";
+                                e.currentTarget.style.boxShadow = "none";
+                            }}
+                        >
+                            <DownloadIcon />
+                            Download Draft File
+                        </button>
+                    </a>
+
+                    <div
+                        style={{
+                            marginTop: "18px",
+                            ...cinzel,
+                            fontSize: "9px",
+                            letterSpacing: "0.12em",
+                            textTransform: "uppercase",
+                            color: C.textDim,
+                            opacity: 0.75,
+                        }}
+                    >
+                        File ready for export
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};

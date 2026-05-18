@@ -6,7 +6,7 @@ import type {
   Result,
   SessionCookie,
   User,
-} from "../../types.js";
+} from "../types.js";
 import { hashPassword } from "../crypto/crypto.js";
 import { logger } from "../logger/logger.js";
 import { sqliteDB } from "./init.js";

@@ -1,8 +1,7 @@
 // stores/useMessageStore.ts
 import { create } from "zustand";
 
-import type { Lobby, Message, Error, Success } from "../types";
-import { useUserStore } from "./user-store";
+import type { Lobby, Error, Success } from "../types";
 import { SERVER_ENDPOINT } from "./constants";
 
 type LobbyStore = {
@@ -16,7 +15,7 @@ type LobbyStore = {
 export const useLobbyStore = create<LobbyStore>((set, get) => ({
   lobbys: [],
   addLobby: async (lobby) => {
-    const res = await fetch(`${SERVER_ENDPOINT}/lobby`, {
+    await fetch(`${SERVER_ENDPOINT}/lobby`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

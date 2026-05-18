@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { Nation, User } from "../../types";
+import type { Nation } from "../../types";
 import { useUserStore } from "../user-store";
 import { useNavigate } from "react-router-dom";
 import { ToLoginButton } from "../components/to-login-button";
@@ -123,7 +123,7 @@ export const CreateUserPage = () => {
             ))}
           </datalist>
         </label>
-        <label style={{ color: "black" }}>
+        <label style={{ color: "white" }}>
           Kass Pass?:
           <input
             type="checkbox"

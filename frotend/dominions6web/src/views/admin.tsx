@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { AdminLogin } from "../components/admin-login";
-import type { Dominions6Cofing, Thrones } from "../../types";
+import type { Dominions6Cofing } from "../../types";
 import { SERVER_ENDPOINT } from "../constants";
 import { checkAdminAccess } from "../auth";
 export function AdminPage() {
@@ -17,7 +17,7 @@ export function AdminPage() {
   }, [])
   // Placeholder for starting the game
   const startGame = async () => {
-        const res = await fetch(`${SERVER_ENDPOINT}/admin/new_game`, {
+        await fetch(`${SERVER_ENDPOINT}/admin/new_game`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

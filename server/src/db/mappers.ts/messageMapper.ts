@@ -1,4 +1,4 @@
-import { Message } from "../../../types";
+import { Message } from "../../types.js";
 export const mapMessage = (dbResult: any): Message => {
   const r: {
     id: string;

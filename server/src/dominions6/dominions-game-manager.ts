@@ -1,6 +1,6 @@
-import { writeLog } from "../src/db/db-dom6.writers";
-import { getEnv } from "../src/utils/env-utils";
-import { Dominions6Cofing, Result } from "../types";
+import { writeLog } from "../db/db-dom6.writers.js";
+import { getEnv } from "../utils/env-utils.js";
+import { Dominions6Cofing, Result } from "../types.js";
 import { ChildProcess, exec } from "node:child_process";
 const ActiveProccesses = new Map<string, ChildProcess>();
 export const newGame = (config: Dominions6Cofing): Result<void> => {

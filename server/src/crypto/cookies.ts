@@ -1,8 +1,8 @@
-import { Result, SessionCookie } from "../../types";
-import { readSession } from "../db/db-reading";
-import { writeSession } from "../db/db-writer";
+import { Result, SessionCookie } from "../types.js";
+import { readSession } from "../db/db-reading.js";
+import { writeSession } from "../db/db-writer.js";
 import type { Response } from "express";
-import { logger } from "../logger/logger";
+import { logger } from "../logger/logger.js";
 const sessionCache = new Map<string, SessionCookie>();
 
 export const createCookies = (userId: string, res: Response): Result<void> => {

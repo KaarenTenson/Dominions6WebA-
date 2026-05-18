@@ -1,12 +1,12 @@
 import { match } from "node:assert";
-import { DraftCard } from "../../types";
-import { Pretender } from "../draftypes/pretender";
+import { DraftCard, DraftedCardChoosingState } from "../types.js";
+import { Pretender } from "../draftypes/pretender.js";
 
 export class DraftState {
   userDraftStates: Map<string, UserDraftSate>;
   turn: number;
   cardSelection: boolean;
-
+  
 
   constructor() {
     this.userDraftStates = new Map<string, UserDraftSate>();
@@ -25,8 +25,8 @@ export class DraftState {
     return false;
   }
   checkWantsReset() {
-    const unconfirmedUsers = [...this.userDraftStates.values()].filter((ud) => !ud.wantsReset)
-    if (unconfirmedUsers.length == 0) {
+    const wantsReset = [...this.userDraftStates.values()].filter((ud) => ud.wantsReset)
+    if (wantsReset.length >= 2) {
       return true;
     }
     return false;
@@ -60,18 +60,46 @@ export class DraftState {
     }
 
   }
-  removeCard(card: DraftCard<string>, userState: UserDraftSate) {
+  removeCard(card: DraftCard<any>, userState: UserDraftSate) {
     const card_index = userState?.current_pack.findIndex((c) => c.id == card.id);
     if (card_index == -1) {
+      console.log("something weent wrooooong!!!!!")
+      console.log(`pack ids: ${userState!!.chosen_cards.map((c) => c.id).join("%%")}`)
+      console.log(`card id: ${card.id}`);
+      //console.log(userState.current_pack);
       userState.units = [];
       userState.commanders = [];
       userState.magicSites = [];
       return;
+    } else {
+      console.log("removed stuff");
     }
     userState.current_pack.splice(card_index, 1);
   }
-  removeCards(cards: DraftCard<string>[], userState: UserDraftSate) {
+  removeCards(cards: DraftCard<any>[], userState: UserDraftSate) {
     cards.forEach((card) => this.removeCard(card, userState));
+  }
+  setSelectedChosenDraftedCards(chosenCards: DraftedCardChoosingState, userId:string) {
+    if (chosenCards.commanders.length != 8) {
+      return;
+    }
+    if (chosenCards.units.length != 8) {
+      return;
+    }
+    if (chosenCards.pretenders.length != 4) {
+      return;
+    }
+    if (chosenCards.magicSites.length != 2) {
+      return;
+    }
+    const state = this.userDraftStates.get(userId);
+    state!!.confirmed = true;
+    state!!.chosenDraftedCards = chosenCards;
+  }
+  confirmSelectedChosenDraftedCards() {
+    this.userDraftStates.forEach((state, id) => {
+      state.confirmedChosenDraftedCards = state.chosenDraftedCards;
+    })
   }
   selectCards(cards: DraftCard<any>[], user: string) {
 
@@ -94,7 +122,7 @@ export class DraftState {
       switch (type) {
         case "commander":
           {
-            userState!!.commanders = userState!!.commanders.concat(cards as DraftCard<Pretender>[]);
+            userState!!.commanders = userState!!.commanders.concat(cards);
             this.removeCards(cards, userState!!);
             break;
           }
@@ -108,13 +136,16 @@ export class DraftState {
           {
             userState!!.pretenders = userState!!.pretenders.concat(cards);
             this.removeCards(cards, userState!!);
+            break;
           }
         case "unit":
-          userState!!.units = userState!!.units.concat(cards);
-          this.removeCards(cards, userState!!);
+            userState!!.units = userState!!.units.concat(cards);
+            this.removeCards(cards, userState!!);
+            break;
       }
-
+      userState.chosen_cards = [];
     })
+    
   }
 }
 
@@ -125,10 +156,14 @@ export class UserDraftSate {
   current_pack: DraftCard<any>[];
   chosen_cards: DraftCard<any>[];
   pretenders: DraftCard<any>[];
+  chosenDraftedCards?: DraftedCardChoosingState;
+  confirmedChosenDraftedCards?: DraftedCardChoosingState;
   confirmed: boolean;
   user: string;
   isReady: boolean;
   wantsReset: boolean;
+  isEnded: boolean;
+  blobId?: string;
 
   toSyncInfo(cardSelection: boolean) {
     return {
@@ -137,6 +172,12 @@ export class UserDraftSate {
       ready: this.isReady,
       selectedCards: this.chosen_cards,
       cardSelection: cardSelection,
+      commanders: this.commanders,
+      units: this.units,
+      pretenders: this.pretenders,
+      magicSites: this.magicSites,
+      isEnded: this.isEnded,
+      blobId: this.blobId
     }
   }
 
@@ -151,6 +192,7 @@ export class UserDraftSate {
     this.isReady = false;
     this.wantsReset = false;
     this.pretenders = [];
+    this.isEnded = false;
 
   }
 }

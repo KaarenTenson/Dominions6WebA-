@@ -1,7 +1,7 @@
 // parser/parseUnitsCsv.ts
 
 import fs from "node:fs";
-import { RandomMagicPath, Unit } from "../draftypes/unit";
+import { RandomMagicPath, Unit } from "../draftypes/unit.js";
 
 function toNumber(value: string | undefined): number | undefined {
   if (value === undefined || value === null || value.trim() === "") {

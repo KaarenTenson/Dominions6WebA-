@@ -1,15 +1,16 @@
 // src/ws-server.ts
 import { Server as HTTPServer } from "http";
 import WebSocket, { WebSocketServer } from "ws";
-import { Message, User, WsMessage, DraftEventType, DraftCard, UserReadyState, SyncData, UserConfirmationState } from "../../types";
-import { DraftState, UserDraftSate } from "../classes/DraftState";
-import { logger } from "../logger/logger";
-import { writeMessage } from "../db/db-writer";
-import { parseCookies } from "../crypto/cookies";
-import { checkLobbyAccess, getUserById, readSession } from "../db/db-reading";
+import { Message, User, WsMessage, DraftEventType, DraftCard, UserReadyState, SyncData, UserConfirmationState, ResetData } from "../types.js";
+import { DraftState, UserDraftSate } from "../classes/DraftState.js";
+import { logger } from "../logger/logger.js";
+import { writeMessage } from "../db/db-writer.js";
+import { parseCookies } from "../crypto/cookies.js";
+import { checkLobbyAccess, getUserById, readSession } from "../db/db-reading.js";
 import { IncomingMessage } from "http";
-import { generate_commander_pack, generate_magic_site_pack, generate_pretender_pack, generate_unit_pack } from "../card_generator";
+import { generate_commander_pack, generate_magic_site_pack, generate_pretender_pack, generate_unit_pack } from "../card_generator.js";
 import { json } from "stream/consumers";
+import { generateDraftResults } from "../utils/draft-utils.js";
 
 let wss: WebSocketServer;
 
@@ -100,14 +101,13 @@ export function initWebSocket(server: HTTPServer) {
     connectionsByUser.set(userId, connection);
     console.log(`User connected: ${userId}`);
     if (lobbyId == "DRAFT") {
-      console.log("toDRAFT");
       if (draftSession.userDraftStates.has(userId)) {
         broadCastSyncInformation()
-      } else {
+      } else if (draftSession.turn == 0) {
         draftSession.userDraftStates.set(userId, new UserDraftSate(userId));
         broadCastUsers();
         brodCastReady();
-    }
+      }
     }
     ws.on("message", (raw) => {
       let msg: WsMessage<any>;
@@ -137,7 +137,7 @@ export function initWebSocket(server: HTTPServer) {
   });
 }
 const validateCardConfirmation = (cards: DraftCard<any>[]) => {
-  if (cards.length != 2 ||( cards.length == 2 && cards[0].id == cards[1].id)) {
+  if (cards.length != 2 || (cards.length == 2 && cards[0].id == cards[1].id)) {
     console.log("card confirmation is not valid");
     return false;
   }
@@ -172,42 +172,72 @@ const handleDraftEvents = (msg: WsMessage<any>, userId: string) => {
   }
   if (msg.type == "reset") {
     const userState = draftSession.userDraftStates.get(userId);
-    userState!!.isReady = true;
+    userState!!.wantsReset = msg.data as boolean;
     if (draftSession.checkWantsReset()) {
+      const resetMessage: WsMessage<null> = { lobbyId: "DRAFT", type: "reset", data: null };
+      broadcastDraftMsg(resetMessage);
       endDraft();
+    } else {
+      broadcastResetStates();
     }
   }
   if (msg.type == "sync") {
     broadCastSyncInformation();
   }
-  
+  if (msg.type == "confirm_drafted_cards") {
+    draftSession.setSelectedChosenDraftedCards(msg.data, userId);
+    handleDraftedCardSelection();
+    broacCastConfirm();
+  }
+}
+const broadcastResetStates = () => {
+  const resetStates:ResetData[] = [...draftSession.userDraftStates.entries()].map((state) => {
+        return { userId: state[0], reset: state[1].wantsReset }
+      })
+  const resetStatesMsg: WsMessage<ResetData[]> = {lobbyId:"DRAFT", type:"reset_event", data: resetStates};
+  broadcastDraftMsg(resetStatesMsg);
+}
+
+const handleDraftedCardSelection = () => {
+  if (draftSession.checkConfirmed()) {
+    draftSession.confirmSelectedChosenDraftedCards();
+    const blob_id = generateDraftResults(draftSession);
+    draftSession.userDraftStates.forEach((sess) => {
+      sess.blobId = blob_id;
+      sess.isEnded = true;
+    })
+    const endMsg: WsMessage<string> = { lobbyId: "DRAFT", type: "end", data: blob_id };
+    broadcastDraftMsg(endMsg);
+    //endDraft();
+  }
 }
 const broacCastConfirm = () => {
-  const msg:WsMessage<UserConfirmationState[]> = {type:"confirm_event", data:draftSession.getConfirmedStatus(), lobbyId:"DRAFT"};
+  const msg: WsMessage<UserConfirmationState[]> = { type: "confirm_event", data: draftSession.getConfirmedStatus(), lobbyId: "DRAFT" };
   broadcastDraftMsg(msg);
 }
-const broadcastDraftMsg = (msg:WsMessage<any>) => {
+const broadcastDraftMsg = (msg: WsMessage<any>) => {
   draftSession.userDraftStates.forEach((state, userId) => {
-      const conn = connectionsByUser.get(userId);
-      if (!conn) {
-        return;
-      }
-      conn!!.ws.send(JSON.stringify(msg)); 
+    const conn = connectionsByUser.get(userId);
+    if (!conn) {
+      return;
+    }
+    conn!!.ws.send(JSON.stringify(msg));
   })
 }
 const broadCastSyncInformation = () => {
   broadCastUsers();
   brodCastReady();
+  broadcastResetStates();
   draftSession.userDraftStates.forEach((state, userId) => {
-      const data = state.toSyncInfo(draftSession.cardSelection);
-      const msg:WsMessage<SyncData> = {type:"sync", data:data, lobbyId:"DRAFT"};
-      const conn = connectionsByUser.get(userId);
-      conn!!.ws.send(JSON.stringify(msg)); 
+    const data = state.toSyncInfo(draftSession.cardSelection);
+    const msg: WsMessage<SyncData> = { type: "sync", data: data, lobbyId: "DRAFT" };
+    const conn = connectionsByUser.get(userId);
+    conn!!.ws.send(JSON.stringify(msg));
   })
 }
 const brodCastReady = () => {
-  const user_readyness:UserReadyState[] = [...draftSession.userDraftStates.values()].map((sess) => { 
-    return {userId: sess.user, ready:sess.isReady }
+  const user_readyness: UserReadyState[] = [...draftSession.userDraftStates.values()].map((sess) => {
+    return { userId: sess.user, ready: sess.isReady }
   });
   const msg: WsMessage<UserReadyState[]> = { lobbyId: "DRAFT", type: "ready_states", data: user_readyness };
   broadcastDraftMsg(msg);
@@ -256,23 +286,22 @@ const nextTurn = () => {
 
 const new_pack_event = () => {
   draftSession.turn += 1;
-  if (draftSession.turn > 4) {
+  if (draftSession.turn > 8) {
     endDraft();
   }
   draftSession.userDraftStates.forEach(sess => {
     const ws_conn = connectionsByUser.get(sess.user);
     let pack: DraftCard<any>[];
-    if (draftSession.turn == 1) {
+    if (draftSession.turn == 1 || draftSession.turn == 1) {
       pack = generate_commander_pack();
-    } else if (draftSession.turn == 2) {
+    } else if (draftSession.turn == 2 || draftSession.turn == 2) {
       pack = generate_unit_pack();
     } else if (draftSession.turn == 3) {
       pack = generate_pretender_pack();
-    }else {
-      //pack = generate_magic_site_pack();
-      const msg:WsMessage<undefined> = {lobbyId:"DRAFT", type: "card_selection", data: undefined};
-      broadcastDraftMsg(msg);
-      broadCastSyncInformation();
+    } else if (draftSession.turn == 4) {
+      pack = generate_magic_site_pack();
+    } else {
+      cardSelectionEvent();
       return;
     }
     sess.current_pack = pack;
@@ -281,6 +310,13 @@ const new_pack_event = () => {
     ws_conn?.ws.send(JSON.stringify(msg))
 
   })
+}
+const cardSelectionEvent = () => {
+  const msg: WsMessage<undefined> = { lobbyId: "DRAFT", type: "card_selection", data: undefined };
+  draftSession.cardSelection = true;
+  broadcastDraftMsg(msg);
+  broadCastSyncInformation();
+  return;
 }
 const endDraft = () => {
   //TODO

@@ -1,5 +1,5 @@
-import { Nation } from "../../types";
-import { dom6DB } from "./init";
+import { Nation } from "../types.js";
+import { dom6DB } from "./init.js";
 import { logger } from "../logger/logger.js";
 import { Table } from "./tables.js";
 import { randomUUID } from "crypto";

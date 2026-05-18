@@ -1,7 +1,7 @@
-import {Blob, Result } from "../../types";
-import { logger } from "../logger/logger";
-import { blobDB } from "./init";
-import { Table } from "./tables";
+import {Blob, Result } from "../types.js";
+import { logger } from "../logger/logger.js";
+import { blobDB } from "./init.js";
+import { Table } from "./tables.js";
 
 export const getBlob = (blobId: string):Result<Blob> => {
     try {

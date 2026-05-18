@@ -1,7 +1,7 @@
 // stores/useMessageStore.ts
 import { create } from "zustand";
 
-import type { Lobby, Message, Error, Success, DraftCard } from "../types";
+import type {DraftCard } from "../types";
 
 type DraftStore = {
     commanders: DraftCard<any>[];
@@ -14,7 +14,10 @@ type DraftStore = {
     addUnit: (unit: DraftCard<any>) => void;
     addPretender: (pretender: DraftCard<any>) => void;
     setPack: (newPack:DraftCard<any>[]) => void;
-
+    setCommanders: (commanders: DraftCard<any>[]) => void;
+    setUnits: (units: DraftCard<any>[]) => void;
+    setPretenders: (pretenders: DraftCard<any>[]) => void;
+    setMagicSites: (magicSites: DraftCard<any>[]) => void;
 };
 
 export const useDraftStore = create<DraftStore>((set, get) => ({
@@ -46,5 +49,17 @@ export const useDraftStore = create<DraftStore>((set, get) => ({
     },
     setPack: (pack:DraftCard<any>[]) => {
         set({currentPack:pack})
-    }
+    },
+    setCommanders: (commanders: DraftCard<any>[]) => {
+        set({commanders: commanders})
+    },
+    setUnits: (units: DraftCard<any>[]) => {
+        set({units: units})
+    },
+    setPretenders: (pretenders: DraftCard<any>[]) => {
+        set({pretenders: pretenders})
+    },
+    setMagicSites: (magicSites: DraftCard<any>[]) => {
+        set({magicSites: magicSites})
+    },
     }));

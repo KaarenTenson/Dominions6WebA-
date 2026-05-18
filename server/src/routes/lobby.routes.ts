@@ -1,11 +1,11 @@
 // src/routes/lobby.routes.ts
 import { Router } from "express";
-import { getAllLobbys, getLobby, checkLobbyAccess } from "../db/db-reading";
-import { addUserToLobby, writeLobby } from "../db/db-writer";
-import { getSession } from "../crypto/cookies";
-import { hashPassword } from "../crypto/crypto";
-import { logger } from "../logger/logger";
-import { Lobby } from "../../types";
+import { getAllLobbys, getLobby, checkLobbyAccess } from "../db/db-reading.js";
+import { addUserToLobby, writeLobby } from "../db/db-writer.js";
+import { getSession } from "../crypto/cookies.js";
+import { hashPassword } from "../crypto/crypto.js";
+import { logger } from "../logger/logger.js";
+import { Lobby } from "../types.js";
 
 const router = Router();
 

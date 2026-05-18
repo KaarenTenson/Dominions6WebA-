@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./App.css";
 
 import { Navigate, Route, Routes } from "react-router-dom";
@@ -27,7 +26,7 @@ function App() {
             <Route path="/profile" element={<UserProfilePage />} />
             <Route path="/" element={<DraftLobby/>} />
              <Route path="/admin" element={<AdminPage/>}/>
-             <Route path="draft" element = {<WebSocketComp/>}/>
+             <Route path="/messages" element = {<WebSocketComp/>}/>
           </Route>
          
 

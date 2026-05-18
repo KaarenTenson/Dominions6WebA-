@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { logger } from "../logger/logger";
-import { getBlob } from "../db/db-blob-reader";
+import { logger } from "../logger/logger.js";
+import { getBlob } from "../db/db-blob-reader.js";
 import multer from "multer";
-import { getSession } from "../crypto/cookies";
-import { writeBlob } from "../db/db-blob-wrtiter";
-import { FileMetaData } from "../../types";
+import { getSession } from "../crypto/cookies.js";
+import { writeBlob } from "../db/db-blob-wrtiter.js";
+import { FileMetaData } from "../types.js";
 
 const router = Router();
 const storage = multer.memoryStorage();

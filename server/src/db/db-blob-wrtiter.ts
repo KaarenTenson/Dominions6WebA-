@@ -1,4 +1,4 @@
-import { Result } from "../../types.js";
+import { Result } from "../types.js";
 import { logger } from "../logger/logger.js";
 import { blobDB } from "./init.js";
 import { Table } from "./tables.js";

@@ -3,7 +3,7 @@ import type { Message, MessageDelete, WsMessage } from "../../types";
 import { useMessageStore } from "../messages-store";
 import { useUserStore } from "../user-store";
 import LobbyList from "../components/lobby-selection";
-import { data, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useLobbyStore } from "../lobbyStore";
 import { SERVER_ENDPOINT, WS_SERVER_ENDPOINT } from "../constants";
 import { ChatInput } from "../components/chat-input";
@@ -24,7 +24,6 @@ function WebSocketComp() {
   } = useMessageStore();
   const { lobbys } = useLobbyStore();
   const { getOtherUser, user, getUser } = useUserStore();
-  const [input, setInput] = useState("");
   const [connected, setConnected] = useState(false);
   const [showAdminLogin, setShowAdminLogin] = useState(false);
   const [messageToDelete, setMessageToDelete] = useState<Message | null>(null);
@@ -78,7 +77,7 @@ function WebSocketComp() {
   }, [currentLobby ? currentLobby.valueOf() : null]);
   const deleteMessage = async (msg: Message) => {
     if (await checkAdminAccess()) {
-      const res = await fetch(
+        await fetch(
         `${SERVER_ENDPOINT}/admin/delete_message/${msg.id}`,
         {
           method: "DELETE",
