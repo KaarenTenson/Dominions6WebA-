@@ -20,6 +20,7 @@ export interface RandomMagicPath {
 }
 
 export interface Pretender {
+  research?: number;
   id: number;
   name: string;
 

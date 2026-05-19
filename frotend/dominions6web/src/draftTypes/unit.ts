@@ -28,6 +28,11 @@ export interface Unit {
   capitalOnly: boolean;
   pretender?: boolean;
 
+  gold?: number;
+  research?:number;
+  reqPoints?: number;
+  calculatedResources?:number;
+
   hp: number;
   prot: number;
   mr: number;

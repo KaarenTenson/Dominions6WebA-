@@ -1,5 +1,7 @@
 import fs from "node:fs";
 import { Pretender, RandomMagicPath } from "../draftypes/pretender.js";
+import { Unit } from "../draftypes/unit.js";
+import { calculateResearch } from "../utils/draf-card-utils.js";
 
 function toNumber(value: string | undefined): number | undefined {
   if (value === undefined || value === null || value.trim() === "") {
@@ -204,7 +206,7 @@ export function parsePretendersCsv(filePath: string): Pretender[] {
 
       keywords: parseKeywords(row.keywords),
     };
-
+    pretender.research = calculateResearch(pretender as unknown as Unit);
     return pretender;
   });
 }

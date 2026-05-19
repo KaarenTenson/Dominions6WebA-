@@ -6,7 +6,7 @@ import { Unit } from "./draftypes/unit.js";
 import { MagicSite, SiteGemEffect, SiteLevel } from "./draftypes/magicSite.js";
 
 const pretenderPool = parsePretendersCsv("pretenders_export.csv");
-const unitAndCommanderPool = parseUnitsCsv("units_export.csv");
+const unitAndCommanderPool = parseUnitsCsv("units_export.csv").filter((u) => u.basecost >= 10000);
 
 const commanderPool = unitAndCommanderPool.filter((unit) => unit.commander);
 const unitPool = unitAndCommanderPool.filter((unit) => !unit.commander);
@@ -254,10 +254,29 @@ const generateMagicSiteData = (): MagicSite => {
         level,
         hasRecruitUnit
     );
-
+    if (!validateSite(site)) {
+        return generateMagicSiteData();
+    }
     return site;
 };
-
+const validateSite = (site: MagicSite) => {
+    if(site.decUnrest && site.decUnrest > 0) {
+        return true;
+    }
+    if (site.gemEffects && site.gemEffects.length > 0) {
+        return true;
+    }
+    if (site.gold && site.gold > 0) {
+        return true;
+    }
+    if (site.resource && site.resource > 0) {
+        return true;
+    }
+    if (site.summonUnit) {
+        return true;
+    }
+    return false;
+}
 // ----------------------------------------------------
 // Card generators
 // ----------------------------------------------------

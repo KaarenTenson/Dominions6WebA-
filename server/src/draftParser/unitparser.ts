@@ -2,6 +2,7 @@
 
 import fs from "node:fs";
 import { RandomMagicPath, Unit } from "../draftypes/unit.js";
+import { calculateGold, calculateRecruitmentPoints, calculateResearch, calculateResources } from "../utils/draf-card-utils.js";
 
 function toNumber(value: string | undefined): number | undefined {
   if (value === undefined || value === null || value.trim() === "") {
@@ -219,6 +220,10 @@ export function parseUnitsCsv(filePath: string): Unit[] {
       keywords: parseKeywords(row.keywords),
     };
 
+    unit.gold = calculateGold(unit);
+    unit.research = calculateResearch(unit);
+    unit.calculatedResources = calculateResources(unit);
+    unit.reqPoints = calculateRecruitmentPoints(unit);
     return unit;
   });
 }

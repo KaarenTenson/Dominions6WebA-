@@ -227,6 +227,7 @@ const broadcastDraftMsg = (msg: WsMessage<any>) => {
 const broadCastSyncInformation = () => {
   broadCastUsers();
   brodCastReady();
+  broacCastConfirm();
   broadcastResetStates();
   draftSession.userDraftStates.forEach((state, userId) => {
     const data = state.toSyncInfo(draftSession.cardSelection);

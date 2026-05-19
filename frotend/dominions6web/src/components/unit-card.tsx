@@ -9,22 +9,23 @@ type UnitCardProps = {
 };
 
 const MAGIC_COLORS: Record<string, any> = {
-    fire:    { bg: "#2a0d06", text: "#e87050", border: "#5a1a0a" },
-    air:     { bg: "#091420", text: "#5ab0e0", border: "#1a3a5a" },
-    water:   { bg: "#06101a", text: "#40a0d0", border: "#0a2a40" },
-    earth:   { bg: "#12100a", text: "#a08040", border: "#3a2e14" },
-    astral:  { bg: "#14082a", text: "#b070e0", border: "#3a1a6a" },
-    death:   { bg: "#100a14", text: "#9060b0", border: "#301840" },
-    nature:  { bg: "#0a1408", text: "#60b040", border: "#1a3a10" },
+    fire: { bg: "#2a0d06", text: "#e87050", border: "#5a1a0a" },
+    air: { bg: "#091420", text: "#5ab0e0", border: "#1a3a5a" },
+    water: { bg: "#06101a", text: "#40a0d0", border: "#0a2a40" },
+    earth: { bg: "#12100a", text: "#a08040", border: "#3a2e14" },
+    astral: { bg: "#14082a", text: "#b070e0", border: "#3a1a6a" },
+    death: { bg: "#100a14", text: "#9060b0", border: "#301840" },
+    nature: { bg: "#0a1408", text: "#60b040", border: "#1a3a10" },
     glamour: { bg: "#1a0814", text: "#e060a0", border: "#4a1a30" },
-    blood:   { bg: "#1a0606", text: "#c03030", border: "#4a1010" },
-    holy:    { bg: "#1a1806", text: "#e0c040", border: "#4a3c0a" },
+    blood: { bg: "#1a0606", text: "#c03030", border: "#4a1010" },
+    holy: { bg: "#1a1806", text: "#e0c040", border: "#4a3c0a" },
+    rand: { bg: "#fae41d", text: "#000000", border: "#bb9716", }
 } as any;
 
 const MAGIC_LABELS: Record<string, string> = {
-    fire: "FIRE", air: "AIR", water: "WATER", earth: "EARTH",
-    astral: "ASTRAL", death: "DEATH", nature: "NATURE",
-    glamour: "GLAMOUR", blood: "BLOOD", holy: "HOLY",
+     fire: "🔥", air: "💨", water: "💧", earth: "⛰️",
+    astral: "⭐", death: "💀", nature: "🌿", glamour: "✨", blood: "🩸",
+    rand: "❓"
 };
 
 const toCorrectId = (cardId: number) =>
@@ -274,6 +275,15 @@ export default function UnitCard({ unit, selected, onClick }: UnitCardProps) {
     const magicEntries = Object.entries(unit.magicPaths || {}).filter(
         ([, v]) => v && v > 0
     );
+    if (unit.randomMagicPaths && unit.randomMagicPaths.length >= 0) {
+        let maxRandom = 0;
+        unit.randomMagicPaths.forEach((rm) => {
+            maxRandom = Math.max(rm.link, maxRandom);
+        })
+        if (maxRandom > 0) {
+            magicEntries.push(["rand", maxRandom]);
+        }
+    }
 
     const cardStyle: React.CSSProperties = {
         ...s.root,
@@ -316,23 +326,26 @@ export default function UnitCard({ unit, selected, onClick }: UnitCardProps) {
                     {(unit.commander || unit.pretender) && unit.undeadleader != undefined && unit.undeadleader && unit.undeadleader != 0 && (
                         <span style={s.badgeCommander}>undead leader ship: {unit.undeadleader}</span>
                     )}
+                    {unit.research != undefined && unit.research != 0 && (
+                        <span style={s.badgeCommander}>research: {unit.research}</span>
+                    )}
                     {unit.capitalOnly && (
                         <span style={s.badgeCapital}>Capital Only</span>
-                    )} 
+                    )}
                 </div>
             </div>
 
             {/* Stats grid */}
             <div style={s.statsGrid}>
-                <Stat label="HP"   value={unit.hp} />
+                <Stat label="HP" value={unit.hp} />
                 <Stat label="Prot" value={unit.prot} />
-                <Stat label="STR"  value={unit.str} />
-                <Stat label="ATT"  value={unit.att} />
-                <Stat label="DEF"  value={unit.def} />
-                <Stat label="MR"   value={unit.mr} />
-                <Stat label="MOR"  value={unit.mor} />
-                <Stat label="Map"  value={unit.mapmove} />
-                <Stat label="AP"   value={unit.ap} />
+                <Stat label="STR" value={unit.str} />
+                <Stat label="ATT" value={unit.att} />
+                <Stat label="DEF" value={unit.def} />
+                <Stat label="MR" value={unit.mr} />
+                <Stat label="MOR" value={unit.mor} />
+                <Stat label="Map" value={unit.mapmove} />
+                <Stat label="AP" value={unit.ap} />
             </div>
 
             {/* Magic */}
@@ -380,13 +393,14 @@ export default function UnitCard({ unit, selected, onClick }: UnitCardProps) {
             <div style={s.divider} />
 
             {/* Footer */}
-            <div style={s.footer}>
+
+            {unit.gold && unit.calculatedResources && (<div style={s.footer}>
                 <div style={s.cost}>
                     <span style={{ fontSize: "16px" }}>🪙</span>
                     <div>
                         <div style={s.costLabel}>Gold</div>
                         <div style={{ fontSize: "16px", fontWeight: 600, color: "#d4a847", lineHeight: 1 }}>
-                            {unit.basecost}
+                            {unit.gold}
                         </div>
                     </div>
                 </div>
@@ -395,11 +409,11 @@ export default function UnitCard({ unit, selected, onClick }: UnitCardProps) {
                     <div>
                         <div style={s.costLabel}>Resources</div>
                         <div style={{ fontSize: "16px", fontWeight: 600, color: "#7ab8c8", lineHeight: 1 }}>
-                            {unit.rcost}
+                            {unit.calculatedResources}
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>)}
 
         </button>
     );

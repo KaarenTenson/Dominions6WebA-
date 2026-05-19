@@ -109,4 +109,9 @@ export interface Unit {
   nametype?: number;
 
   keywords: string[];
+
+  gold?: number;
+  research?:number;
+  reqPoints?: number;
+  calculatedResources?:number;
 }
