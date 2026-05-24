@@ -6,7 +6,7 @@ import { Nation } from "../types.js";
 import {writeNations} from "./db-dom6.writers.js"
 import {Table} from "./tables.js";
 import { table } from "node:console";
-export const dom6DB: SqliteDatabase = new Database("dom6.sqlite");
+export const dom6DB: SqliteDatabase = new Database("../dom6.sqlite");
 dom6DB.exec(`
   CREATE TABLE IF NOT EXISTS ${Table.nation} (
     id INTEGER PRIMARY KEY,
@@ -21,7 +21,7 @@ dom6DB.exec(`CREATE TABLE IF NOT EXISTS ${Table.log} (
   type TEXT,
   created_at INTEGER NOT NULL);`)
 writeNations(await getNations());
-export const blobDB: SqliteDatabase = new Database("blob.sqlite");
+export const blobDB: SqliteDatabase = new Database("../blob.sqlite");
 blobDB.exec(`
   CREATE TABLE IF NOT EXISTS ${Table.file} (
     id TEXT PRIMARY KEY,
@@ -31,7 +31,7 @@ blobDB.exec(`
   )
 `);
 
-export const sqliteDB: SqliteDatabase = new Database("data.sqlite");
+export const sqliteDB: SqliteDatabase = new Database("../data.sqlite");
 //sqliteDB.exec(`DROP TABLE messages;`);
 sqliteDB.exec(`
   CREATE TABLE IF NOT EXISTS ${Table.message} (
