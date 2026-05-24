@@ -191,10 +191,10 @@ const handleDraftEvents = (msg: WsMessage<any>, userId: string) => {
   }
 }
 const broadcastResetStates = () => {
-  const resetStates:ResetData[] = [...draftSession.userDraftStates.entries()].map((state) => {
-        return { userId: state[0], reset: state[1].wantsReset }
-      })
-  const resetStatesMsg: WsMessage<ResetData[]> = {lobbyId:"DRAFT", type:"reset_event", data: resetStates};
+  const resetStates: ResetData[] = [...draftSession.userDraftStates.entries()].map((state) => {
+    return { userId: state[0], reset: state[1].wantsReset }
+  })
+  const resetStatesMsg: WsMessage<ResetData[]> = { lobbyId: "DRAFT", type: "reset_event", data: resetStates };
   broadcastDraftMsg(resetStatesMsg);
 }
 
@@ -218,7 +218,7 @@ const broacCastConfirm = () => {
 const broadcastDraftMsg = (msg: WsMessage<any>) => {
   draftSession.userDraftStates.forEach((state, userId) => {
     const conn = connectionsByUser.get(userId);
-    if (!conn) {
+    if (!conn || !conn.ws) {
       return;
     }
     conn!!.ws.send(JSON.stringify(msg));
@@ -233,6 +233,9 @@ const broadCastSyncInformation = () => {
     const data = state.toSyncInfo(draftSession.cardSelection);
     const msg: WsMessage<SyncData> = { type: "sync", data: data, lobbyId: "DRAFT" };
     const conn = connectionsByUser.get(userId);
+    if (!conn || !conn.ws) {
+      return;
+    }
     conn!!.ws.send(JSON.stringify(msg));
   })
 }
@@ -263,6 +266,9 @@ const startEvent = () => {
     if (ws_conn?.lobbydId != "DRAFT") {
       return;
     }
+    if (!ws_conn || !ws_conn.ws) {
+      return;
+    }
     const msg: WsMessage<null> = { lobbyId: "DRAFT", type: "start", data: null };
     ws_conn?.ws.send(JSON.stringify(msg))
   })
@@ -276,6 +282,9 @@ const nextTurn = () => {
     draftSession.userDraftStates.forEach(sess => {
       const ws_conn = connectionsByUser.get(sess.user);
       if (ws_conn?.lobbydId != "DRAFT") {
+        return;
+      }
+      if (!ws_conn || !ws_conn.ws) {
         return;
       }
       const msg: WsMessage<DraftCard<any>[]> = { lobbyId: "DRAFT", type: "next_pack", data: sess.current_pack };
@@ -292,6 +301,9 @@ const new_pack_event = () => {
   }
   draftSession.userDraftStates.forEach(sess => {
     const ws_conn = connectionsByUser.get(sess.user);
+    if (!ws_conn || !ws_conn.ws) {
+      return;
+    }
     let pack: DraftCard<any>[];
     if (draftSession.turn == 1 || draftSession.turn == 1) {
       pack = generate_commander_pack();
