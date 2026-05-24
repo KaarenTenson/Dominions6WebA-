@@ -1,3 +1,5 @@
+import { Armor } from "./armor.js";
+import { Weapon } from "./weapon.js";
 
 export interface MagicPathLevels {
   fire?: number;
@@ -55,8 +57,8 @@ export interface Pretender {
   magicPaths: MagicPathLevels;
   randomMagicPaths: RandomMagicPath[];
 
-  weapons: number[];
-  armors: number[];
+  weapons: Weapon[];
+  armors: Armor[];
 
   resources?: number;
   reinvigoration?: number;

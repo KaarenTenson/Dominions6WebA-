@@ -1,7 +1,11 @@
 import fs from "node:fs";
 import { Pretender, RandomMagicPath } from "../draftypes/pretender.js";
 import { Unit } from "../draftypes/unit.js";
-import { calculateResearch } from "../utils/draf-card-utils.js";
+import { calculateProtection, calculateResearch } from "../utils/draf-card-utils.js";
+import { getArmor } from "./armorParser.js";
+import { Armor } from "../draftypes/armor.js";
+import { getWeapon } from "./weaponParser.js";
+import { Weapon } from "../draftypes/weapon.js";
 
 function toNumber(value: string | undefined): number | undefined {
   if (value === undefined || value === null || value.trim() === "") {
@@ -143,20 +147,18 @@ export function parsePretendersCsv(filePath: string): Pretender[] {
       randomMagicPaths: createRandomMagicPaths(row),
 
       weapons: [
-        row.wpn1,
-        row.wpn2,
-        row.wpn3,
-        row.wpn4,
-        row.wpn5,
-        row.wpn6,
-        row.wpn7,
+        getWeapon(row.wpn1),
+        getWeapon(row.wpn2),
+        getWeapon(row.wpn3),
+        getWeapon(row.wpn4),
+        getWeapon(row.wpn5),
+        getWeapon(row.wpn6),
+        getWeapon(row.wpn7),
       ]
-        .map(toNumber)
-        .filter((value): value is number => value !== undefined),
+        .filter((value): value is Weapon => value !== undefined),
 
-      armors: [row.armor1, row.armor2, row.armor3, row.armor4]
-        .map(toNumber)
-        .filter((value): value is number => value !== undefined),
+      armors: [getArmor(row.armor1), getArmor(row.armor2), getArmor(row.armor3), (row.armor4)]
+              .filter((value): value is Armor => value !== undefined),
 
       resources: toNumber(row.resources),
       reinvigoration: toNumber(row.reinvigoration),
@@ -205,8 +207,10 @@ export function parsePretendersCsv(filePath: string): Pretender[] {
       nametype: toNumber(row.nametype),
 
       keywords: parseKeywords(row.keywords),
+      
     };
     pretender.research = calculateResearch(pretender as unknown as Unit);
+    pretender.prot = calculateProtection(pretender as unknown as Unit);
     return pretender;
   });
 }

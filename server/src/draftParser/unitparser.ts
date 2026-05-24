@@ -2,7 +2,11 @@
 
 import fs from "node:fs";
 import { RandomMagicPath, Unit } from "../draftypes/unit.js";
-import { calculateGold, calculateRecruitmentPoints, calculateResearch, calculateResources } from "../utils/draf-card-utils.js";
+import { calculateGold, calculateProtection, calculateRecruitmentPoints, calculateResearch, calculateResources } from "../utils/draf-card-utils.js";
+import { getArmor } from "./armorParser.js";
+import { Armor } from "../draftypes/armor.js";
+import { getWeapon } from "./weaponParser.js";
+import { Weapon } from "../draftypes/weapon.js";
 
 function toNumber(value: string | undefined): number | undefined {
   if (value === undefined || value === null || value.trim() === "") {
@@ -155,20 +159,18 @@ export function parseUnitsCsv(filePath: string): Unit[] {
       randomMagicPaths: createRandomMagicPaths(row),
 
       weapons: [
-        row.wpn1,
-        row.wpn2,
-        row.wpn3,
-        row.wpn4,
-        row.wpn5,
-        row.wpn6,
-        row.wpn7,
+        getWeapon(row.wpn1),
+        getWeapon(row.wpn2),
+        getWeapon(row.wpn3),
+        getWeapon(row.wpn4),
+        getWeapon(row.wpn5),
+        getWeapon(row.wpn6),
+        getWeapon(row.wpn7),
       ]
-        .map(toNumber)
-        .filter((value): value is number => value !== undefined),
+        .filter((value): value is Weapon => value !== undefined),
 
-      armors: [row.armor1, row.armor2, row.armor3, row.armor4]
-        .map(toNumber)
-        .filter((value): value is number => value !== undefined),
+      armors: [getArmor(row.armor1), getArmor(row.armor2), getArmor(row.armor3), (row.armor4)]
+        .filter((value): value is Armor => value !== undefined),
 
       resources: toNumber(row.resources),
 
@@ -219,11 +221,13 @@ export function parseUnitsCsv(filePath: string): Unit[] {
 
       keywords: parseKeywords(row.keywords),
     };
-
+    unit.prot = calculateProtection(unit);
     unit.gold = calculateGold(unit);
     unit.research = calculateResearch(unit);
-    unit.calculatedResources = calculateResources(unit);
     unit.reqPoints = calculateRecruitmentPoints(unit);
+    unit.calculatedResources = calculateResources(unit);
+   
+    
     return unit;
   });
 }

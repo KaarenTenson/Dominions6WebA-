@@ -1,5 +1,8 @@
 // draftypes/unit.ts
 
+import { Armor } from "./armor.js";
+import { Weapon } from "./weapon.js";
+
 export interface RandomMagicPath {
   rand: number;
   nbr: number;
@@ -19,6 +22,7 @@ export interface UnitMagicPaths {
   blood?: number;
   holy?: number;
 }
+
 
 export interface Unit {
   id: number;
@@ -58,8 +62,8 @@ export interface Unit {
   magicPaths: UnitMagicPaths;
   randomMagicPaths: RandomMagicPath[];
 
-  weapons: number[];
-  armors: number[];
+  weapons: Weapon[];
+  armors: Armor[];
 
   resources?: number;
 
