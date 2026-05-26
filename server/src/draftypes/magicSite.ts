@@ -19,6 +19,6 @@ export type MagicSite = {
     decUnrest?: number;
     level:SiteLevel;
     //any unit
-    summonUnit?: Unit;
+    summonUnit?: Unit|Unit[];
 
 }

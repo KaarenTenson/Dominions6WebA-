@@ -99,166 +99,120 @@ const generateSiteName = (): string => {
 // ----------------------------------------------------
 
 const generateRecruitUnit = (): Unit => {
-    return rand(unitAndCommanderPool);
+    return rand(commanderPool);
 };
 
 // ----------------------------------------------------
 // Gem generation
 // ----------------------------------------------------
-
 const generateGemEffects = (
     level: SiteLevel,
     hasUnit: boolean
 ): SiteGemEffect[] | undefined => {
-    // no gems sometimes
-    if (chance(35)) return undefined;
+    if (chance(10)) return undefined; // was 35
 
     const effects: SiteGemEffect[] = [];
-
     const maxTotalGems = hasUnit ? 3 : 5;
 
-    // very rare 5 gem site
     let total =
-        level === 4 && !hasUnit && chance(3)
+        level === 4 && !hasUnit && chance(5) // was 3
             ? 5
             : level === 4
-            ? pickRound([2, 3, 3, 4])
+            ? pickRound([3, 3, 4, 5])       // was [2,3,3,4]
             : level === 3
-            ? pickRound([1, 2, 2, 3])
+            ? pickRound([2, 2, 3, 3])       // was [1,2,2,3]
             : level === 2
-            ? pickRound([1, 1, 2])
-            : 1;
+            ? pickRound([1, 2, 2, 2])          // was [1,1,2]
+            : pickRound([1, 1, 1, 2]) ;
 
     total = Math.min(total, maxTotalGems);
 
-    // split into 1-2 gem types
     const splitCount =
-        total >= 3 && chance(40)
-            ? 2
-            : 1;
+    total >= 2 && chance(60)  // was: total >= 3 && chance(40)
+        ? 2
+        : 1;
 
     if (splitCount === 1) {
-        effects.push({
-            gemAmount: total,
-            type: rand(gemTypes),
-        });
-
+        effects.push({ gemAmount: total, type: rand(gemTypes) });
         return effects;
     }
 
     const first = Math.max(1, Math.floor(total / 2));
     const second = total - first;
-
     const type1 = rand(gemTypes);
-
     let type2 = rand(gemTypes);
-    while (type2 === type1) {
-        type2 = rand(gemTypes);
+    while (type2 === type1) type2 = rand(gemTypes);
+
+    effects.push({ gemAmount: first, type: type1 });
+    effects.push({ gemAmount: second, type: type2 });
+    return effects;
+};
+
+const generateMagicSiteData = (): MagicSite => {
+    const level: SiteLevel = rand([1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 4]);
+
+    const site: MagicSite = { level, name: generateSiteName() };
+
+    const hasRecruitUnit = level >= 3 ? chance(30) : chance(15);
+    if (hasRecruitUnit) site.summonUnit = generateRecruitUnit();
+
+    // Gold — hard max 100
+    if (chance(50)) {
+         site.gold += pickRound(
+            level === 4 ? [45, 60]
+            : level === 3 ? [35, 40]
+            : level === 2 ? [25, 35]
+            : [15, 25]
+        );
     }
 
-    effects.push({
-        gemAmount: first,
-        type: type1,
-    });
+    // Resources — hard max 50
+    if (chance(40)) {
+        site.resource = pickRound(
+            level === 4 ? [30, 40, 50]
+            : level === 3 ? [20, 30, 40]
+            : [10, 20, 30]
+        );
+    }
 
-    effects.push({
-        gemAmount: second,
-        type: type2,
-    });
+    // Supply
+    if (chance(35)) {
+        site.supply = pickRound(
+            level === 4 ? [20, 30, 40]
+            : level === 3 ? [10, 20, 30]
+            : [5, 10, 15]
+        );
+    }
 
-    return effects;
+    // Unrest reduction
+    if (chance(35)) {
+        site.decUnrest = pickRound(
+            level === 4 ? [5, 10, 15]
+            : level === 3 ? [3, 5, 10]
+            : [2, 3, 5]
+        );
+    }
+
+    site.gemEffects = generateGemEffects(level, hasRecruitUnit);
+    if (site.gemEffects == undefined) {
+         site.gold = pickRound(
+            level === 4 ? [125, 150]
+            : level === 3 ? [75, 100, 125]
+            : level === 2 ? [50, 75]
+            : [25, 50]
+        );
+       
+        if (!hasRecruitUnit && chance(50)) site.summonUnit = generateRecruitUnit();
+    }
+
+    if (!validateSite(site)) return generateMagicSiteData();
+
+    return site;
 };
 
 // ----------------------------------------------------
 // Site generation
 // ----------------------------------------------------
-
-const generateMagicSiteData = (): MagicSite => {
-    // weighted levels
-    const level: SiteLevel = rand([
-        1,
-        1,
-        1,
-        1,
-        2,
-        2,
-        2,
-        3,
-        3,
-        4,
-    ]);
-
-    const site: MagicSite = {
-        level,
-        name: generateSiteName(),
-    };
-
-    // recruitable unit chance
-    const hasRecruitUnit =
-        level >= 3
-            ? chance(45)
-            : chance(20);
-
-    if (hasRecruitUnit) {
-        site.summonUnit = generateRecruitUnit();
-    }
-
-    // gold
-    if (chance(55)) {
-        site.gold = pickRound(
-            level === 4
-                ? [100, 150, 200, 250, 300]
-                : level === 3
-                ? [50, 75, 100, 125, 150]
-                : level === 2
-                ? [25, 50, 75, 100]
-                : [25, 50]
-        );
-    }
-
-    // resources
-    if (chance(40)) {
-        site.resource = pickRound(
-            level === 4
-                ? [100, 150, 200]
-                : level === 3
-                ? [50, 75, 100, 125]
-                : [25, 50, 75]
-        );
-    }
-
-    // supply
-    if (chance(35)) {
-        site.supply = pickRound(
-            level === 4
-                ? [40, 60, 80, 100]
-                : level === 3
-                ? [20, 40, 60]
-                : [10, 20, 30]
-        );
-    }
-
-    // unrest reduction
-    if (chance(35)) {
-        site.decUnrest = pickRound(
-            level === 4
-                ? [10, 15, 20, 25, 30]
-                : level === 3
-                ? [5, 10, 15, 20]
-                : [5, 10]
-        );
-    }
-
-    // gems
-    site.gemEffects = generateGemEffects(
-        level,
-        hasRecruitUnit
-    );
-    if (!validateSite(site)) {
-        return generateMagicSiteData();
-    }
-    return site;
-};
 const validateSite = (site: MagicSite) => {
     if(site.decUnrest && site.decUnrest > 0) {
         return true;

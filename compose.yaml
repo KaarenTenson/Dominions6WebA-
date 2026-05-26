@@ -3,6 +3,10 @@ services:
     build:
       context: ./server
     container_name: dom6app
+    volumes:
+      - ./blob.sqlite:/usr/src/blob.sqlite
+      - ./data.sqlite:/usr/src/data.sqlite
+      - ./dom6.sqlite:/usr/src/dom6.sqlite
     ports:
       - "3000:3000"
     restart: unless-stopped

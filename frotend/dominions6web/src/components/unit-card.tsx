@@ -287,8 +287,11 @@ export default function UnitCard({ unit, selected, onClick }: UnitCardProps) {
 
     const cardStyle: React.CSSProperties = {
         ...s.root,
+        border: selected
+            ? "3px solid #1a9a2d"
+            : "1px solid #1e2d3a",
         boxShadow: selected
-            ? "0 0 0 1px #b8860b, 0 0 24px rgba(184,134,11,0.2)"
+            ? "0 0 24px rgba(26,106,154,0.2)"
             : "none",
     };
 

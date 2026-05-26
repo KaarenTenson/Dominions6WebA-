@@ -319,11 +319,14 @@ export default function MagicSiteCard({ site, selected, onClick }: MagicSiteCard
     const imageUrl = getSiteImage();
 
     const cardStyle: React.CSSProperties = {
-        ...s.root,
-        boxShadow: selected
-            ? "0 0 0 1px #1a6a9a, 0 0 24px rgba(26,106,154,0.2)"
-            : "none",
-    };
+    ...s.root,
+    border: selected
+        ? "3px solid #1a9a2d"
+        : "1px solid #1e2d3a",
+    boxShadow: selected
+        ? "0 0 24px rgba(26,106,154,0.2)"
+        : "none",
+};
 
     const handleSummonMouseEnter = (e: React.MouseEvent) => {
         const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();

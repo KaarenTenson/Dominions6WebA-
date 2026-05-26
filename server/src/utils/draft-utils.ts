@@ -2,8 +2,9 @@ import { randomUUID } from "node:crypto";
 import { DraftState, UserDraftSate } from "../classes/DraftState.js";
 import { writeBlob } from "../db/db-blob-wrtiter.js";
 import { getUserById } from "../db/db-reading.js";
-import { MagicSite } from "../draftypes/magicSite.js";
+import { MagicSite, SiteGemEffect } from "../draftypes/magicSite.js";
 import { DraftCard } from "../types.js";
+import { Unit } from "../draftypes/unit.js";
 
 export function generateDraftResults(draftResults: DraftState): string {
     const mime_type = "text/plain";
@@ -49,12 +50,10 @@ function buildNationSection(
         .map((card: any) => extractCardId(card))
         .join(" ");
 
-    const magicSiteEffects =
+    const magicSiteEffects = 
         userState.confirmedChosenDraftedCards!!.magicSites.length > 0
-            ? userState.confirmedChosenDraftedCards!!.magicSites
-                  .map((c: DraftCard<MagicSite>) => extractMagicSiteEffect(c.data))
-                  .join("\n")
-            : "empty";
+            ? extractMagicSiteEffect(concatMagicSites(userState.confirmedChosenDraftedCards!!.magicSites as DraftCard<MagicSite>[]))
+            : "";
 
     return `
 ${getUserById(userId).data?.username}
@@ -86,7 +85,44 @@ function extractCardId(card: any): string {
 
     return "TODO";
 }
-
+function concatMagicSites(sites: DraftCard<MagicSite>[]): MagicSite {
+    const newSite:MagicSite = {name:"uus", level:4, gold:0, resource:0, decUnrest:0, supply:0, summonUnit:[], gemEffects:[]};
+    sites.map((c) => c.data).forEach((site) => {
+        if (site.gold) {
+            newSite.gold += site.gold;
+        }
+        if (site.decUnrest) {
+            newSite.decUnrest += site.decUnrest;
+        }
+        if (site.resource) {
+            newSite.resource += site.resource;
+        }
+        if (site.summonUnit) {
+            (newSite.summonUnit as Unit[]).push(site.summonUnit as Unit);
+        }
+        if (site.supply) {
+            newSite.supply += site.supply;
+        }
+        if (site.gemEffects) {
+         concatGemEffect(newSite.gemEffects, site.gemEffects);   
+        }
+    })
+    return newSite;
+}
+function concatGemEffect(se1:SiteGemEffect[], se2:SiteGemEffect[]) {
+    se2.forEach((e) => {
+        let hasgems = false;
+        se1.forEach((e2) => {
+            if (e2.type == e.type) {
+                e2.gemAmount += e.gemAmount;
+                hasgems = true;
+            }
+        }) 
+        if (!hasgems) {
+            se1.push(e);
+        }
+    })
+}
 function extractMagicSiteEffect(site: MagicSite): string {
 
     const siteEffects:string[] = [];
@@ -107,7 +143,7 @@ function extractMagicSiteEffect(site: MagicSite): string {
         siteEffects.push(`decunrest ${site.decUnrest}`);
     }
     if (site.summonUnit) {
-        siteEffects.push(`natcom ${site.summonUnit.id}`);
+        (site.summonUnit as Unit[]).forEach((u) => siteEffects.push(`natcom ${u.id}`));
     }
     console.log(siteEffects);;
     

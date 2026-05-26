@@ -1,5 +1,6 @@
 // utils/unitCalculations.ts
 
+import { Armor, ArmorProtectionData } from "../draftypes/armor.js";
 import { Unit } from "../draftypes/unit.js";
 
 /**
@@ -105,33 +106,29 @@ function pathArrayCost(sorted: number[]): number {
  * ========================================================= */
 
 export function calculateGold(unit: Unit): number {
-  // Explicit override
   if (unit.gold !== undefined) {
     return unit.gold;
   }
 
-  // Non-autocalc: basecost is the literal gold cost
-  if (unit.basecost <= 9000) {
+  if (parseInt(unit.basecost as any) <= 9000) {
     return roundIfNeeded(unit.basecost);
   }
 
-  // ── Commander autocalc ──────────────────────────────────
+  // ── Autocalc ────────────────────────────────────────────
 
-  // 1. Leadership cost (lookup table)
-  let totalLeader =
-    (unit.leader ?? 0) +
-    (unit.undeadleader ?? 0) +
-    (unit.magicleader ?? 0);
-  let ldrCost = leadershipCost(totalLeader);
-  if (!unit.commander) {
-    totalLeader = 0;
+  // 1. Leadership cost (commanders only)
+  let ldrCost = 0;
+  if (unit.leader) {
+    ldrCost += leadershipCost(unit.leader);
   }
-
   if (unit.inspirational) {
     ldrCost += 10 * unit.inspirational;
   }
+  /*if (unit.sailingshipsize && unit.sailingshipsize > 0) {
+    ldrCost += 0.5 * ldrCost;
+  }*/
 
-  // 2. Path cost (tiered)
+  // 2. Path cost
   const paths = unit.magicPaths;
   const baseLevels = [
     paths.fire ?? 0,
@@ -145,92 +142,137 @@ export function calculateGold(unit: Unit): number {
     paths.blood ?? 0,
   ];
 
-  // Handle random magic paths (100%-chance ones affect cost)
-  const hasRandom = unit.randomMagicPaths.some(r => r.mask > 0);
+  const hasRandom = unit.randomMagicPaths.some(r => r.rand === 100 && r.mask > 0);
   let pathsCost = 0;
 
   if (hasRandom) {
-    // Build all possible path combinations from randoms,
-    // then average as 75% largest + 25% smallest (matches inspector)
     const combinations: number[][] = [];
 
     function buildCombos(idx: number, current: number[]): void {
+      // Skip non-100% chance randoms (matches inspector's buildRandomArrays logic)
+      while (idx < unit.randomMagicPaths.length && unit.randomMagicPaths[idx].rand !== 100) {
+        idx++;
+      }
       if (idx >= unit.randomMagicPaths.length) {
-        combinations.push([...current]);
         return;
       }
       const rand = unit.randomMagicPaths[idx];
-      // Each bit in mask is a possible path; nbr = levels granted
-      const possiblePaths = [0, 1, 2, 3, 4, 5, 6, 7, 8]; // F A W E S D N G B
       const maskBits = [128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768];
-      const options: number[] = [];
       for (let p = 0; p < maskBits.length; p++) {
-        if (rand.mask & maskBits[p]) options.push(p);
-      }
-      if (options.length === 0) {
-        buildCombos(idx + 1, current);
-        return;
-      }
-      for (const opt of options) {
-        const next = [...current];
-        next[opt] = (next[opt] ?? 0) + rand.nbr;
-        buildCombos(idx + 1, next);
+        if (rand.mask & maskBits[p]) {
+          const next = [...current];
+          next[p] = (next[p] ?? 0) + rand.nbr;
+          if (idx + 1 < unit.randomMagicPaths.length) {
+            const before = combinations.length;
+            buildCombos(idx + 1, next);
+            // If nothing was added by recursion, push this combo
+            if (combinations.length === before) {
+              combinations.push(next);
+            }
+          } else {
+            combinations.push(next);
+          }
+        }
       }
     }
 
     buildCombos(0, [...baseLevels]);
 
-    const costs = combinations.map(combo =>
-      pathArrayCost([...combo].sort((a, b) => b - a))
-    );
-    const largest = Math.max(...costs);
-    const smallest = Math.min(...costs);
+    let largest = 0;
+    let smallest = 0;
+    for (const combo of combinations) {
+      const sorted = [...combo].sort((a, b) => b - a);
+      let tempCost = 0;
+      for (let i = 0; i < sorted.length; i++) {
+        const v = sorted[i];
+        if (!v) continue;
+        tempCost += i === 0 ? (PATH1_COST[v] ?? 0) : (PATH2_COST[v] ?? 0);
+      }
+      if (largest === 0) {
+        largest = tempCost;
+        smallest = tempCost;
+      } else {
+        if (tempCost > largest) largest = tempCost;
+        else if (tempCost < smallest) smallest = tempCost;
+      }
+    }
     pathsCost = largest * 0.75 + smallest * 0.25;
+
   } else {
-    const sorted = [...baseLevels].sort((a, b) => b - a);
-    pathsCost = pathArrayCost(sorted);
+    const sorted = baseLevels.filter(v => v > 0).sort((a, b) => b - a);
+    for (let i = 0; i < sorted.length; i++) {
+      pathsCost += i === 0 ? (PATH1_COST[sorted[i]] ?? 0) : (PATH2_COST[sorted[i]] ?? 0);
+    }
   }
 
   // Research bonus adjusts path cost
   const resBonus = unit.researchbonus ?? 0;
   if (pathsCost > 0 && resBonus > 0) {
     pathsCost += resBonus * 5;
-  } else if (resBonus < 0) {
+  }
+  if (resBonus < 0) {
     pathsCost -= 5;
+  }
+
+  // forgebonus adjusts path cost
+  if (unit.forgebonus) {
+    pathsCost += pathsCost * (unit.forgebonus / 100);
   }
 
   // 3. Priest cost
   const holyLevel = paths.holy ?? 0;
   const priestCost = PRIEST_COST[holyLevel] ?? 0;
 
-  // 4. Spy / assassin cost
+  // 4. Spy/assassin/seduce cost (part of cost_array, combined with others)
   let spyCost = 0;
-  if (unit.stealthy !== undefined && unit.stealthy > 0 && unit.commander) {
-    spyCost += 5; // stealthy commander bonus (scout-like)
+  /*if (unit.spy && unit.spy > 0) spyCost += 40;
+  if (unit.assassin && unit.assassin > 0) spyCost += 40;
+  if (unit.seduce && unit.seduce > 0) spyCost += 60;
+  else if (unit.succubus && unit.succubus > 0) spyCost += 60;*/
+
+  // 5. Combine costs: largest full, rest at half — only for commanders
+  const costArray = [ldrCost, pathsCost, priestCost, spyCost].sort((a, b) => b - a);
+  let cost = 0;
+  if (unit.commander) {
+    cost = costArray[0]
+      + costArray[1] / 2
+      + costArray[2] / 2
+      + costArray[3] / 2;
   }
 
-  // 5. Combine costs: largest full price, rest at half (dom6inspector formula)
-  const costArray = [ldrCost, pathsCost, priestCost, spyCost].sort((a, b) => b - a);
-  let cost = costArray[0]
-    + costArray[1] / 2
-    + costArray[2] / 2
-    + costArray[3] / 2;
+  // 6. Special costs (added flat, NOT part of the cost_array halving)
+  let specialCost = 0;
+  if (unit.stealthy && unit.stealthy > 0 && unit.commander) {
+    specialCost += 5;
+  }
+  /*if (unit.autohealer && unit.autohealer > 0 && unit.commander) {
+    specialCost += 50;
+  }
+  if (unit.autodishealer && unit.autodishealer > 0 && unit.commander) {
+    specialCost += 20;
+  }*/
 
-  // 6. Base offset
+  cost = Math.floor(cost + specialCost);
+
+  // 7. Base offset
   cost += unit.basecost - 10000;
 
-  // 7. Slow-to-recruit discount
-  if (unit.rt === 2) {
+  // 8. Slow-to-recruit discount (commanders only)
+  if (unit.rt === 2 && unit.commander) {
     cost *= 0.9;
   }
 
-  // 8. Sacred multiplier
+  // 9. Sacred multiplier
   if (holyLevel > 0) {
     cost *= 1.3;
   }
 
-  // 9. Commander markup (×1.4, round to 5)
-  cost = round5(cost * 1.4);
+  // 10. Commander markup and round
+  if (!unit.commander) {
+    cost = roundIfNeeded(cost);
+  } else {
+    cost = round5(cost * 1.4);
+  }
 
   return Math.max(1, cost);
 }
@@ -352,7 +394,7 @@ export function calculateResources(unit: Unit): number {
       // Find matching armor object from your dataset
       if (weapon.rcost) {
         // Calculate dynamic cost: (rcost * ressize) / 3
-        totalResourceCost +=(weapon.rcost * ressize) / 3;
+        totalResourceCost += (weapon.rcost * ressize) / 3;
       }
     });
   }
@@ -362,58 +404,105 @@ export function calculateResources(unit: Unit): number {
   return Math.floor(totalResourceCost);
 }
 export function calculateProtection(unit: Unit): number {
-  const baseProt = unit.prot;
+  const p_nat = unit.prot ?? 0;
 
-  // Each zone starts at baseProt (natural protection)
-  const zoneProt: Record<number, number> = {
-    1: baseProt,
-    2: baseProt,
-    3: baseProt,
-    4: baseProt,
-    5: baseProt,
-  };
-
-  // Group armor protection entries by zone
-  const byZone: Record<number, number[]> = { 1: [], 2: [], 3: [], 4: [], 5: [] };
+  let p_body = 0;
+  let p_head = 0;
+  let p_general = 0;
 
   for (const armor of unit.armors) {
-    if (!armor.protection) continue;
-    for (const pr of armor.protection) {
-      const z = pr.zone_number;
-      if (byZone[z] !== undefined) {
-        byZone[z].push(pr.protection);
-      }
+    const result = calculateArmorProtection(armor);
+
+    // protBody and protHeadFinal already include general protection
+    if (result.protBody !== null) {
+      p_body = result.protBody;
+    }
+    if (result.protHeadFinal !== null) {
+      p_head = result.protHeadFinal;
+    }
+    if (result.protGeneral !== null) {
+      p_general = result.protGeneral;
     }
   }
-
-  // For each zone, iteratively stack armor layers on top of natural prot
-  for (const zone of [1, 2, 3, 4, 5] as const) {
-    let current = baseProt;
-    for (const armorProt of byZone[zone]) {
-      // Dom6 stacking formula: new = armor + current - (armor * current / 40)
-      current = armorProt + current - (armorProt * current / 40);
-    }
-    zoneProt[zone] = current;
-  }
-
-  const mean = Math.ceil(
-    (zoneProt[1] + zoneProt[2] + zoneProt[3] + zoneProt[4] + zoneProt[5]) / 5
-  );
-  let p_general = zoneProt[3] + zoneProt[4] + zoneProt[5];
-  let p_body = zoneProt[1];
-  let p_head = zoneProt[2];
 
   if (p_body || p_head) {
-			//displayed values
-			p_body = (baseProt + p_body - (baseProt * p_body/40));
-			p_head = (baseProt + p_head - (baseProt * p_head/40));
-			var p_total = ((p_body * 4) + p_head) / 5;
+    // Dom6 stacking formula: combine natural prot with armor prot
+    const p_body_final = p_nat + p_body - (p_nat * p_body / 40);
+    const p_head_final = p_nat + p_head - (p_nat * p_head / 40);
 
-			p_total = (p_head > 10 && p_general == 0) ? Math.floor(p_total) : p_total;
+    let p_total = (p_body_final * 4 + p_head_final) / 5;
 
-      return Math.ceil(p_total);
-		} else {
-			return Math.max(baseProt, 1);
-		}
-  return mean;
+    // Floor only when head prot is significant and no general zone armor
+    p_total = (p_head_final > 10 && p_general === 0)
+      ? Math.floor(p_total)
+      : p_total;
+
+    return Math.round(p_total);
+  } else {
+    return p_nat > 0 ? p_nat : 0;
+  }
+}
+export type ArmorProtectionResult = {
+  protHead: number | null;    // zone 1
+  protTorso: number | null;   // zone 2 (raw)
+  protUpper: number | null;   // zone 3 (raw)
+  protLower: number | null;   // zone 4 (raw)
+  protShield: number | null;  // zone 5
+  protGeneral: number | null; // zone 6
+  protBody: number | null;    // derived: blended torso/upper/lower + general
+  protHeadFinal: number | null; // head + general
+};
+export function calculateArmorProtection(armor: Armor): ArmorProtectionResult {
+  let protHead: number | null = null;
+  let protTorso: number | null = null;
+  let protUpper: number | null = null;
+  let protLower: number | null = null;
+  let protShield: number | null = null;
+  let protGeneral: number | null = null;
+
+  // Map zone data from protection entries
+  for (const entry of armor.protection ?? []) {
+    const zone = entry.zone_number;
+    const prot = entry.protection;
+
+    switch (zone) {
+      case 1: protHead    = prot; break;
+      case 2: protTorso   = prot; break;
+      case 3: protUpper   = prot; break;
+      case 4: protLower   = prot; break;
+      case 5: protShield  = prot; break;
+      case 6: protGeneral = prot; break;
+    }
+  }
+
+  // Derive protBody from torso/upper/lower zones (if present)
+  let protBody: number | null = null;
+  if (protTorso !== null && protUpper !== null && protLower !== null) {
+    protBody = Math.floor((protTorso + (protUpper + protLower) / 2) / 2);
+  } else if (protTorso !== null) {
+    // Partial data: fall back to torso only
+    protBody = protTorso;
+  }
+
+  // Add general protection on top of body and head
+  const protBodyFinal =
+    protGeneral !== null
+      ? (protBody ?? 0) + protGeneral
+      : protBody;
+
+  const protHeadFinal =
+    protGeneral !== null
+      ? (protHead ?? 0) + protGeneral
+      : protHead;
+
+  return {
+    protHead,
+    protTorso,
+    protUpper,
+    protLower,
+    protShield,
+    protGeneral,
+    protBody: protBodyFinal,
+    protHeadFinal,
+  };
 }
