@@ -39,11 +39,11 @@ function buildNationSection(
 ): string {
 
     const commanderIds = userState.confirmedChosenDraftedCards!!.commanders
-        .map((card: any) => extractCardId(card))
+        .map((card: any) => extractCardId(card) + ((card.data as Unit).capitalOnly ? "C" : ""))
         .join(" ");
 
     const unitIds = userState.confirmedChosenDraftedCards!!.units
-        .map((card: any) => extractCardId(card))
+        .map((card: any) => extractCardId(card) + ((card.data as Unit).capitalOnly ? "C" : ""))
         .join(" ");
 
     const pretenderIds = userState.confirmedChosenDraftedCards!!.pretenders

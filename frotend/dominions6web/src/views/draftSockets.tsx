@@ -154,7 +154,7 @@ export const useDraftWebSocket = () => {
             alert("choosen 8 units");
             return;
         }
-        if (chosenDraftedCards.magicSites.length != 2) {
+        if (chosenDraftedCards.magicSites.length != 3) {
             alert("choosen 2 sites");
             return;
         }
@@ -162,7 +162,7 @@ export const useDraftWebSocket = () => {
             alert("choosen 4 pretendesr");
             return;
         }
-        if (chosenDraftedCards.heros.length !=1) {
+        if (chosenDraftedCards.heros.length !=2) {
             alert("choosen 1 hero");
             return;
         }
@@ -348,7 +348,7 @@ export const useDraftWebSocket = () => {
                 };
             }
             if (card.type === "magic_site") {
-                const magicSites = [...prev.magicSites, card].slice(-2);
+                const magicSites = [...prev.magicSites, card].slice(-3);
                 return {
                     ...prev,
                     magicSites

@@ -20,7 +20,7 @@ const unitPool = unitAndCommanderPool.filter((unit) => !unit.commander).filter(b
 unitPool.forEach(u => addMountGoldAndResources(u, unitPool));
 
 // ----------------------------------------------------
-// Helpers
+// Helpers      
 // ----------------------------------------------------
 
 const rand = <T>(arr: T[]): T =>

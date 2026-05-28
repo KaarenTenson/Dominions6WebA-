@@ -6,15 +6,15 @@ import { C } from "../draft-shared";
 // ── Constants ────────────────────────────────────────────────────────────────
 
 const GEM_COLORS: Record<string, { bg: string; text: string; border: string; glow: string }> = {
-    fire:    { bg: "#2a0d06", text: "#e87050", border: "#5a1a0a", glow: "rgba(232,112,80,0.25)" },
-    air:     { bg: "#091420", text: "#5ab0e0", border: "#1a3a5a", glow: "rgba(90,176,224,0.25)" },
-    water:   { bg: "#06101a", text: "#40a0d0", border: "#0a2a40", glow: "rgba(64,160,208,0.25)" },
-    earth:   { bg: "#12100a", text: "#a08040", border: "#3a2e14", glow: "rgba(160,128,64,0.25)" },
-    astral:  { bg: "#14082a", text: "#b070e0", border: "#3a1a6a", glow: "rgba(176,112,224,0.25)" },
-    death:   { bg: "#100a14", text: "#9060b0", border: "#301840", glow: "rgba(144,96,176,0.25)" },
-    nature:  { bg: "#0a1408", text: "#60b040", border: "#1a3a10", glow: "rgba(96,176,64,0.25)" },
+    fire: { bg: "#2a0d06", text: "#e87050", border: "#5a1a0a", glow: "rgba(232,112,80,0.25)" },
+    air: { bg: "#091420", text: "#5ab0e0", border: "#1a3a5a", glow: "rgba(90,176,224,0.25)" },
+    water: { bg: "#06101a", text: "#40a0d0", border: "#0a2a40", glow: "rgba(64,160,208,0.25)" },
+    earth: { bg: "#12100a", text: "#a08040", border: "#3a2e14", glow: "rgba(160,128,64,0.25)" },
+    astral: { bg: "#14082a", text: "#b070e0", border: "#3a1a6a", glow: "rgba(176,112,224,0.25)" },
+    death: { bg: "#100a14", text: "#9060b0", border: "#301840", glow: "rgba(144,96,176,0.25)" },
+    nature: { bg: "#0a1408", text: "#60b040", border: "#1a3a10", glow: "rgba(96,176,64,0.25)" },
     glamour: { bg: "#1a0814", text: "#e060a0", border: "#4a1a30", glow: "rgba(224,96,160,0.25)" },
-    blood:   { bg: "#1a0606", text: "#c03030", border: "#4a1010", glow: "rgba(192,48,48,0.25)" },
+    blood: { bg: "#1a0606", text: "#c03030", border: "#4a1010", glow: "rgba(192,48,48,0.25)" },
 };
 
 const GEM_LABELS: Record<string, string> = {
@@ -127,16 +127,16 @@ const s = {
     } as React.CSSProperties,
 
     stat: {
-        background: "#0a1018",
+        background: "#0a0d0f",
         padding: "8px 4px 6px",
         textAlign: "center" as const,
     } as React.CSSProperties,
 
     statLabel: {
         fontFamily: "'Cinzel', 'Georgia', serif",
-        fontSize: "8px",
+        fontSize: "9px",
         letterSpacing: "0.12em",
-        color: "#2a4a60",
+        color: "#4e96c6",
         textTransform: "uppercase" as const,
         marginBottom: "3px",
     } as React.CSSProperties,
@@ -164,7 +164,7 @@ const s = {
         fontFamily: "'Cinzel', 'Georgia', serif",
         fontSize: "8px",
         letterSpacing: "0.15em",
-        color: "#2a4a60",
+        color: "#0099ff",
         textTransform: "uppercase" as const,
         marginBottom: "6px",
     } as React.CSSProperties,
@@ -312,32 +312,52 @@ type MagicSiteCardProps = {
 };
 
 export default function MagicSiteCard({ site, selected, onClick }: MagicSiteCardProps) {
-    const [unitTooltipVisible, setUnitTooltipVisible] = useState(false);
-    const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
-    const tooltipTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
-
     const imageUrl = getSiteImage();
 
     const cardStyle: React.CSSProperties = {
-    ...s.root,
-    border: selected
-        ? "3px solid #1a9a2d"
-        : "1px solid #1e2d3a",
-    boxShadow: selected
-        ? "0 0 24px rgba(26,106,154,0.2)"
-        : "none",
-};
+        ...s.root,
+        border: selected
+            ? "3px solid #1a9a2d"
+            : "1px solid #1e2d3a",
+        boxShadow: selected
+            ? "0 0 24px rgba(26,106,154,0.2)"
+            : "none",
+    };
+
+    const [unitTooltipVisible, setUnitTooltipVisible] = useState(false);
+    const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
+
+    const tooltipRef = useRef<HTMLDivElement | null>(null);
+    const tooltipTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     const handleSummonMouseEnter = (e: React.MouseEvent) => {
         const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
-        // Position tooltip to the right of the card, or flip left if near right edge
+
+        // Horizontal placement
         const spaceRight = window.innerWidth - rect.right;
         const x = spaceRight > 300 ? rect.right + 12 : rect.left - 292;
-        const y = Math.min(rect.top, window.innerHeight - 500);
-        setTooltipPos({ x, y });
-        tooltipTimeout.current = setTimeout(() => setUnitTooltipVisible(true), 120);
-    };
 
+        // Initial Y
+        let y = rect.top;
+
+        // Estimate tooltip height before render
+        const estimatedHeight = 520;
+        const padding = 16;
+
+        // If bottom would overflow screen, raise it
+        if (y + estimatedHeight > window.innerHeight - padding) {
+            y = window.innerHeight - estimatedHeight - padding;
+        }
+
+        // Prevent going above screen
+        y = Math.max(8, y);
+
+        setTooltipPos({ x, y });
+
+        tooltipTimeout.current = setTimeout(() => {
+            setUnitTooltipVisible(true);
+        }, 120);
+    };
     const handleSummonMouseLeave = () => {
         if (tooltipTimeout.current) clearTimeout(tooltipTimeout.current);
         setUnitTooltipVisible(false);
@@ -378,10 +398,10 @@ export default function MagicSiteCard({ site, selected, onClick }: MagicSiteCard
 
                 {/* Resource stats */}
                 <div style={s.statsGrid}>
-                    <Stat label="Gold"     value={site.gold} />
-                    <Stat label="Supply"   value={site.supply} />
+                    <Stat label="Gold" value={site.gold} />
+                    <Stat label="Supply" value={site.supply} />
                     <Stat label="Resource" value={site.resource} />
-                    <Stat label="−Unrest"  value={site.decUnrest} />
+                    <Stat label="−Unrest" value={site.decUnrest} />
                 </div>
 
                 {/* Gem income */}
@@ -418,6 +438,7 @@ export default function MagicSiteCard({ site, selected, onClick }: MagicSiteCard
             {/* Unit card tooltip on summon hover */}
             {site.summonUnit && unitTooltipVisible && (
                 <div
+                    ref={tooltipRef}
                     style={{
                         ...s.tooltip,
                         left: tooltipPos.x,

@@ -20,7 +20,7 @@ type CardSelectionProps = {
     chooseStartingLocation: (loc: StartLocation) => void;
 };
 
-const LIMITS = { pretender: 4, commanders: 8, units: 8, magicSites: 2, heros:1};
+const LIMITS = { pretender: 4, commanders: 8, units: 8, magicSites: 3, heros:2};
 
 /* -------------------------------------------------------------------------- */
 /*  PROGRESS CARD                                                              */

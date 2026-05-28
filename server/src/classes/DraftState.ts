@@ -89,10 +89,10 @@ export class DraftState {
     if (chosenCards.pretenders.length != 4) {
       return;
     }
-    if (chosenCards.magicSites.length != 2) {
+    if (chosenCards.magicSites.length != 3) {
       return;
     }
-    if (chosenCards.heros.length != 1) {
+    if (chosenCards.heros.length != 2) {
       return;
     }
     const state = this.userDraftStates.get(userId);
