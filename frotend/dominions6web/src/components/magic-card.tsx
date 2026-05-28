@@ -425,7 +425,7 @@ export default function MagicSiteCard({ site, selected, onClick }: MagicSiteCard
                         opacity: unitTooltipVisible ? 1 : 0,
                     }}
                 >
-                    <UnitCard unit={site.summonUnit} />
+                    <UnitCard unit={site.summonUnit} type="commander" />
                 </div>
             )}
         </>
