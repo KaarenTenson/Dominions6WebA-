@@ -111,6 +111,7 @@ export interface Unit {
   taxcollector?: number;
   alch?: number;
   forgebonus?: number;
+  startdom?:number;
 
   nametype?: number;
 

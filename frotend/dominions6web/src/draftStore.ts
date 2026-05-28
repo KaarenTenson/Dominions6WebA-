@@ -8,15 +8,18 @@ type DraftStore = {
     magicSites: DraftCard<any>[];
     units: DraftCard<any>[];
     pretenders: DraftCard<any>[];
+    heros:DraftCard<any>[];
     currentPack: DraftCard<any>[];
     addCommander: (commander: DraftCard<any>) => void;
     addMagicSite: (magicSite: DraftCard<any>) => void;
     addUnit: (unit: DraftCard<any>) => void;
     addPretender: (pretender: DraftCard<any>) => void;
+    addHero: (hero: DraftCard<any>) => void;
     setPack: (newPack:DraftCard<any>[]) => void;
     setCommanders: (commanders: DraftCard<any>[]) => void;
     setUnits: (units: DraftCard<any>[]) => void;
     setPretenders: (pretenders: DraftCard<any>[]) => void;
+    setHeros: (heros: DraftCard<any>[]) => void;
     setMagicSites: (magicSites: DraftCard<any>[]) => void;
 };
 
@@ -25,6 +28,7 @@ export const useDraftStore = create<DraftStore>((set, get) => ({
     magicSites: [],
     pretenders: [],
     units: [],
+    heros:[],
     currentPack: [],
     addCommander: (commander) => {
         const current_commander = get().commanders;
@@ -47,6 +51,11 @@ export const useDraftStore = create<DraftStore>((set, get) => ({
         current_pretenders.push(pretender);
         set({pretenders:current_pretenders});
     },
+    addHero: (hero: DraftCard<any>) => {
+        const current_heros = get().heros;
+        current_heros.push(hero);
+        set({heros:current_heros});
+    },
     setPack: (pack:DraftCard<any>[]) => {
         set({currentPack:pack})
     },
@@ -58,6 +67,9 @@ export const useDraftStore = create<DraftStore>((set, get) => ({
     },
     setPretenders: (pretenders: DraftCard<any>[]) => {
         set({pretenders: pretenders})
+    },
+    setHeros: (heros: DraftCard<any>[]) => {
+        set({heros:heros});
     },
     setMagicSites: (magicSites: DraftCard<any>[]) => {
         set({magicSites: magicSites})

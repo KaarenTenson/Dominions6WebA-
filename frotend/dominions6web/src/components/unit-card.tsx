@@ -1,10 +1,12 @@
 import React from "react";
 import type { Unit } from "../draftTypes/unit";
 import { C } from "../draft-shared";
+import type { DraftCardType } from "../../types";
 
 type UnitCardProps = {
     unit: Unit;
     selected?: boolean;
+    type: DraftCardType;
     onClick?: () => void;
 };
 
@@ -23,7 +25,7 @@ const MAGIC_COLORS: Record<string, any> = {
 } as any;
 
 const MAGIC_LABELS: Record<string, string> = {
-     fire: "🔥", air: "💨", water: "💧", earth: "⛰️",
+    fire: "🔥", air: "💨", water: "💧", earth: "⛰️",
     astral: "⭐", death: "💀", nature: "🌿", glamour: "✨", blood: "🩸",
     rand: "❓"
 };
@@ -117,6 +119,18 @@ const s = {
         textTransform: "uppercase" as const,
         background: "#1e1a0f",
         color: "#c49a28",
+        border: "1px solid #3d2e1a",
+    } as React.CSSProperties,
+    heroBadge: {
+        fontFamily: "'Cinzel', 'Georgia', serif",
+        fontSize: "9px",
+        fontWeight: 600,
+        letterSpacing: "0.1em",
+        padding: "2px 8px",
+        borderRadius: "2px",
+        textTransform: "uppercase" as const,
+        background: "#1e1a0f",
+        color: "#af1010bd",
         border: "1px solid #3d2e1a",
     } as React.CSSProperties,
 
@@ -271,7 +285,7 @@ function Stat({ label, value }: { label: string; value?: number }) {
 
 // ── Main component ───────────────────────────────────────────────────────────
 
-export default function UnitCard({ unit, selected, onClick }: UnitCardProps) {
+export default function UnitCard({ unit, selected, type, onClick }: UnitCardProps) {
     const magicEntries = Object.entries(unit.magicPaths || {}).filter(
         ([, v]) => v && v > 0
     );
@@ -317,6 +331,10 @@ export default function UnitCard({ unit, selected, onClick }: UnitCardProps) {
                     {unit.commander && (
                         <span style={s.badgeCommander}>Commander</span>
                     )}
+                    {type === "hero" && (
+                            <span style={s.heroBadge}>Hero</span>
+                        )
+                    }
                     {unit.pretender && (
                         <span style={s.badgeCommander}>Pretender</span>
                     )}
@@ -334,6 +352,9 @@ export default function UnitCard({ unit, selected, onClick }: UnitCardProps) {
                     )}
                     {unit.capitalOnly && (
                         <span style={s.badgeCapital}>Capital Only</span>
+                    )}
+                     {type==="pretender" && unit.startdom && (
+                        <span style={s.badgeCapital}>dom strength: {unit.startdom}</span>
                     )}
                 </div>
             </div>
@@ -397,7 +418,7 @@ export default function UnitCard({ unit, selected, onClick }: UnitCardProps) {
 
             {/* Footer */}
 
-            {unit.gold && unit.calculatedResources && (<div style={s.footer}>
+            {type != "hero" && unit.gold && unit.calculatedResources && (<div style={s.footer}>
                 <div style={s.cost}>
                     <span style={{ fontSize: "16px" }}>🪙</span>
                     <div>

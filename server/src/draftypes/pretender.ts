@@ -103,6 +103,7 @@ export interface Pretender {
   taxcollector?: number;
   alch?: number;
   forgebonus?: number;
+  startdom?: number;
 
   nametype?: number;
 

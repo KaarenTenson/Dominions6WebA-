@@ -15,6 +15,8 @@ export const useDraftWebSocket = () => {
         magicSites,
         units,
         currentPack,
+        heros,
+        addHero,
         addCommander,
         addMagicSite,
         addUnit,
@@ -23,7 +25,8 @@ export const useDraftWebSocket = () => {
         setCommanders,
         setMagicSites,
         setPretenders,
-        setUnits
+        setUnits,
+        setHeros,
     } = useDraftStore();
 
     const { user} = useUserStore();
@@ -38,7 +41,7 @@ export const useDraftWebSocket = () => {
     const [ready, setReady] = useState<boolean>(false);
     const [selectedCards, setSelectedCards] = useState<DraftCard<any>[]>([]);
     const [isCardSelection, setIsCardSelection] = useState<boolean>(false);
-    const [chosenDraftedCards, setChosenDraftedCards] = useState<DraftedCardChoosingState>({ pretenders: [], commanders: [], units: [], magicSites: [], heat: 0, startLocation: "land" });
+    const [chosenDraftedCards, setChosenDraftedCards] = useState<DraftedCardChoosingState>({ pretenders: [], commanders: [], units: [], magicSites: [], heros:[], heat: 0, startLocation: "land" });
 
     const [resetState, setResetState] = useState<ResetData[]>([]);
     const [isEnded, setIsEnded] = useState<boolean>(false);
@@ -118,6 +121,7 @@ export const useDraftWebSocket = () => {
         setCommanders(syncData.commanders);
         setPretenders(syncData.pretenders);
         setMagicSites(syncData.magicSites);
+        setHeros(syncData.heros);
         setUnits(syncData.units);
         setIsEnded(syncData.isEnded);
         setBlobId(syncData.blobId);
@@ -158,6 +162,10 @@ export const useDraftWebSocket = () => {
             alert("choosen 4 pretendesr");
             return;
         }
+        if (chosenDraftedCards.heros.length !=1) {
+            alert("choosen 1 hero");
+            return;
+        }
         const confirmMsg: WsMessage<DraftedCardChoosingState> = {
             data: chosenDraftedCards,
             lobbyId: lobby,
@@ -184,6 +192,9 @@ export const useDraftWebSocket = () => {
         }
         if (type === "pretender") {
             confirmPretenders(cards);
+        }
+        if (type === "hero") {
+            confirmHeros(cards);
         }
     }
     const sendReset = () => {
@@ -218,6 +229,27 @@ export const useDraftWebSocket = () => {
             console.error(error);
         }
     };
+    const confirmUnits = (cards: DraftCard<any>[]): void => {
+        try {
+            sendConfirmMsg(cards);
+            cards.forEach((card) => {
+                addUnit(card);
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    };
+    const confirmHeros = (cards: DraftCard<any>[]): void => {
+        try {
+            sendConfirmMsg(cards);
+            cards.forEach((card) => {
+                addHero(card);
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     const selectCards = (card: DraftCard<any>): void => {
         if (selectedCards.some((c) => c.id == card.id)) {
             setSelectedCards([...selectedCards.filter((c) => c.id != card.id)]);
@@ -237,6 +269,16 @@ export const useDraftWebSocket = () => {
                 return {
                     ...prev,
                     commanders
+                };
+            })
+            return true;
+        }
+        if (state.heros.some((c) => c.id === card.id)) {
+            setChosenDraftedCards(prev => {
+                const heros = prev.heros.filter((c) => c.id != card.id);
+                return {
+                    ...prev,
+                    heros
                 };
             })
             return true;
@@ -312,6 +354,13 @@ export const useDraftWebSocket = () => {
                     magicSites
                 };
             }
+            if (card.type === "hero") {
+                const heros = [...prev.heros, card].slice(-2);
+                return {
+                    ...prev,
+                    heros
+                };
+            }
 
 
             return prev;
@@ -345,17 +394,7 @@ export const useDraftWebSocket = () => {
         }
     };
 
-    const confirmUnits = (cards: DraftCard<any>[]): void => {
-        try {
-            sendConfirmMsg(cards);
-            cards.forEach((card) => {
-                addUnit(card);
-            });
-        } catch (error) {
-            console.error(error);
-        }
-    };
-
+ 
     const sendReadyEvent = (isReady: boolean) => {
         const confirmMsg: WsMessage<boolean> = {
             data: isReady,
@@ -381,6 +420,7 @@ export const useDraftWebSocket = () => {
         magicSites,
         units,
         currentPack,
+        heros,
         setSelectedCards,
         selectedCards,
         startDraftWsConnection,

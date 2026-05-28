@@ -8,7 +8,7 @@ import { writeMessage } from "../db/db-writer.js";
 import { parseCookies } from "../crypto/cookies.js";
 import { checkLobbyAccess, getUserById, readSession } from "../db/db-reading.js";
 import { IncomingMessage } from "http";
-import { generate_commander_pack, generate_magic_site_pack, generate_pretender_pack, generate_unit_pack } from "../card_generator.js";
+import { generate_commander_pack, generate_hero_pack, generate_magic_site_pack, generate_pretender_pack, generate_unit_pack } from "../card_generator.js";
 import { json } from "stream/consumers";
 import { generateDraftResults } from "../utils/draft-utils.js";
 
@@ -306,11 +306,13 @@ const new_pack_event = () => {
     }
     let pack: DraftCard<any>[];
     if (draftSession.turn == 1) {
-      pack = generate_magic_site_pack();
+      pack = generate_hero_pack();
     } else if (draftSession.turn == 2 || draftSession.turn == 3) {
       pack = generate_commander_pack();
     } else if (draftSession.turn == 5 || draftSession.turn == 4) {
       pack = generate_unit_pack();
+    }  else if (draftSession.turn == 7)  {
+      pack = generate_magic_site_pack();
     } else if (draftSession.turn == 6) {
      pack = generate_pretender_pack();
     } else {

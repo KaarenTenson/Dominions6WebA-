@@ -92,6 +92,9 @@ export class DraftState {
     if (chosenCards.magicSites.length != 2) {
       return;
     }
+    if (chosenCards.heros.length != 1) {
+      return;
+    }
     const state = this.userDraftStates.get(userId);
     state!!.confirmed = true;
     state!!.chosenDraftedCards = chosenCards;
@@ -142,6 +145,11 @@ export class DraftState {
             userState!!.units = userState!!.units.concat(cards);
             this.removeCards(cards, userState!!);
             break;
+        case "hero":
+            userState!!.heros = userState!!.heros.concat(cards);
+            this.removeCards(cards, userState!!);
+            break;
+          
       }
       userState.chosen_cards = [];
     })
@@ -156,6 +164,7 @@ export class UserDraftSate {
   current_pack: DraftCard<any>[];
   chosen_cards: DraftCard<any>[];
   pretenders: DraftCard<any>[];
+  heros : DraftCard<any>[];
   chosenDraftedCards?: DraftedCardChoosingState;
   confirmedChosenDraftedCards?: DraftedCardChoosingState;
   confirmed: boolean;
@@ -174,6 +183,7 @@ export class UserDraftSate {
       cardSelection: cardSelection,
       commanders: this.commanders,
       units: this.units,
+      heros: this.heros,
       pretenders: this.pretenders,
       magicSites: this.magicSites,
       isEnded: this.isEnded,
@@ -192,6 +202,7 @@ export class UserDraftSate {
     this.isReady = false;
     this.wantsReset = false;
     this.pretenders = [];
+    this.heros = [];
     this.isEnded = false;
 
   }

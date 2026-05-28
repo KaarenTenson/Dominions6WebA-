@@ -61,7 +61,7 @@ export type UserConfirmationState = {
     confirmed: boolean;
     userId: string;
 }
-export type DraftCardType = "unit" | "commander" | "magic_site" | "pretender";
+export type DraftCardType = "unit" | "commander" | "magic_site" | "pretender" | "hero";
 export type DraftCard<T> = {
     userId?: string;
     type: DraftCardType;
@@ -73,6 +73,7 @@ export type DraftedCardChoosingState = {
     units: DraftCard<any>[],
     commanders: DraftCard<any>[],
     magicSites: DraftCard<any>[],
+    heros: DraftCard<any>[],
     startLocation:StartLocation;
     heat: number;
 }
@@ -87,6 +88,7 @@ export type SyncData = {
     units: DraftCard<any>[];
     pretenders: DraftCard<any>[];
     magicSites: DraftCard<any>[];
+    heros: DraftCard<any>[];
     isEnded: boolean;
     blobId?: string;
 }

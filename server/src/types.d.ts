@@ -46,6 +46,7 @@ export type DraftedCardChoosingState = {
     units: DraftCard<any>[],
     commanders: DraftCard<any>[],
     magicSites: DraftCard<any>[],
+    heros: DraftCard<any>[],
     startLocation:StartLocation;
     heat: number;
 }
@@ -60,14 +61,15 @@ export type SyncData = {
   commanders: DraftCard<any>[];
   units: DraftCard<any>[];
   pretenders: DraftCard<any>[];
-  magicSites: DraftCard<any>[]
+  magicSites: DraftCard<any>[];
+  heros: DraftCard<any>[];
   isEnded: boolean;
   blobId?: string;
 }
 
 export type DraftCard<T> = {
     userId?:string;
-    type :"unit"|"commander"|"magic_site"|"pretender";
+    type :"unit"|"commander"|"magic_site"|"pretender"|"hero";
     id:string;
     data: T;
 }

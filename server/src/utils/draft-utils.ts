@@ -49,7 +49,9 @@ function buildNationSection(
     const pretenderIds = userState.confirmedChosenDraftedCards!!.pretenders
         .map((card: any) => extractCardId(card))
         .join(" ");
-
+    const heroIds = userState.confirmedChosenDraftedCards!!.heros
+        .map((card: any) => extractCardId(card))
+        .join(" ");
     const magicSiteEffects = 
         userState.confirmedChosenDraftedCards!!.magicSites.length > 0
             ? extractMagicSiteEffect(concatMagicSites(userState.confirmedChosenDraftedCards!!.magicSites as DraftCard<MagicSite>[]))
@@ -67,6 +69,7 @@ ${unitIds || "TODO"}
 ${magicSiteEffects}
 -
 -
+${heroIds}
 -   
 ${pretenderIds || "TODO"}
 -
@@ -114,7 +117,7 @@ function concatGemEffect(se1:SiteGemEffect[], se2:SiteGemEffect[]) {
         let hasgems = false;
         se1.forEach((e2) => {
             if (e2.type == e.type) {
-                e2.gemAmount += e.gemAmount;
+                e.gemAmount += e2.gemAmount;
                 hasgems = true;
             }
         }) 

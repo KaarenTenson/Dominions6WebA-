@@ -1,0 +1,4089 @@
+id,name,chassis_value
+1,Logrian Slinger,6.73
+2,Standard,8.28
+3,Serpent Cataphract,12.83
+4,Serpent,26.22
+5,Serpent Lord,20.0
+6,Emerald Lord,20.16
+7,Emerald Guard,14.52
+8,Elephant Spearman,8.07
+9,High Priest of C'tis,24.6
+10,Projection,7.8
+11,Retiarius,20.67
+12,Gladiator,15.03
+13,Hoplite Commander,16.54
+14,Hoplite,9.53
+15,Hypaspist Commander,16.13
+16,Hypaspist,12.67
+17,Archer,5.0
+18,Militia,5.0
+19,Heavy Cavalry,9.2
+20,Heavy Cavalry,7.67
+21,Heavy Cavalry,9.2
+22,Knight,14.0
+23,Knight Commander,18.04
+24,Light Cavalry,9.2
+25,Light Cavalry,9.2
+26,Light Cavalry,9.2
+27,Centaur,22.68
+28,Light Infantry,7.67
+29,Light Infantry,9.2
+30,Militia,5.0
+31,Militia,5.0
+32,Archer,5.0
+33,Archer,5.0
+34,Commander,6.9
+35,Commander,6.9
+36,Commander,6.9
+37,Master of the Games,21.6
+38,Heavy Infantry,7.67
+39,Heavy Infantry,6.9
+40,Heavy Infantry,6.9
+41,Arch Theurg,69.3
+42,Theurg,40.74
+43,Theurg Acolyte,18.3
+44,Mounted Commander,6.9
+45,Mounted Commander,6.9
+46,Mounted Commander,6.9
+47,Crossbowman,5.0
+48,Crossbowman,5.0
+49,Crossbowman,5.0
+50,Slinger,5.0
+51,Battle Vestal,20.4
+52,Battle Deacon,20.7
+53,Logrian Warrior,10.3
+54,Castellan,9.57
+55,Longbowman,6.12
+56,Royal Forester,13.78
+57,Knight of Man,18.04
+58,Knight of the Stone,30.68
+59,Longbowman,8.28
+60,Monk,12.45
+61,Spearman,7.67
+62,Longspear,8.43
+63,Tower Guard,8.7
+64,Knight of Avalon,38.48
+65,Warden of Avalon,32.07
+66,Guardian,14.0
+67,Infantry of Ulm,8.43
+68,Black Plate Infantry,8.43
+69,Black Knight,19.68
+70,Black Lord,22.88
+71,Infantry of Ulm,8.43
+72,Black Plate Infantry,8.43
+73,Infantry of Ulm,7.59
+74,Black Plate Infantry,7.59
+75,Infantry of Ulm,8.43
+76,Black Plate Infantry,8.43
+77,Infantry of Ulm,7.59
+78,Black Plate Infantry,7.59
+79,Pikeneer,9.28
+80,Black Plate Pikeneer,9.28
+81,Abysian Infantry,12.0
+82,Abysian Infantry,12.0
+83,Abysian Infantry,10.8
+84,Abysian Infantry,10.8
+85,Anathemant Salamander,41.76
+86,Anathemant Dragon,62.76
+87,Demonbred,62.1
+88,Fiend of Darkness,41.04
+89,Warlock,39.96
+90,Lava Warrior,32.29
+91,Heavy Cavalry,9.2
+92,Cloud Mage,6.3
+93,Wind Master,11.97
+94,Conjurer,9.3
+95,Circle Master,19.5
+96,Azure Initiate,6.3
+97,Azure Mage,11.97
+98,Pyromancer,6.3
+99,Adept of Pyriphlegeton,25.67
+100,Adept of the Silver Order,20.97
+101,Adept of the Golden Order,23.1
+102,Initiate of the Deep,5.0
+103,Hydromancer,20.97
+104,Deep Seer,42.69
+105,Woodhenge Druid,18.3
+106,Shadow Seer,23.94
+107,Atlantian Light Infantry,8.07
+108,Coral Guard,13.6
+109,Dagon,229.16
+110,Atlantian Militia,5.0
+111,Atlantian Shield Bearer,8.07
+112,Coral Queen,59.4
+113,Lord Guardian,17.77
+114,Commander of Ulm,10.44
+115,Commander of Ulm,10.44
+116,Commander of Ulm,10.44
+117,Commander of Ulm,10.44
+118,War Master,27.54
+119,Warlord,22.68
+120,Moloch,181.15
+121,Demonbred,71.1
+122,Bloodhenge Druid,14.97
+123,Wolf Tribe Archer,9.36
+124,Wolf Tribe Warrior,9.36
+125,Woodsman Blowpipe,6.12
+126,Woodsman,6.12
+127,Blizzard Warrior,6.48
+128,Spire Horn Archer,6.48
+129,Spire Horn Militia,5.0
+130,Airya Light Infantry,6.0
+131,Spire Horn Warrior,6.67
+132,Iceclad,7.8
+133,Man at Arms,8.7
+134,Royal Guard,18.04
+135,Knight of the Chalice,34.08
+136,Horse Tribe Chief,14.0
+137,Horse Tribe Cavalry,11.6
+138,Gorgon,54.48
+139,Barbarian,8.43
+140,Barbarian,8.43
+141,Barbarian Chief,12.8
+142,Huskarl,8.28
+143,Huskarl,9.2
+144,Hirdman,9.67
+145,Hirdman,8.7
+146,Einhere,13.86
+147,Barbarian Lord,16.47
+148,Friar,15.69
+149,Inquisitor,26.31
+150,Elephant Rider,5.1
+151,Daughter of Avalon,17.07
+152,Mother of Avalon,20.07
+153,Crone of Avalon,41.07
+154,Witch,17.07
+155,Velite,9.2
+156,Cyclops,164.1
+157,Mother of Monsters,100.8
+158,Oracle,20.4
+159,Monument,246.6
+160,High Priest of C'tis,24.6
+161,Sauromancer,26.28
+162,Lizard Lord,16.56
+163,Commander of C'tis,12.47
+164,Swamp Guard,21.12
+165,C'tissian Heavy Infantry,7.33
+166,City Guard,7.33
+167,C'tissian Light Infantry,8.8
+168,Militia,5.0
+169,Taskmaster,11.29
+170,Lizard Shaman,30.55
+171,Slave Warrior,8.8
+172,Elite Warrior,11.44
+173,Runner,8.8
+174,Triton,7.67
+175,Triton Guard,7.67
+176,Triton,6.9
+177,Lizard King,51.15
+178,Lich,42.24
+179,Master Lich,43.8
+180,Demilich,16.6
+181,Wraith Lord,116.8
+182,Wraith Lord,118.56
+183,Wraith King,134.82
+184,Knight of the Unholy Sepulchre,22.72
+185,Bane,33.07
+186,Longdead Velite,8.12
+187,Longdead Legionnaire,8.12
+188,Mound King,9.33
+189,Longdead Horseman,6.77
+190,Mound King,8.4
+191,Longdead,6.09
+192,Longdead,6.09
+193,Longdead,6.09
+194,Longdead,6.09
+195,Longdead,6.77
+196,Longdead,6.77
+197,Soulless,5.0
+198,Ghoul,8.7
+199,Cardaces,7.67
+200,Charioteer,7.67
+201,Peltast,9.2
+202,Caelian Seraph,15.78
+203,High Seraph,30.78
+204,Seraphine,16.5
+205,Raptor,8.67
+206,Shambler,14.98
+207,Shambler Chief,14.98
+208,War Shambler,20.27
+209,Mother Guard,40.23
+210,Giant Lobster,31.88
+211,Lobster Rider,10.27
+212,Lord Warden,41.58
+213,Salamander,18.36
+214,Beast Trainer,16.8
+215,Virtue,57.6
+216,Dragon,368.41
+217,Flagellant,14.1
+218,Crossbowman,8.28
+219,Swordsman,7.67
+220,Halberdier,7.67
+221,Pikeneer,8.43
+222,High Inquisitor,35.1
+223,Grand Master,55.5
+224,Witch Hunter,34.5
+225,Initiate,9.9
+226,Arch Mage,18.67
+227,Satyr Sneak,8.8
+228,Satyr,10.56
+229,Satyr,8.8
+230,Satyr Hoplite,15.6
+231,Centaur Hierophant,56.22
+232,Centaur Commander,26.24
+233,Centaur Cataphract,24.32
+234,Minotaur,17.57
+235,War Minotaur,19.27
+236,Minotaur Lord,24.0
+237,Dryad,32.7
+238,Pan,43.2
+239,Harpy,5.0
+240,Priest,12.45
+241,High Priest,19.26
+242,Hiereia,17.07
+243,Crab Hybrid,22.52
+244,Arch Mage,13.67
+245,Master Enchanter,13.67
+246,Freak Lord,12.6
+247,Freak,30.75
+248,Arch Mage,13.67
+249,Crone,10.67
+250,Frost Father,19.0
+251,Great Sage,12.67
+252,Harab Seraph,5.4
+253,Dusk Elder,90.9
+254,Spectator,63.48
+255,Wailing Lady,93.72
+256,Acolyte of Eldregate,41.7
+257,Bishop of Eldregate,53.16
+258,Arch Bishop of Eldregate,64.92
+259,Lictor,43.0
+260,Censor,49.07
+261,Valkyrie,27.13
+262,Van,31.24
+263,Vanherse,48.84
+264,Vanjarl,62.45
+265,Dragon,368.41
+266,Dragon,368.41
+267,Frost Father,18.67
+268,Master Enchanter,18.67
+269,Wyrm,282.76
+270,Arch Druid,12.67
+271,Burgmeister Guard,6.72
+272,Hoburg Champion,9.12
+273,Hoburg Crossbow,6.55
+274,Jotun Jarl,62.25
+275,Jotun Gode,57.3
+276,Jotun Javelinist,21.17
+277,Jotun Bondi,13.2
+278,Jotun Spearman,19.6
+279,Jotun Axeman,17.64
+280,Seithkona,10.35
+281,Norna,24.3
+282,Wolf Rider,5.1
+283,Chief,6.9
+284,Wolf,8.37
+285,Spearman,7.67
+286,Maceman,6.9
+287,Swordsman,6.9
+288,Heavy Crossbowman,8.28
+289,Pikeneer,8.43
+290,Crossbowman,8.28
+291,Captain,8.7
+292,Heavy Cavalry,9.2
+293,Captain,10.44
+294,Nerid,76.86
+295,Sacred Serpent,34.56
+296,Hydra Tamer,18.79
+297,Warrior Illusion,7.8
+298,Wolf Illusion,7.8
+299,Wight Mage,37.0
+300,Jotun Hurler,14.36
+301,Astrologer,19.5
+302,Wizard of High Magics,6.67
+303,Imp,11.07
+304,Devil,57.2
+305,Arch Devil,138.0
+306,Ice Devil,185.93
+307,Lesser Horror,91.67
+308,Horror,458.52
+309,Ice Druid,32.67
+310,Necromancer,12.3
+311,Mystic,6.3
+312,Wizard of High Magics,6.3
+313,Manikin,5.0
+314,Mandragora,23.8
+315,Soulless Giant,5.0
+316,Longdead Giant,11.6
+317,Soulless,5.0
+318,Soulless Deep One,5.0
+319,Soulless of C'tis,5.0
+320,Grand Saurolich,46.35
+321,Lizard Shaman,51.55
+322,King of the Deep,41.4
+323,Dwarven Smith,17.1
+324,Dwarf Elder,28.0
+325,Master Smith,22.63
+326,Blood Slave,5.0
+327,Anathemant,25.92
+328,Lizard King,35.49
+329,Spectral Mage,57.48
+330,Dark Vines,67.56
+331,Illithid,13.0
+332,Starspawn,25.54
+333,Starspawn,54.12
+334,Golden Naga,100.8
+335,Slave Trooper,5.87
+336,Slave Guardian,5.87
+337,Lobo Guard,6.27
+338,Dreamwood Enchanter,15.3
+339,Sorcerer,9.67
+340,Crystal Mage,21.3
+341,Illusionist,12.3
+342,Moon Mage,15.3
+343,Sorceress,21.67
+344,Black Sorceress,18.67
+345,Gnome,26.76
+346,Crystal Sorceress,9.96
+347,Crystal Priestess,19.92
+348,Amazon,10.44
+349,Garnet Sorceress,11.67
+350,Garnet Priestess,22.67
+351,Amazon,11.67
+352,Jade Sorceress,10.03
+353,Jade Priestess,25.43
+354,Amazon,9.67
+355,Onyx Sorceress,9.67
+356,Onyx Priestess,26.67
+357,Amazon,9.67
+358,Temple Guard,21.3
+359,Queen of the Sea,110.49
+360,Undine,14.76
+361,Vine Man,12.64
+362,Vine Ogre,40.32
+363,Whisperwood Enchantress,15.67
+364,Faydream Enchantress,12.3
+365,Centaur Charioteer,7.67
+366,Eternal Knight,41.6
+367,Pegasus Rider,25.5
+368,Gryphon - XXX,67.07
+369,Nightmare Rider,22.67
+370,Jade Maiden,22.67
+371,Hero,25.26
+372,Humanbred,5.13
+373,Coral Prince,63.93
+374,Queen Mother,45.54
+375,Jotun Jarl,59.25
+376,Green Knight,54.55
+377,Hero,28.0
+378,Hero,26.0
+379,Lizard Hero,19.8
+380,Lizard Hero,28.08
+381,Heroine,32.63
+382,Mystic,5.0
+383,Prince of Death,84.0
+384,Neter of Crafts,88.27
+385,Neteret of Joy,83.28
+386,Neter of the Sun,105.6
+387,Neteret of Many Names,78.0
+388,Neter of Chaos,85.27
+389,Fire Lord,27.24
+390,Grey Knight,38.72
+391,Grey Lord,48.0
+392,Ashen Angel,95.93
+393,Lammashta,40.2
+394,Lamia,32.83
+395,Lich Queen,32.28
+396,Revenant,10.2
+397,Black Serpent,47.28
+398,Mummy,24.42
+399,Werewolf,40.95
+400,Skinshifter,10.96
+401,Bitch Queen,60.87
+402,Crone,18.99
+403,Horned Serpent,26.22
+404,Vampire Lord,52.92
+405,Vampire,11.55
+406,Triton Commander,8.43
+407,Illithid Soldier,13.54
+408,Deer Carcass,6.3
+409,Skeletal Wolf,6.96
+410,Giant Rat,9.36
+411,Gnome,26.76
+412,Commoner,5.0
+414,Wingless,8.7
+415,High Seraph,16.67
+416,Seraphine,16.8
+417,Crossbowman,9.11
+418,Storm General,11.4
+419,Mammoth Rider,6.9
+420,Airya Infantry,5.4
+421,Storm Guard,8.67
+422,Herse,11.48
+423,Lizard Warrior,11.44
+424,Meteorite Guard,11.2
+425,Shambler Thrall,17.34
+426,Scout,6.12
+427,Spy,6.9
+428,Assassin,16.92
+429,Slayer,23.87
+430,Black Harpy,5.51
+431,Scout,9.2
+432,Scout,7.26
+433,Bone Fiend,20.3
+434,Shadow Servant,26.88
+435,Maenad,8.7
+436,Jotun Jarl,63.75
+437,Jotun Herse,50.37
+438,Kraken,50.8
+439,Mound Fiend,86.4
+440,Paladin,38.52
+441,Consort,47.4
+442,Shade Beast,19.14
+443,Star Child,12.5
+444,Traitor Prince,22.8
+445,Illithid Lord,18.75
+446,Lord of the Plague Wind,225.52
+447,Troglodyte,33.81
+448,False Horror,18.0
+449,Frost Fiend,40.12
+450,Horse Brother,11.6
+451,Horse Brother,15.4
+452,Behemoth,47.25
+453,Foul Spawn,6.34
+454,Foul Spawn,7.2
+455,Foul Spawn,7.2
+456,Foul Spawn,15.76
+457,Foul Spawn,9.6
+458,Foul Spawn,7.45
+459,Foul Spawn,11.4
+460,Foul Spawn,6.12
+461,Foul Spawn,11.52
+463,Fay Boar,18.06
+464,Harbinger,91.15
+465,Arch Angel,137.9
+466,Cockatrice,18.66
+467,Foul Beast,67.08
+468,Foul Spawn,14.36
+469,King of Mountains,185.11
+470,Father Illearth,180.81
+471,Golem,41.43
+472,Statue of Order,35.1
+473,Telestic Animate,30.67
+474,Living Statue,35.72
+475,Crusher,143.1
+476,Lumber Construct,54.24
+477,Adept of the Iron Order,19.65
+478,Sage,5.0
+479,Lore Master,5.0
+480,Magus,11.97
+481,High Magus,23.97
+482,Villain,5.0
+483,Hoburg Militia,5.0
+484,Caelian Scout,5.4
+485,Great Enchantress,8.1
+486,Great Warlock,19.8
+487,Chimera,59.46
+488,Ettin,58.27
+489,Demon Knight,39.0
+490,Jinn,263.16
+491,Harvester of Sorrows,120.66
+492,Heliophagus,107.98
+499,Nataraja,126.5
+500,Skratti,35.0
+501,Allfather,94.87
+502,Empoisoner,18.24
+503,Poison Slinger,5.0
+504,Falchioneer,12.24
+505,Hero,24.18
+506,Hero,20.53
+507,Heroine,25.44
+508,Wolf Lord,17.23
+509,Arch Seraph,10.8
+510,Hierodule,16.5
+511,Winter Wolf,34.06
+512,Fall Bear,56.02
+513,Spring Hawk,29.87
+514,Kithaironic Lion,38.88
+515,Summer Lion,95.26
+516,Pandemoniac,43.2
+517,Black Hawk,5.0
+518,Troll,29.55
+519,Troll King,72.7
+520,Wyvern,44.35
+521,Abomination,402.58
+522,Cave Drake,64.26
+523,Fire Drake,22.57
+524,Scorpion Beast,64.15
+525,Couatl,79.2
+526,Serpent Fiend,24.96
+527,Will o' the Wisp,30.96
+528,Corpse Candle,33.6
+529,Sea Father,29.67
+530,Foul Spawn,85.6
+531,Iron Dragon,402.88
+532,Mechanical Man,18.23
+533,Wight,25.2
+534,Corpse Construct,5.61
+535,Longdead Archer,7.31
+536,Longdead Buccaneer,6.09
+537,Forgotten King,39.3
+538,Theurg Communicant,12.3
+539,Rage Lord,43.74
+540,White Minotaur,64.33
+541,Vaetti,5.1
+542,Stone Monstra,169.61
+543,Angel XXX,37.7
+544,Einhere,22.46
+545,Shark Knight,15.2
+546,Void Lurker,7.92
+547,Dead One,5.0
+548,Hoburg Hero,13.44
+549,Boar,5.0
+550,Master Alchemist,11.7
+551,Alchemist,14.1
+552,Animist,18.67
+553,Jotun Skratti,70.07
+554,Ermorian Cultist,15.3
+555,Arch Censor,80.53
+556,Sacred One,24.3
+557,Harab Seraphine,33.0
+558,Seer King,73.2
+559,Sleeper,43.92
+560,Stargazer,88.03
+561,Earth Gnome,15.66
+562,Sylph,26.4
+563,Queen of Storms,156.38
+564,Sea Troll,33.85
+565,Sea Serpent,110.16
+566,Ghost,45.9
+573,Amber Clan Guard,9.9
+574,Amber Clan Triton,9.9
+575,Amber Clan Mage,17.91
+576,Amber Clan Priest,21.81
+577,Triton Trooper,7.67
+578,Bog Beast,21.17
+579,Ice Drake,32.4
+580,Sea King,88.69
+581,Anathemant Warlock,77.76
+582,Blind One,59.07
+583,Cardinal,48.69
+584,Patriarch,87.3
+585,Guild Master,49.8
+586,Great Hag,98.4
+587,Hierophant,42.3
+588,Heroine,32.63
+589,Witch Hunter General,57.45
+590,Vanadrott,100.37
+591,Dragonfly,7.95
+592,Sprite,10.62
+593,Draconian,42.77
+600,Titan of War and Wisdom,141.77
+601,Devi of Fortunes,69.81
+602,Titan of Heaven,91.2
+603,Teotl of Rain,102.6
+604,Teotl of the Night,112.8
+605,Son of Niefel,118.5
+606,Great Mother,122.87
+607,Baphomet,31.0
+608,Phoenix,36.36
+609,Lamia Queen,43.4
+610,Serpent Queen,92.37
+611,Black Bull,56.73
+612,Gryphon Rider,24.67
+613,Longdead Admiral,21.24
+614,Harpy Queen,29.23
+615,Longdead of C'tis,7.73
+616,Longdead of C'tis,7.73
+617,Longdead of C'tis,7.73
+618,Longdead Warrior,9.28
+619,Longdead Warrior,9.28
+620,Draconian Chief,66.96
+621,Treelord,133.53
+622,Traitor King,68.4
+623,King of the World,658.8
+624,Old King,60.12
+625,Mummy,20.4
+626,Fallen Angel,139.23
+627,Faery Queen,52.38
+628,Great Lion,24.3
+629,Stalker,36.0
+630,Elludian Moon Mage,21.6
+631,King of Flames,167.88
+632,Storm Demon,46.44
+633,Werewolf,38.43
+634,Handmaiden of Death,74.6
+635,Ancient Shaman,45.55
+636,Basilisk,18.9
+637,Draco Lion,82.53
+638,Spine Devil,33.05
+639,Kraken King,95.02
+640,Magma Child,22.1
+641,Ancient Mandragora,189.85
+642,Giant Lobster,31.88
+643,Bog Mummy,56.63
+644,Dracolich,308.12
+645,Bog Mummy,59.63
+646,Troll Raider,81.2
+647,Dark Knight,38.88
+648,Troll Archer,65.06
+649,Troll Mage,55.61
+650,Warrior Mage,29.55
+651,Eater of Dreams,2716.86
+652,Void Lord,137.79
+653,Serpent King,15.21
+654,Serpent King,29.32
+655,Scorpion King,178.76
+656,Fountain of Blood,42.0
+657,Monolith,82.5
+658,Bard,9.9
+659,Grotesque,73.21
+660,Aboleth,134.76
+661,Shedu,189.6
+662,Velite,9.2
+663,Alae Legionnaire,9.2
+664,Hastatus,8.28
+665,Principe,10.44
+666,Triarius,16.54
+667,Praetorian Guard,15.51
+668,Standard,8.28
+669,Thaumaturg,31.74
+670,Grand Thaumaturg,57.3
+671,Centurion,9.57
+672,Spectral Velite,18.72
+673,Spectral Hastatus,20.8
+674,Dispossessed Spirit,5.0
+675,Shadow Soldier,14.7
+676,Shade,19.2
+677,Apparition,23.22
+678,Lemur Centurion,60.6
+679,Lemur Consul,125.82
+680,Lemur Senator,100.14
+681,Shadow Tribune,29.88
+682,Spectral Standard,24.12
+683,Centurion,9.57
+684,Velite,9.2
+685,Alae Legionnaire,9.2
+686,Hastatus,8.28
+687,Principe,10.44
+688,Triarius,16.54
+689,Standard,8.28
+690,Grave Consort,44.58
+691,Tomb Priest,57.0
+692,Tomb King,114.8
+693,Tomb Wyrm,51.84
+694,Great Bear,22.5
+695,Beast Illusion,18.14
+696,Knight Illusion,11.52
+697,Satyr Hoplite,15.6
+698,Centaur Cataphract,22.8
+699,Cataphract Commander,24.6
+700,Minotaur Soldier,19.73
+701,Minotaur Commander,26.07
+702,Grove Guard,24.37
+703,Keeper of Traditions,48.6
+704,Dryad Hoplite,30.07
+705,Dryad,26.7
+706,Pan,43.2
+707,Centaur Warrior,22.4
+708,Reveler,17.76
+709,Panic Apostate,43.2
+710,Carrion Lord,128.45
+711,Carrion Lady,42.53
+712,Satyr Manikin,8.84
+713,Harpy Manikin,5.0
+714,Carrion Centaur,49.75
+715,Carrion Wolf,7.2
+716,Carrion Boar,5.0
+717,Carrion Horse,5.0
+718,Carrion Bear,10.92
+719,Carrion Beast,30.24
+720,Slave,5.0
+721,Warrior,9.2
+722,Warrior,9.2
+723,Warrior,9.2
+724,Warrior,8.28
+725,Sun Warrior,26.93
+726,Eagle Warrior,25.96
+727,Jaguar Warrior,21.63
+728,Were Jaguar,45.96
+729,Scout,9.2
+730,Tribal King,29.92
+731,Mictlan Priest,21.9
+732,Priest King,55.4
+733,Rain Priest,42.9
+734,Moon Priest,42.9
+735,High Priest of the Sun,62.7
+736,Ether Warrior,49.07
+737,Ether Lord,85.93
+738,Black Templar,34.08
+739,Black Acolyte,16.53
+740,Black Priest,27.03
+741,Giant Mummy,51.8
+742,Giant Mummy,43.29
+743,Mummy,23.31
+744,Diabolist,10.59
+745,Goetic Master,33.69
+746,Strategos,14.52
+747,Heart Companion,28.64
+748,Master Mason,5.0
+749,Sapper,9.11
+750,Thing From Beyond,74.03
+751,Thing That Should Not Be,161.62
+752,Elder Thing,19.58
+753,Thing From The Void,79.8
+754,Greater Otherness,77.17
+755,Otherness,40.82
+756,Lesser Otherness,17.94
+757,Vile Thing,25.49
+758,Thing Of Many Eyes,22.32
+759,Dweller-In-The-Deep,43.2
+760,Siege Golem,288.46
+761,Serpent Priest,35.1
+762,Vastness,463.21
+763,Serpent Cataphract,23.83
+764,Serpent XXX,59.62
+765,Serpent Lord,32.0
+766,Royal Tomb Chariot,33.93
+767,Royal Chariot,48.45
+768,Watcher,5.0
+769,White Centaur,54.53
+770,White Satyr,46.28
+771,Tartarian Cyclops,200.23
+772,Tartarian Cyclops,174.36
+773,Tartarian Spirit,205.27
+774,Tartarian Titan,184.0
+775,Tartarian Titan,128.7
+776,Tartarian Monstrum,312.8
+777,Tartarian Monstra,201.24
+778,Divine Mummy,145.26
+779,Rams-Headed Serpent,181.27
+780,Lord of the Hunt,147.67
+781,Juggernaut,252.68
+782,Giant Spider,14.43
+783,Serpent Dancer,23.33
+784,Garmhirding,59.2
+785,Gygja,23.4
+786,Jotun Scout,40.48
+787,Black Centaur,54.53
+788,Horseman,8.62
+789,Heavy Horseman,8.62
+790,Imperial Horseman,11.6
+791,Red Guard,33.88
+792,General,21.65
+793,Prince General,36.52
+794,Footman,8.43
+795,Footman,7.67
+796,Footman,7.67
+797,Archer,5.0
+798,Imperial Guard,11.4
+799,Imperial Footman,9.67
+800,Imperial Footman,9.67
+801,Imperial Archer,8.28
+802,Imperial Crossbowman,8.28
+803,Celestial Master,42.3
+804,Minister of Rituals,21.3
+805,Eunuch,5.0
+806,Master of the Dead,19.28
+807,Ceremonial Master,14.07
+808,Master of the Way,17.07
+809,Shadow Vestal,31.8
+810,Lord of Hell,271.98
+811,Succubus,37.2
+812,Lord of the Wild,117.84
+813,Imperial Consort,5.0
+814,Fire Snake,34.68
+815,Small Shark,8.46
+816,Shark,28.35
+817,Clayman,12.6
+818,Heliophagus,143.3
+819,Heliophagus,134.64
+820,Heliophagus,113.98
+821,Ice Devil,157.94
+822,Ice Devil,182.57
+823,Ice Devil,117.29
+824,Ice Devil,173.49
+825,Ice Devil,191.49
+826,Arch Devil,131.09
+827,Arch Devil,131.09
+828,Arch Devil,126.4
+829,Arch Devil,148.32
+830,Serpent Acolyte,18.3
+837,Huskarl,8.28
+838,Huskarl,9.2
+839,Herse,9.57
+840,Jotun Huskarl,26.4
+841,Godihuskarl,36.8
+842,Jotun Hirdman,33.12
+843,Shade Lord,29.95
+844,Niefel Jarl,155.7
+845,Niefel Giant,102.96
+846,Galderman,17.1
+847,Hangadrott,78.72
+848,Sidhe Lord,65.16
+849,Daoine Sidhe,31.24
+850,Sidhe Champion,44.86
+851,Cu Sidhe,31.92
+852,Werewolf,40.95
+853,Skinshifter,10.96
+854,Werewolf,40.95
+855,Valkyrie,27.13
+856,Tuatha,80.16
+857,Smoking Mirror,23.76
+858,Jaguar,43.88
+859,Jaguar,37.8
+860,Feathered Warrior,10.44
+861,Ettin Mandragora,240.38
+862,Vampire Queen,27.99
+863,Apostatic Warrior,69.72
+864,First King,163.5
+865,Pontifex Serpentus,61.54
+866,Hero,37.27
+867,Slayer,37.26
+868,Scythe Wielder,57.3
+869,Navigator,11.1
+870,Captain,8.7
+871,Pirate,6.9
+872,Ghost King,92.52
+873,Great Seer of the Deeps,12.67
+874,Divine Emperor,13.44
+875,Warrior Mage,13.68
+876,Spider Warrior,15.05
+877,Bane Spider,22.01
+878,Machaka Militia,5.0
+879,Machaka Archer,5.0
+880,Machaka Warrior,9.2
+881,Machaka Chief,9.67
+882,Machaka Hoplite,10.63
+883,Machaka Commander,14.12
+884,Great Spider,36.78
+885,Spider Rider,9.2
+886,Spider Knight,10.63
+887,Spider Lord,12.83
+888,Hunter Spider,126.84
+889,Black Hunter,31.24
+890,Voice of the Hunters,38.52
+891,Spider Sorceress,19.8
+892,Witch Doctor,16.67
+893,Sorcerer,25.67
+894,Black Sorcerer,30.9
+895,Ear of the Lord,23.7
+896,Eye of the Lord,26.83
+897,Voice of the Lord,24.9
+898,Great Spider,36.78
+899,Hunter Spider,92.28
+900,Lord of Corruption,152.46
+901,Black Dryad,35.7
+902,Celestial Soldier,74.4
+903,Celestial Servant,60.61
+904,Demon of Heavenly Rivers,49.0
+905,Jade Emperor,66.6
+906,King of Deeper Earth,169.53
+907,Queen of the Deeps,110.49
+908,Queen of the Lake,198.74
+909,King of Banefires,163.99
+910,King of Magma,170.88
+911,Queen of Thunder,203.2
+912,Queen of Clouds,146.25
+913,Vaetti Hag,5.0
+914,Soulless Warrior,5.0
+915,Soulless Warrior,5.0
+916,Soulless Warrior,6.48
+917,Soulless Warrior,6.48
+918,Soulless Warrior,5.0
+919,Soulless Warrior,5.0
+920,Soulless Warrior,5.0
+921,Soulless Warrior,5.0
+922,Soulless Warrior,5.0
+923,Warlock Apprentice,22.8
+924,Iron Pig,20.41
+925,Tarrasque,712.37
+926,Demon of Heavenly Fires,47.74
+927,Noble,12.54
+928,Heavy Footman,7.67
+929,Heavy Footman,7.67
+930,Khan,27.07
+931,Ivy King,72.43
+932,Woodland Spirit,25.08
+933,King of Legends,100.2
+934,Feathered Serpent,106.2
+935,Priest King,97.56
+936,Eagle Priest,63.96
+937,Marshmaster,27.6
+938,Barbarian Horseman,12.76
+939,Barbarian Heavy Horseman,15.31
+940,Master of the Five Elements,32.1
+941,Celestial Master,42.3
+942,Immortal,26.04
+943,Immortal,76.06
+944,Master With The Iron Crutch,55.83
+945,Shade King,59.4
+946,Lady of Spiders,58.67
+947,Great Spider,80.45
+948,Vanadrott,72.72
+949,Raven Guard,15.05
+950,Völva,12.3
+951,Harab Seraph,8.16
+952,Hero,16.4
+953,King Triumphant,42.75
+954,Son of Titans,22.23
+955,Asynja,96.42
+956,Mother of Tuathas,90.33
+957,Lord of The Desert Sun,128.6
+958,Colossal Head,77.1
+959,Pocket Knight,125.01
+960,Pocket Lich,51.21
+961,Titan of the Sea,88.77
+962,Madman,5.0
+963,Mad Priest,16.28
+964,Lord of Fertility,85.33
+965,Lord of Fertility,90.0
+966,Formless Spawn,86.8
+967,Hybrid,7.2
+968,Hybrid,7.2
+969,Hybrid,7.2
+970,Hybrid,10.56
+971,Hybrid Trooper,10.56
+972,Hybrid Soldier,8.8
+973,Ancient Kraken,336.32
+974,Ichtyid,11.32
+975,Ichtyid Warrior,8.23
+976,Ichtyid Lord,11.67
+977,Grand Thaumaturg,62.67
+978,Great Black Bull,234.1
+979,Great White Bull,231.72
+980,Treelord,133.53
+981,Dying Treelord,100.6
+982,Clockwork Horror,19.28
+983,Humanbred,5.0
+984,Abysian Light Infantry,7.33
+985,Abysian Light Infantry,6.6
+986,Abysian Heavy Infantry,6.6
+987,Abysian Heavy Infantry,6.6
+988,Abysian Heavy Infantry,7.33
+989,Abysian Heavy Infantry,7.33
+990,Guardian of the Pyre,28.08
+991,Newt,21.0
+992,Abysian Commander,10.4
+993,Slave of Belphegor,7.67
+994,Eater of the Dead,90.9
+995,Eater of the Dead,154.01
+996,Eater of the Dead,237.17
+997,Unfettered,353.03
+998,Bane Lord,60.67
+999,Wizard of the Crescent Moon,15.3
+1000,Demon Jester,20.12
+1001,Asmeg,19.35
+1002,Asmeg Jarl,52.8
+1003,Harab Elder,42.69
+1004,Caelian Seraph,14.16
+1005,Minotaur Manikin,7.3
+1006,Carrion Behemoth,54.3
+1007,Mad Deep One,5.28
+1008,Fanatic Deep One,17.97
+1009,Holy Deep One,19.17
+1010,Svartalf,27.72
+1011,Fortune Teller,5.0
+1012,Member of the Second Tier,15.3
+1013,Pikeneer,9.28
+1014,Halberdier,8.43
+1015,Infantry of Ulm,7.59
+1016,Commander of Ulm,7.59
+1017,Ranger of Ulm,9.11
+1018,Ranger Captain,9.11
+1019,Vampire Count,32.76
+1020,Ghoul Guardian,13.87
+1021,Ghoul Baron,23.47
+1022,Thrall,5.67
+1023,Illuminated One,6.3
+1024,Member of the Third Tier,39.3
+1025,Divine Glyph,14.0
+1026,Carrion Dragon,741.75
+1027,Carrion Lord,42.95
+1028,Wolfherd,9.2
+1029,Captain,8.7
+1030,Admiral,14.52
+1031,Chartmaker,9.9
+1032,Royal Navigator,15.9
+1033,Missionary,16.5
+1034,Zweihander,10.63
+1035,Blood Marshal,42.33
+1036,Sauromancer,37.8
+1037,War Troll,37.04
+1038,Capricorn,72.67
+1039,Capricorn,58.2
+1040,Bishop Fish,31.87
+1041,Ichtysatyr,9.17
+1042,Ichtysatyr,9.17
+1043,Ichtysatyr Soldier,9.17
+1044,Ichtysatyr Soldier,9.17
+1045,Mermidon,17.2
+1046,Merman,11.0
+1047,Merman,9.63
+1048,Wave Warrior,10.0
+1049,Wave Warrior,9.0
+1050,Merman Scout,12.1
+1051,Merman Scout,12.1
+1052,Wave Lord,14.52
+1053,Wave Lord,13.31
+1054,Siren,31.2
+1055,Siren,28.2
+1056,Pelagian Militia,5.0
+1057,Pelagian Soldier,10.8
+1058,Hippocampus,15.91
+1059,Knight of the Deeps,32.5
+1060,Triton Knight,14.4
+1061,Triton Prince,33.8
+1062,Sea Stag,10.08
+1063,Leocampus,35.77
+1064,Sea Dog,12.96
+1065,Merman,8.0
+1066,Merman,7.0
+1067,Merman Captain,8.0
+1068,Merman Captain,7.0
+1069,Pelagian Captain,15.73
+1070,Philosopher,5.0
+1071,Sceptic,5.0
+1072,Engineer,5.0
+1073,Maker of the Maze,30.3
+1074,Wind Rider,28.23
+1075,Wind Lord,35.0
+1076,Myrmidon Champion,16.92
+1077,Myrmidon,13.53
+1078,Charioteer,6.9
+1079,Charioteer,6.9
+1080,XXX - Archerless Chariot,9.6
+1081,Charioteer Commander,9.57
+1082,Icarid,11.55
+1083,Icarid Champion,14.76
+1084,Moose,14.69
+1085,Moose Rider,5.51
+1086,Troll Moose Knight,40.57
+1087,Large Ant,5.0
+1088,Triton King,99.3
+1089,Monster in the Maze,31.5
+1090,Abysian Axe Thrower,7.92
+1091,Sanguine Acolyte,21.0
+1092,Sanguine Anathemant,44.76
+1093,Sagittarian Carcass,64.71
+1094,Desert Ranger,13.86
+1095,Keeper of the Tombs,28.8
+1096,Destroyer of Worlds,112.4
+1097,Lord of The Summer Plague,126.48
+1098,Asynja,96.42
+1099,Poison Golem,83.9
+1100,Leve,9.2
+1101,Accensus,5.0
+1102,Rorarus,9.2
+1103,Hastatus,8.28
+1104,Principe,10.44
+1105,Triarius,16.54
+1106,Lizard Auxiliare,7.92
+1107,Equite,9.2
+1108,Equite of the Sacred Shroud,31.24
+1109,Flamen,16.5
+1110,Pontifex,24.3
+1111,Arch Bishop of the Sacred Shroud,33.67
+1112,Bishop of the Sacred Shroud,21.3
+1113,Acolyte,13.5
+1114,Augur,12.9
+1115,Augur Elder,27.9
+1116,Markata,7.31
+1117,Vanara,6.48
+1118,Markata,7.31
+1119,Markata Scout,7.31
+1120,Markata Archer,7.31
+1121,Atavi Archer,6.48
+1122,Atavi Infantry,6.48
+1123,Vanara Archer,6.48
+1124,Vanara Chakram Thrower,6.48
+1125,Vanara Infantry,5.4
+1126,Vanara Swordsman,9.0
+1127,Atavi Chieftain,11.88
+1128,Vanara Captain,9.9
+1129,Bandar,13.1
+1130,Light Bandar Archer,13.1
+1131,Bandar Archer,13.1
+1132,Bandar Warrior,12.13
+1133,Bandar Warrior,10.92
+1134,Royal Swordsman,17.1
+1135,Bandar Commander,19.68
+1136,Bandar Noble,19.0
+1139,Headless Hoburg Hero,18.36
+1140,Tiger,25.92
+1141,Tiger Rider,24.75
+1142,White One,19.8
+1143,Guru,24.96
+1144,Rishi,39.96
+1145,Yogi,12.72
+1146,Brahmin,14.34
+1147,Elephant Rider,5.4
+1148,Eater of Gods,620.97
+1149,Eater of Gods,443.87
+1150,Eater of Gods,392.81
+1151,Slave to Unreason,5.0
+1152,Axe Warrior,10.93
+1153,Warrior,9.11
+1154,Forest Warrior,13.78
+1155,Mountain Warrior,11.48
+1156,Iron Warrior,15.2
+1157,Steel Warrior,29.6
+1158,Warrior Chief,19.07
+1159,Warrior Smith,30.2
+1160,Shaman,25.43
+1161,Antlered Shaman,40.43
+1162,Archer,9.11
+1163,Warrior Maiden,10.3
+1164,Steel Maiden,15.05
+1165,Shield Maiden,11.55
+1166,Tomb Guard,24.84
+1167,Lancer,8.67
+1168,Raider,10.4
+1169,Chieftain,15.03
+1170,Sauromatian Lancer,11.6
+1171,Sauromatian Raider,11.6
+1172,Sauromatian Cataphract,14.0
+1173,Sauromatian Manflayer,19.36
+1174,Warrior Priestess,35.56
+1175,Warrior Queen,32.56
+1176,Androphag,26.03
+1177,Manflayer,30.8
+1178,Witch King,62.2
+1179,Serpent,27.93
+1180,Spirit Guide,5.97
+1181,Enarie,17.97
+1182,Hedge Wizard,8.67
+1183,Androphag Archer,8.28
+1184,Sauromatian Archer,8.28
+1185,Oiorpata,24.67
+1186,Warrior Sorceress,35.33
+1187,Cataphract,9.2
+1188,Soothsayer,6.9
+1189,Mictlan Priest,18.9
+1190,Priest King,55.4
+1191,Rain Priest,33.9
+1192,Moon Priest,33.9
+1193,Sun Priest,33.9
+1194,Couatl,64.2
+1195,Hoburg Priest,13.5
+1196,Hog Knight,8.53
+1197,Burgmeister,5.0
+1198,Horticulturist,5.94
+1199,Winged Monkey,8.4
+1200,Unfrozen Mage,31.0
+1201,Unfrozen Lord,37.2
+1202,Unfrozen Warrior,35.47
+1203,Unfrozen,28.33
+1204,Elder Druid,41.1
+1205,Gutuater,23.67
+1206,Vergobret,18.67
+1207,Eponi Chieftain,16.24
+1208,Eponi Knight,11.48
+1209,Marverni Scout,5.67
+1210,Marverni Horn Blower,5.1
+1211,Marverni Slinger,6.12
+1212,Marverni Javelineer,6.8
+1213,Marverni Bare Chested Warrior,6.12
+1214,Marverni Noble Warrior,9.57
+1215,Marverni Chieftain,11.55
+1216,Ambibate Bare Chested Warrior,8.7
+1217,Ambibate Noble Warrior,11.55
+1218,Ambibate Chieftain,12.54
+1219,Carnute Bare Chested Warrior,7.59
+1220,Carnute Noble Warrior,8.58
+1221,Carnute Chieftain,12.6
+1222,Boar Warrior,23.4
+1223,Boar Lord,25.56
+1224,Dire Wolf,23.04
+1225,Sequani Stargazer,6.3
+1226,Naiad,45.9
+1227,Kydnid,11.7
+1228,Pharmakeia,95.7
+1229,Son of Fenrer,152.23
+1230,Titan of the Forge,85.33
+1231,Drakaina,171.91
+1232,Old Man of the Sea,94.5
+1233,Lord of the Waves,100.2
+1234,Asp Turtle,122.55
+1235,Leviathan,89.26
+1236,Leviathan,67.37
+1237,Hochmeister,41.48
+1238,Ashigaru,7.59
+1239,Samurai Archer,8.28
+1240,Samurai,8.67
+1241,Samurai,7.8
+1242,Samurai,8.67
+1243,O-ban,12.3
+1244,Go-Hatamoto,14.67
+1245,Aka-Oni Samurai,14.1
+1246,Samurai Cavalry,19.68
+1247,Sohei,23.67
+1248,Yamabushi,22.2
+1249,Gokenin,14.1
+1250,Mounted Gokenin,22.56
+1251,Hatamoto,21.65
+1252,Daimyo,14.1
+1253,Daimyo,16.92
+1254,Shugenja,5.0
+1255,Master Shugenja,7.5
+1256,Shura,66.0
+1257,Ninja,17.17
+1258,Kannushi,16.83
+1259,Onmyo-ji,8.7
+1260,Ko-Oni,7.83
+1261,Oni spirit,12.18
+1262,Oni,13.2
+1263,Oni Spirit,12.48
+1264,Ao-Oni,15.84
+1265,Oni Spirit,16.64
+1266,Aka-Oni,15.84
+1267,Oni Spirit,16.64
+1268,Kuro-Oni,13.2
+1269,Oni Spirit,12.48
+1270,Ronin,7.83
+1271,Maker of Ruins,2449.73
+1272,Oni,29.92
+1273,Oni Spirit,30.8
+1274,Kuro-Oni,35.9
+1275,Oni Spirit,30.8
+1276,Oni Shugo,86.76
+1277,Oni Spirit,64.51
+1278,Raptorian Warrior,7.8
+1279,Iron Crow,10.56
+1280,Earthbound,30.67
+1281,Iron Crafter,5.16
+1282,Caretaker,20.4
+1283,Ice Crafter,5.16
+1284,Spire Horn Seraph,5.4
+1285,Iceclad,7.8
+1286,Eagle King,79.02
+1287,Tempest Warrior,8.67
+1288,Sastar,11.4
+1289,Airya Temple Guard,21.3
+1290,Catoblepas,52.88
+1291,Turtle Warrior,9.6
+1292,Turtle Warrior,9.6
+1293,Turtle Chief,15.84
+1294,Turtle Chief,15.84
+1295,Mermidon,17.2
+1296,Erinya,360.86
+1297,Erinya,360.86
+1298,Erinya,360.86
+1299,Jotun Jarl,59.88
+1300,Jotun Gode,57.3
+1301,Jotun Herse,50.37
+1302,Jotun Bondi,13.2
+1303,Jotun Warrior,19.6
+1304,Jotun Warrior,22.18
+1305,Jotun Hurler,14.36
+1306,Jotun Huskarl,26.4
+1307,Godihuskarl,36.8
+1308,Jotun Hirdman,33.12
+1309,Jotun Wolf,63.0
+1310,Ulfhedin,46.17
+1311,Bandit,7.59
+1312,Bandit,7.45
+1313,Bandit Leader,6.9
+1314,Demon General,17.1
+1315,Sorcerer,9.3
+1316,Dai Oni,172.92
+1317,Oni Spirit,108.38
+1318,Naga,48.67
+1319,Naga Warrior,55.04
+1320,Nagaraja,93.42
+1321,Nagarishi,98.29
+1322,Nagini,71.75
+1323,Nagaraja,51.75
+1324,Nagarishi,56.91
+1325,Nagini,38.91
+1326,Guhyaka,48.64
+1327,Yavana,47.23
+1328,Yavana Archer,49.25
+1329,Yaksha,83.09
+1330,Yakshini,74.23
+1331,Kinnara,73.8
+1332,Apsara,39.6
+1333,Bandar Warrior,13.1
+1334,Bandar Commander,19.68
+1335,Gandharva,53.86
+1336,Devata,147.87
+1337,Siddha,80.64
+1338,Celestial Hound,49.57
+1339,Nyorai,71.4
+1340,Tiwaz of War,87.12
+1341,Devi of Darkness,122.42
+1342,Titan of Rivers,80.64
+1343,Titan of Love,93.24
+1344,Devi of Good Fortunes,69.81
+1345,Celestial General,101.4
+1346,Colossal Fetish,70.5
+1347,Sirrush,200.1
+1348,Titan of Serpents and Medicine,99.5
+1349,Devourer of Souls,235.18
+1350,Bandar Swordsman,13.44
+1351,Light Bandar Warrior,13.1
+1352,Entrance Guard,13.68
+1353,Blood Guard,14.76
+1354,Agarthan Heavy Infantry,6.9
+1355,Agarthan Infantry,6.9
+1356,Ozelotl,72.58
+1357,Beast Bat,30.24
+1358,Monster Toad,60.48
+1359,Jaguar Toad,24.3
+1360,Onaqui,99.53
+1361,Nahualli,17.1
+1362,Turkey,15.56
+1363,Ancestral Spirit,8.7
+1364,Jade Lizard,24.96
+1365,Lizard Charioteer,12.21
+1366,Lizard Heir,32.88
+1367,Angel of the Heavenly Choir,38.16
+1368,Seraph,260.61
+1369,Angel of Fury,85.23
+1370,Volla of the Bountiful Forest,60.84
+1371,Titan of Death and Rebirth,82.33
+1372,Annunaki of the Sky,97.2
+1373,Annunaki of Sweet Waters,85.33
+1374,Annunaki of the Morning Star,90.9
+1375,Spenta of Sky and Metals,161.7
+1376,Spenta of Animals,146.7
+1377,Spenta of Fire,146.7
+1378,Lord of the Forest,87.0
+1379,Keeper of the Bridge,80.55
+1380,Great Hawk,22.29
+1381,Great Eagle,53.57
+1382,Abductor,198.0
+1383,Great Eagle,152.86
+1384,Solar Disc,97.06
+1385,Legatus Legionis,13.53
+1386,Legatus Legionis,13.53
+1387,Reborn,13.8
+1388,Ziz,84.6
+1389,Blood Lord,18.33
+1390,Bakemono-Sho,5.61
+1391,Bakemono Archer,5.51
+1392,Bakemono Warrior,8.7
+1393,Bakemono-Sho,5.0
+1394,Bakemono-Sho,5.61
+1395,Bakemono Archer,5.51
+1396,Dai Bakemono,20.5
+1397,Dai Bakemono,19.2
+1398,Bakemono General,28.33
+1399,O-bakemono,20.9
+1400,Defender,16.24
+1401,Polypal Mother,39.24
+1402,Polypal Queen,51.4
+1403,Giboleth,18.14
+1404,Polypal Spawn,5.25
+1405,Goat Sun,284.38
+1406,Visitor,170.64
+1407,Hunter of Heroes,2252.14
+1408,Ichtycentaur,18.0
+1409,Ichtycentaur,19.8
+1410,Ichtycentaur Cataphract,25.6
+1411,Ichtycentaur Cataphract,28.8
+1412,Amphiptere,50.54
+1413,Trident Lord,49.28
+1414,Trident Lord,47.52
+1415,Pelagian Mermage,7.0
+1416,Pelagian Mermage,6.0
+1417,Amber Clan Mage,22.8
+1418,Amber Clan Priest,23.52
+1419,Amber Clan Guard,16.9
+1420,King of Rain,86.4
+1421,Rain Priest,38.16
+1422,Civateteo,67.2
+1423,Rain Warrior,28.0
+1424,Sun Priest,42.9
+1425,Troll Guard,48.05
+1426,Crowned Ape,37.68
+1427,Bakemono Sorcerer,70.8
+1428,Bakemono Kunshu,54.6
+1429,Uba,11.97
+1430,Ghost Cat,36.54
+1431,Nushi,35.4
+1432,Hannya,53.52
+1433,Kitsune,28.8
+1434,Kitsune,28.77
+1435,Swamp Serpent,45.3
+1436,Noppera-bo,13.2
+1437,Blindfighter,25.56
+1438,Ktonian Necromancer,39.67
+1439,Iron Corpse,16.07
+1440,Iron Ancestor,44.8
+1441,Flame Corpse,14.52
+1442,Attendant of the Dead,21.3
+1443,Servant of the Oracles,30.67
+1444,Blindlord,28.86
+1445,Cave Captain,9.57
+1446,Gate Lord,13.68
+1447,Agarthan Light Infantry,6.9
+1448,Agarthan Scout,8.28
+1449,Agarthan Sapper,8.28
+1450,Cave Knight,11.55
+1451,Drake Lord,14.76
+1452,Pale One Militia,5.0
+1453,Pale One Warrior,6.07
+1454,Unused Ancient One,34.32
+1455,Ancient Wet One,43.33
+1456,Seal Guard,55.8
+1457,Oracle of Subterranean Waters,80.67
+1458,Earth-Blooded,125.33
+1459,Oracle of the Ancients,80.67
+1460,Earth Reader,32.07
+1461,Troglodyte Lord,44.46
+1462,Cavern Guard,9.5
+1463,Pale One Commander,11.73
+1464,Pale One Warrior,6.07
+1465,Pale One,7.28
+1466,Pale One Scout,9.5
+1467,Oracle of Subterranean Fires,80.67
+1468,Oracle of the Dead,80.67
+1469,Ancient One,41.67
+1470,Ancient Lord,53.1
+1471,Pale One Captain,11.73
+1472,Pale One Soldier,6.07
+1473,Earth Reader,21.67
+1474,Golem Crafter,33.67
+1475,Attendant of the Oracles,15.3
+1476,Tomb Oracle,163.67
+1477,Kokythiad,47.4
+1478,Karasu Tengu,32.87
+1479,Konoha Tengu,28.12
+1480,Dai Tengu,66.88
+1481,Tengu Warrior,30.49
+1482,Kappa,18.14
+1483,Tzitzimitl,95.94
+1484,Tlaloque of the East,148.47
+1485,Tlaloque of the South,148.47
+1486,Tlaloque of the West,148.47
+1487,Tlaloque of the North,148.47
+1488,Ancient Stone Hurler,41.18
+1489,Wet One,6.07
+1490,Umbral,88.92
+1491,Wet One,8.87
+1492,Spenta of Plants,117.0
+1493,Spenta of Waters,120.0
+1494,Spenta of the Earth,141.0
+1495,Ancient Stone Hurler,41.18
+1496,Sentinel,75.31
+1497,Attentive Statue,33.96
+1498,Granite Guardian,186.06
+1499,Marble Oracle,217.21
+1500,Sepulchral,111.8
+1501,Cavern Wight,33.33
+1502,Helkarl,50.28
+1503,Helhirding,38.4
+1504,Mounted Hirdman,18.04
+1505,Vanherse,50.28
+1506,Vanjarl,62.45
+1507,Dis,54.72
+1508,Huskarl,16.72
+1509,Huskarl,15.05
+1510,Hirdman,13.53
+1511,Vanadis,78.96
+1512,Van Scout,15.03
+1513,Vanhere,33.26
+1514,Lizard Shaman,30.55
+1515,Slave Trooper,8.25
+1516,Slave Trooper,6.88
+1517,Slave Trooper,8.4
+1518,Slave Mage,14.0
+1519,Slave Mage,13.0
+1520,Aboleth,58.09
+1521,Mind Lord,79.99
+1522,Gibodai,30.24
+1523,Slave Prince,22.8
+1524,Slave Guardian,6.0
+1525,Slave Guardian,5.0
+1526,Slave Guardian,8.4
+1527,Slave Priest,15.0
+1528,Slave Priest,14.0
+1529,Slave Troll,37.61
+1530,Kappa Mage,27.71
+1531,Kappa Chief,39.51
+1532,Satyr Warrior,14.4
+1533,Minotaur Warrior,20.4
+1534,Minotaur Lord,27.23
+1535,Pan,52.2
+1536,Anointed of Rhuax,95.88
+1537,Demonbred,33.48
+1538,Warlock,24.96
+1539,Ghost Mage,52.2
+1540,Ghost Mage,52.2
+1541,Ghost Champion,84.9
+1542,Warlock Apprentice,13.8
+1543,Burning One,47.23
+1544,Warrior of the Five Elements,32.47
+1545,Warrior,9.2
+1546,Warrior,9.2
+1547,Warrior,8.28
+1548,Feathered Warrior,10.44
+1549,Shuten-doji,21.17
+1550,Kappa,18.14
+1551,Phalangite,10.63
+1552,Phalangite Commander,16.54
+1553,Agema Companion,18.04
+1554,Agema Commander,22.56
+1555,Elephant Rider,5.1
+1556,Cerulean Warrior,17.1
+1557,Sibyl,30.45
+1558,Tlahuelpuchi,30.99
+1559,Dog,22.44
+1560,Dog,7.44
+1561,Father of Winters,100.2
+1562,Void Spectre,76.58
+1563,Void Cultist,14.07
+1564,Mad Cultist,14.07
+1565,Peasant,5.0
+1566,Mad One,5.28
+1567,Mad Merman,5.4
+1568,Mad Merman,5.0
+1569,Mad Triton,5.4
+1570,Human Dreamer,5.0
+1571,Deep One Dreamer,5.0
+1572,Merman Dreamer,5.0
+1573,Merman Dreamer,5.0
+1574,Triton Dreamer,5.4
+1575,Hybrid Cultist,27.34
+1576,Mad Hybrid,9.36
+1577,Ancestor Vessel,44.35
+1578,Axeman,6.9
+1579,Red Devil,20.01
+1580,Son of the Dragon King,33.13
+1581,Risen Oracle,80.33
+1582,Guardian of the Tree,78.63
+1583,Maker of Heroes,52.43
+1584,Son of Steel,35.97
+1585,Fallen,77.1
+1586,Pontifex Maximus,49.53
+1587,Primate,44.1
+1588,Wanderer,77.88
+1589,Man Eater,99.73
+1590,Ageless Olm,61.44
+1591,Spy,7.59
+1592,Bear Tribe Warrior,10.12
+1593,Bear Tribe Warrior,7.59
+1594,Deer Tribe Warrior,9.2
+1595,Deer Tribe Archer,8.28
+1596,Wolf Tribe Shaman,21.67
+1597,Bear Tribe Shaman,22.43
+1598,Deer Tribe Shaman,20.67
+1599,Machaka Warrior,8.43
+1600,Lion Tribe Warrior,9.2
+1601,Lion Tribe Archer,5.0
+1602,Lion Tribe Witch Doctor,10.67
+1603,Human Huskarl,8.28
+1604,Human Huskarl,9.2
+1605,Herse,9.57
+1606,Mage Engineer,7.5
+1607,Yazad,37.7
+1608,Bakemono Shaman,15.3
+1609,Demon Priest,10.83
+1610,Jaguar Tribe Slinger,6.8
+1611,Jaguar Tribe Warrior,8.28
+1612,Jaguar Tribe Priest,21.9
+1613,Toad Tribe Warrior,5.87
+1614,Toad Tribe Shaman,20.16
+1615,Caveman,16.53
+1616,Caveman Champion,18.6
+1617,Seal Hunter,9.68
+1618,Angakok,77.4
+1619,Slave Guardian,5.87
+1620,Reef Warrior,13.64
+1621,Atlantian Infantry,8.07
+1622,Coral Guard,13.6
+1623,Tungalik,28.07
+1624,Tupilak,46.87
+1625,Snow Warrior,8.07
+1626,Snow Warrior,8.07
+1627,Ice Warrior,10.27
+1628,Ice Guard,14.4
+1629,Ice Guard,16.0
+1630,Arssartut,32.93
+1631,Tent Owner,13.44
+1632,Snow Captain,11.2
+1633,Ice Captain,16.0
+1634,Kivigtok,54.5
+1635,Wet One,6.07
+1636,Wet One,8.87
+1637,Wet One Captain,6.07
+1638,Wet One Captain,8.87
+1639,Cultist,19.17
+1640,Cultist,14.07
+1641,Tower Knight,18.04
+1642,Tower Guard,10.44
+1643,Magister of Theology,13.5
+1644,Magister,5.0
+1645,Judge,5.0
+1646,Magister Arcane,18.3
+1647,Bishop,22.67
+1648,Warden,31.24
+1649,Scorpion Man,172.3
+1650,Oreiad,48.9
+1651,Jotun Werewolf,74.12
+1652,Jotun Werewolf,133.72
+1653,Jotun Wolf,78.04
+1654,Lictor,23.43
+1655,Censor,27.72
+1656,Smoulderghost,27.2
+1657,Longdead Triarius,9.39
+1658,Longdead Principe,9.22
+1659,Tomb Charioteer,9.12
+1660,Reassembled Prince,92.51
+1661,Misbred,18.2
+1662,Disease Demon,72.0
+1663,Harab Seraph,8.16
+1664,Monster Fish,89.37
+1665,Noble Commander,14.52
+1666,Lord Warden,40.08
+1667,Warlock,78.42
+1668,Corruptor,103.5
+1669,Sauromatian Amazon,9.67
+1670,Heart Hider,48.4
+1671,Ghost General,83.13
+1672,Master of the Shadow Blossom,54.2
+1673,Devourer of Demons,30.91
+1674,Unwinged,53.33
+1675,Agarthan Light Crossbowman,5.0
+1676,Agarthan Crossbowman,5.0
+1677,Agarthan Heavy Crossbowman,5.0
+1678,Ancient Olm,83.69
+1679,Serf Warrior,5.0
+1680,Scout,7.59
+1681,Atlantian Spearman,8.43
+1682,Reef Dweller,8.07
+1683,Shambler,15.55
+1684,War Shambler,17.6
+1685,Coral Guard,22.1
+1686,Deep One,9.07
+1687,Deep One Spearman,10.08
+1688,Shambler of the Deep,24.88
+1689,Warrior of the Deep,23.04
+1690,Living Pillar,52.0
+1691,Mind Lord,129.98
+1692,Mage of the Deep,19.5
+1693,Mother of the Deep,36.36
+1694,Coral Priest,20.16
+1695,Basalt Queen,109.14
+1696,Merman Priest,13.8
+1697,Merman Priest,12.9
+1698,Anathemant Salamander,35.76
+1699,Anathemant Dragon,53.76
+1700,Shambler Chief,12.96
+1701,Coral Commander,25.5
+1702,Basalt King,104.0
+1703,Mournful,10.0
+1704,Centaur Warrior,22.4
+1705,Great Ape,13.1
+1706,Ape Oracle,16.57
+1707,Raptorian Militia,5.0
+1708,Consort of the Dead,61.5
+1709,Ancestor Smith,50.6
+1710,Spirit Master,42.72
+1711,Ancestor Guide,43.4
+1712,Celestial Master,30.3
+1713,Devala,88.95
+1714,Dakini,94.87
+1715,Pisacha,14.4
+1716,Soulless Bandar,5.0
+1717,Soulless Bandar Warrior,5.0
+1718,Soulless Bandar Warrior,5.0
+1719,Longdead Bandar,9.3
+1720,Longdead Bandar,9.3
+1721,Longdead Bandar Warrior,9.3
+1722,Longdead Bandar Warrior,10.33
+1723,Longdead Raja,13.57
+1724,Soulless Vanara,5.0
+1725,Soulless Vanara Warrior,5.0
+1726,Soulless Vanara Warrior,5.0
+1727,Longdead Vanara,6.3
+1728,Longdead Vanara Warrior,6.3
+1729,Longdead Vanara Warrior,6.3
+1730,Longdead Vanara Commander,8.64
+1731,Soulless Markata,5.0
+1732,Longdead Markata,6.84
+1733,Raktapata,33.9
+1734,Yogini,29.82
+1735,Kala-Mukha,47.19
+1736,Rakshasa,49.93
+1737,Rakshasa Warrior,51.33
+1738,Raksharaja,99.55
+1739,Rakshasi,56.61
+1740,Manushya Rakshasi,45.89
+1741,Asrapa,43.8
+1742,Praghasa,47.52
+1743,Sandhyabala,49.8
+1744,Samanishada,59.76
+1745,Asara,57.12
+1746,Anusara,39.33
+1747,Palankasha,45.6
+1748,Mandeha,165.18
+1749,Fir Bolg Militia,7.33
+1750,Fir Bolg Champion,16.24
+1751,Sidhe Warrior,18.04
+1752,Sidhe Champion,44.86
+1753,Tuatha Warrior,39.84
+1754,Ri,71.16
+1755,Fir Bolg Scout,15.05
+1756,Fir Bolg Warrior,12.54
+1757,Fir Bolg Warrior,16.72
+1758,Fir Bolg Slinger,10.3
+1759,Sidhe Lord,63.72
+1760,Bandaraja,19.0
+1761,Bandar Commander,19.68
+1762,Bandar Warrior,13.1
+1763,Kala-Mukha Warrior,38.25
+1764,Gana,15.6
+1765,Possessed Corpse,14.88
+1766,Vetala,19.01
+1767,Danava,210.3
+1768,Barghest,43.89
+1769,Black Dog,14.04
+1770,Cu Sidhe,43.74
+1771,Mounted Scout,9.49
+1772,Olm Spawn,57.7
+1773,Tuatha Sorceress,78.43
+1774,Bean Sidhe,33.42
+1775,Baobhan Sidhe,23.52
+1776,Bean Sidhe,46.25
+1777,Fir Bolg Hero,25.49
+1778,Hero,39.31
+1779,Milesian Slinger,5.0
+1780,Milesian Spearman,7.67
+1781,Milesian Longspear,8.43
+1782,Milesian Swordsman,6.9
+1783,Milesian Champion,9.57
+1784,Milesian Monk,12.45
+1785,Fir Bolg Slinger,10.3
+1786,Fir Bolg Clan Warrior,12.54
+1787,Fir Bolg Clan Warrior,16.72
+1788,Fir Bolg Champion,16.24
+1789,Milesian Scout,8.28
+1790,Nemedian Warrior,25.44
+1791,Nemedian Champion,47.45
+1792,Nemedian Sorceress,37.13
+1793,Nemedian Queen,99.13
+1794,Last Partholonian,81.43
+1795,Partholonian Sorceress,94.7
+1796,Fomorian Militia,10.67
+1797,Fomorian Javelinist,22.4
+1798,Fomorian Spearman,18.67
+1799,Fomorian Warrior,28.0
+1800,Fomorian Champion,40.48
+1801,Fomorian Giant,100.64
+1802,Fomorian King,154.4
+1803,Uncursed,172.92
+1804,High King,244.56
+1805,Long Handed,97.06
+1806,Fianna,44.93
+1807,Great Boar,35.1
+1808,Iron Boar,60.74
+1809,Great Boar of Carnutes,89.76
+1810,Longdead Partholonian,20.79
+1811,Fir Bolg Scout,15.05
+1812,Fir Bolg Warrior,12.54
+1813,Fir Bolg Warrior,16.72
+1814,Fir Bolg Slinger,10.3
+1815,Fir Bolg Champion,16.24
+1816,Fomorian Scout,33.6
+1817,Unmarked,55.73
+1818,Unmarked Champion,81.72
+1819,Fomorian Druid,61.0
+1820,Fir Bolg Militia,7.33
+1821,Morrigan,46.6
+1822,Daughter of Typhon,806.31
+1823,Daughter of Typhon,806.31
+1824,Daughter of Typhon,671.92
+1825,Daughter of Typhon,671.92
+1826,Daughter of Typhon,559.94
+1827,Daughter of Typhon,559.94
+1828,Daughter of Typhon,466.61
+1829,Daughter of Typhon,466.61
+1830,Daughter of Typhon,497.38
+1831,Hydra,204.45
+1832,Hydra,170.37
+1833,Hydra,141.98
+1834,Hydra,118.31
+1835,Hydra,107.37
+1836,Ko-Oni,7.83
+1837,Oni spirit,12.18
+1840,Hydra Hatchling,23.87
+1841,Hydra Hatchling,23.87
+1842,Hydra Hatchling,23.2
+1843,Antlered One,40.32
+1844,Trainer of Heroes,62.6
+1845,Bakemono Chief,9.57
+1846,Onyx Oracle,307.32
+1847,Decrepit,89.13
+1848,Mason of the Underworld,50.1
+1849,Blinded,74.67
+1850,Hydra,288.43
+1851,Hydra,240.36
+1852,Hydra,200.3
+1853,Hydra,166.91
+1854,Hydra,147.87
+1859,Hydra Hatchling,42.23
+1860,Hydra Hatchling,42.23
+1861,Hydra Hatchling,38.51
+1862,Milite,5.0
+1863,Limitane,5.0
+1864,Limitane Primani,6.9
+1865,Limitane Solaris,9.36
+1866,Primani Solaris,11.55
+1867,Comitatense,11.48
+1868,Palatine,13.53
+1869,Centurion,9.57
+1870,Tribuni,16.92
+1871,Magister Militum,11.55
+1872,Leo,17.76
+1873,Heliodromus,13.5
+1874,Theurg,22.74
+1875,Epoptes,5.97
+1876,Mystes,5.97
+1877,Renata,19.28
+1878,Renatus,19.67
+1879,Serpent Assassin,23.1
+1880,Reveler,6.3
+1881,Satyr,17.28
+1882,Moon Warrior,10.63
+1883,Moon Warrior,10.63
+1884,Priest King,105.8
+1885,Feathered Serpent,109.2
+1886,Priest King,88.56
+1887,Feathered Serpent,97.2
+1888,Sky Priest,21.9
+1889,Jade Serpent,86.4
+1890,Apothecary,5.0
+1891,Alchemist of the Five Elements,5.0
+1892,Imperial Alchemist,22.35
+1893,Imperial Geomancer,7.35
+1894,Minister of Magic,5.0
+1895,Ceremonial Master,14.07
+1896,Lawgiver,25.4
+1897,Feathered Serpent,29.7
+1898,Fomorian Sorcerer,35.33
+1899,Fomorian God King,133.64
+1900,Imperial City Guard,11.67
+1901,Medium Footman,7.67
+1902,Ministry Guardsman,8.67
+1903,Ministry Footman,8.67
+1904,Medium Footman,7.67
+1905,Great Sorceress,24.33
+1906,Rudra,168.46
+1907,High Priest of the Sky,44.7
+1908,Huli Jing,28.8
+1909,Huli Jing,28.77
+1910,Monster Boar,48.6
+1911,Defiler of Dreams,181.44
+1912,Brigand Leader,11.48
+1913,Abomination of Desolation,1613.23
+1914,Apostate Raja,43.2
+1915,Red Tengu,38.45
+1916,Veliki Knyaz,18.33
+1917,Knyaz,14.76
+1918,Voivode,9.57
+1919,Fivefold Angel,29.07
+1920,Skopets,20.49
+1921,Khlyst,12.69
+1922,Grid Druzhina,10.44
+1923,Malaia Druzhina,18.04
+1924,Styag,13.12
+1925,Black Hood,8.28
+1926,Peshtsi City Guard,6.9
+1927,Peshtsi Axeman,6.9
+1928,Peshtsi Spearman,7.67
+1929,Voi Spearman,5.0
+1930,Voi Axeman,5.0
+1931,Voi Archer,5.0
+1932,Alchemist,10.5
+1933,Kalendologist,10.5
+1934,Occultist,10.5
+1935,Astrapelagist,13.5
+1936,Master of Names,10.5
+1937,Starets,25.5
+1938,Vyedun,17.67
+1939,Vyedma,12.67
+1940,Zmey,79.78
+1941,Cloud Vila,63.26
+1942,Mountain Vila,57.72
+1943,Alkonost,45.32
+1944,Gamayun,54.32
+1945,Sirin,26.93
+1946,Firebird,14.9
+1947,Simargl,14.85
+1948,Bukavac,294.41
+1949,Leshiy,65.32
+1950,Leshiy,152.53
+1951,Great Forest Bear,192.89
+1952,Likho,5.0
+1953,Vodyanoy,29.97
+1954,Rusalka,13.83
+1955,Beregina,40.53
+1956,Lady Midday,20.47
+1957,Bogatyr,52.8
+1958,Hag,70.35
+1959,Deathless,60.66
+1960,Exarch,20.07
+1961,Eparch,29.07
+1962,Patriarch,57.9
+1963,Bakemono Scout,5.51
+1964,Slayer Newt,28.12
+1965,Slayer Worm,40.91
+1966,Slayer Anathemant,49.91
+1967,Slayer Sanguine,55.91
+1968,Slayer Dragon,97.92
+1969,Anathemant Salamander,44.76
+1970,Anathemant Dragon,53.76
+1971,Smoulderghost,39.2
+1972,Warbred,15.47
+1973,Black Priest,27.03
+1974,Black Acolyte,16.53
+1975,Iron Angel,88.13
+1976,Longdead Giant,10.44
+1977,Fossilized Giant,30.85
+1978,Dust Priest,64.0
+1979,Dust King,55.2
+1980,Dust Warrior,31.92
+1981,Dust Walker,28.33
+1982,Priest Smith,32.23
+1983,Green Lion,96.94
+1984,Levite Priest,15.69
+1985,Nabi,23.1
+1986,Kohen,35.04
+1987,Kohen Gadol,97.08
+1988,Yeddeoni,15.6
+1989,Levite Zealot,17.7
+1990,Asherite Soldier,8.7
+1991,Gadite Swordsman,9.11
+1992,Zebulunite Soldier,12.67
+1993,Naphtali Spearman,9.2
+1994,Reubenite Archer,5.0
+1995,Iassacharite Scout,6.12
+1996,Benjaminite Slinger,12.53
+1997,Iassacharite Sage,9.45
+1998,Fossil Warrior,30.85
+1999,Gittite Soldier,20.4
+2000,Gibbor,52.56
+2001,Seren,61.62
+2002,Gittite Commander,27.22
+2003,Human Slinger,5.0
+2004,Human Slave,5.0
+2005,Edomite,7.2
+2006,Amorite,24.93
+2007,Gileadite,27.13
+2008,Bashanite,27.75
+2009,Rephaite Commander,34.83
+2010,Edomite Scout,12.96
+2011,Zamzummite,55.33
+2012,Abba,18.6
+2013,Acha,18.6
+2014,Ammi,8.64
+2015,Avvite Spearman,20.4
+2016,Qedesim,19.2
+2017,Qedesot,20.64
+2018,Horite,14.17
+2019,Horite Champion,18.6
+2020,Horite Shaman,19.77
+2021,Avvite Light Infantry,20.4
+2022,Avvite Swordsman,15.3
+2023,Avvite Commander,22.68
+2024,Avvite Scout,20.2
+2025,Sheshai Anakite,79.92
+2026,Ahiman Anakite,85.93
+2027,Adon,108.79
+2028,Talmai Elder,65.12
+2029,Kohen,43.33
+2030,Rephaite Warrior,95.62
+2031,Melqart,154.16
+2032,Ba'al,133.68
+2033,Kohen,77.28
+2034,Horite Hunter,23.1
+2035,Avvite Charioteer,20.4
+2036,Avvite Horn Blower,9.18
+2037,Dawn Guard,21.42
+2038,Emite,21.33
+2039,Malik,214.06
+2040,Longdead Rephaite,15.75
+2041,Longdead Rephaite,15.75
+2042,Longdead Rephaite,15.75
+2043,Longdead Rephaite,15.75
+2044,Longdead Rephaite,15.75
+2045,Ditanu,149.78
+2046,Malik,269.64
+2047,First Son of Anak,144.84
+2048,Second Son of Anak,147.86
+2049,Third Son of Anak,140.47
+2050,Zebulunite Horn Blower,6.0
+2051,Ophan,349.52
+2052,Chayot,389.64
+2053,Chayot,409.26
+2054,Chayot,435.93
+2055,Chayot,451.11
+2056,Malakh,28.74
+2057,Hashmal,99.0
+2058,Arel,79.47
+2059,Avvite Heavy Archer,11.02
+2060,Rephaite Sage,12.54
+2061,Gileadite Archer,15.05
+2062,Grigori,311.97
+2063,Grigori,231.81
+2064,Grigori,211.62
+2065,Grigori,211.62
+2066,Grigori,196.62
+2067,Grigori,223.02
+2068,Dusk Elder,138.06
+2069,Iassacharite Sibyl,7.35
+2070,Sibyl of Hermon,65.64
+2071,Lilot,19.68
+2072,Mazzik,11.07
+2073,Shed,46.8
+2074,Se'ir,66.48
+2075,Nephil,180.3
+2076,Son of Azazel,226.02
+2077,Son of Semyaza,210.3
+2078,Son of Ezekiel,228.0
+2079,Son of Shamshiel,210.3
+2080,Son of Kokabel,228.0
+2081,Son of Arakiel,228.0
+2082,Son of the Fallen,172.2
+2083,Forgiving Father,22.5
+2084,Merciful Mother,36.36
+2085,Once and Future Queen,146.98
+2086,Sleeping Pillar,52.0
+2087,Unsleeping,21.53
+2088,Unsleeping Consort,47.4
+2089,Jigami,44.53
+2090,Horse-face,50.4
+2091,Ox-head,53.55
+2092,Shikigami,25.44
+2093,Mori-no-kami,47.57
+2094,Mori-no-kami,68.38
+2095,Ujigami,71.4
+2096,Kenzoku,82.08
+2097,Yama-no-kami,132.9
+2098,Monk of the Fivefold Path,14.07
+2099,Tatsu,76.83
+2100,Shikome,35.42
+2101,Shrimp Soldier,15.6
+2102,Crab General,30.19
+2103,Shark Warrior,35.11
+2104,Ryujin,76.18
+2105,Ryujin,135.28
+2106,Kaijin,101.59
+2107,Troubadour,6.9
+2108,Crossbowman,8.28
+2109,City Guard,5.0
+2110,Pikeneer,8.43
+2111,Halberdier,7.67
+2112,Swordsman,7.67
+2113,Palace Guard,12.83
+2114,Hand of Justice,23.83
+2115,Royal Guard,16.4
+2116,Lieutenant,8.7
+2117,Imperial Commander,11.6
+2118,Satyr Commander,18.2
+2119,Soulless Warrior,5.0
+2120,Longdead,6.77
+2121,Longdead,6.77
+2122,Longdead Hoplite,7.44
+2123,Longdead,6.77
+2124,Longdead,6.77
+2125,Shadow,14.7
+2126,Pygmy,5.0
+2127,Forester,9.94
+2128,Knight Commander of Avalon,43.12
+2129,Logrian Cavalry,9.53
+2130,Manticore,116.47
+2131,Gryphon,59.49
+2132,Leogryph,28.22
+2133,Lioness,22.68
+2134,Terracotta Soldier,11.44
+2135,Ogre,19.8
+2136,Great Boar,21.6
+2137,Urmahlullu,162.6
+2138,Sphinx,149.46
+2139,Jarl,19.47
+2140,Gode,22.47
+2141,Ergi,6.63
+2142,Nithing,15.57
+2143,Werewolf,40.95
+2144,Galdramathr,8.1
+2145,Werewolf,40.95
+2146,Seithberender,9.57
+2147,Seithmathr,9.57
+2148,Archer,5.0
+2149,Gode,22.47
+2150,Herse,11.48
+2151,Battle Deacon,20.7
+2152,Limitane Standard,8.28
+2153,War Dog,8.37
+2154,Satyr Commander,18.2
+2155,Stymphalian Bird,5.91
+2156,Centauride,22.98
+2157,Centauride Warrior,27.55
+2158,Centauride Hierophantide,54.84
+2159,Gelatinous Cube,16.2
+2160,Enkidu,11.22
+2161,Enkidu Scout,12.47
+2162,Enkidu,11.22
+2163,Enkidu Archer,9.79
+2164,Enkidu Warrior,12.47
+2165,Enkidu Warrior,11.22
+2166,Enkidu Chief,11.88
+2167,Enkidu Shaman,39.47
+2168,Enkidu Hunter,14.96
+2169,Enkidu Hunter Chief,20.16
+2170,Enkidu Head Hunter,21.09
+2171,Enkidu Bone Reader,18.47
+2172,Enkidu Soldier,11.22
+2173,Enkidu Horn Blower,11.22
+2174,Enkidu Spear Guard,12.47
+2175,Ur-Guard,15.12
+2176,Enki's Chosen,36.18
+2177,Enkidu Commander,16.74
+2178,Enkidu Elder,9.07
+2179,Sal-Me,31.87
+2180,Ishib,44.07
+2181,Ensi,64.8
+2182,Gala,25.32
+2183,Enkidu Reaver,16.74
+2184,Enkidu Slave,5.0
+2185,Crocodile,15.36
+2186,Sacred Crocodile,86.22
+2187,Dryad,35.7
+2188,Ancient One,56.0
+2189,Ancient Stone Hurler,46.8
+2190,Draug,37.5
+2191,Draug,37.5
+2192,Draugherse,51.0
+2193,Draugherse,51.0
+2194,Draugadrott,63.72
+2195,Flayed Bull,192.6
+2196,Swamp Drake,38.98
+2197,Assassin,20.3
+2198,Inquisitor,23.31
+2199,High Inquisitor,32.1
+2200,Goetic Adept,10.59
+2201,Niefel Shaman,109.32
+2202,Great Siddha,36.19
+2203,Oni Kunshu,113.64
+2204,Oni Spirit,83.9
+2205,Great Sauromancer,20.22
+2206,Eldest Dwarf,13.0
+2207,Great Sorcerer,12.67
+2208,Hunter Spider,92.28
+2209,Horror Mantis,111.41
+2210,Float Cat Horror,28.8
+2211,Mind Slime Horror,248.05
+2212,Soultorn,29.18
+2213,Gore Tide Horror,195.48
+2214,Spine Membrane Horror,80.71
+2215,Belly Maw Horror,79.88
+2216,Brass Claw Horror,57.04
+2217,Worm Mage,31.11
+2218,Large Beetle,7.2
+2219,Forest Troll,21.06
+2220,Troll Shaman,27.06
+2221,Troll Seithberender,42.06
+2222,Frog,5.0
+2223,Large Spider,5.0
+2224,Red Ant,5.0
+2225,Fire Ant,19.53
+2226,Killer Mantis,22.68
+2227,Goat,5.0
+2228,Deer,5.0
+2229,Forest Giant,44.33
+2230,Hill Giant,87.0
+2231,Yeti,53.42
+2232,Large Scorpion,5.0
+2233,Giant Scorpion,5.25
+2234,Irminsul,118.53
+2235,Rephaite Scholar,48.54
+2236,Sobek Warrior,26.32
+2237,Sobek Sacred Guard,70.84
+2238,Sobek General,54.04
+2239,Asynja,60.84
+2240,Longdead Captain,15.51
+2241,Longdead Boatswain,12.3
+2242,Soulless Warrior,5.0
+2243,Soulless Warrior,5.0
+2244,Scelerian Cultist,15.3
+2245,Sorcerer of the Sands,12.67
+2246,Blessed Couple,95.52
+2247,Grieving Dryad,60.3
+2248,Sister,9.45
+2249,Nun,10.83
+2250,Abbess,18.45
+2251,Ancient Presence,179.95
+2252,Berytian Scout,8.28
+2253,Berytian Captain,8.7
+2254,Berytian Militia,5.0
+2255,Berytian Archer,5.0
+2256,Berytian Spearman,9.2
+2257,Berytian Soldier,6.9
+2258,Berytian Heavy Spearman,9.53
+2259,Berytian Elite Soldier,12.54
+2260,Berytian Lancer,8.67
+2261,Elephant Rider,5.1
+2262,Colossi Warrior,34.56
+2263,Mage Pilot,7.5
+2264,Storm Caller,19.5
+2265,Berytian Priest,17.07
+2266,Bride-in-Waiting,64.2
+2267,Melqart,169.16
+2268,Gudu,29.07
+2269,Entu,52.87
+2270,Tathagata,37.62
+2271,Seeker of Truths,11.34
+2272,Sobek High Priest,88.22
+2273,Large Lobster,6.88
+2274,Soulless Bandar Warrior,5.0
+2275,False Prophet,19.26
+2276,Heretic,12.45
+2277,Monster of Fraud,479.67
+2278,Prince of Lust,190.44
+2279,Warrior Scout,10.93
+2286,Fiery Imp,15.04
+2287,Shadow Imp,9.87
+2288,Machaka Scout,8.28
+2289,Rhino Clan Commander,12.76
+2290,Lion Clan Commander,18.04
+2291,Voice of Lion,25.47
+2292,Hyena Clan Witch Doctor,20.67
+2293,Bouda,32.55
+2294,Werehyena,46.74
+2295,Spider Clan Sorcerer,19.67
+2296,Lion King,70.5
+2297,Lion Queen,58.2
+2298,Machaka Militia,5.0
+2299,Bird Clan Archer,5.0
+2300,Machaka Warrior,7.67
+2301,Spider Clan Archer,5.0
+2302,Spider Clan Warrior,6.9
+2303,Hyena Clan Warrior,6.8
+2304,Rhino Clan Warrior,9.28
+2305,Lion Clan Warrior,11.7
+2306,War Lion,24.3
+2307,Elephant Rider,7.59
+2308,Spider Rider,9.2
+2309,Lion Warrior,38.4
+2310,Voice of Spider,17.7
+2311,Centaur Hierophant,54.15
+2312,Centauride Hierophantide,54.84
+2313,Raven Lord,14.52
+2314,Reborn,16.8
+2315,Melqart,109.04
+2316,Dragon King,211.16
+2317,Celestial Bureaucrat,44.25
+2318,Celestial Dragon,208.16
+2319,Celestial Bureaucrat,18.87
+2320,Chieftain Illusion,7.8
+2321,Clockwork Soldier,16.2
+2322,XXX - Shark,28.35
+2323,Adventurer,16.92
+2324,Adventurer,21.93
+2325,Adventurer,20.3
+2326,Adventurer,13.2
+2327,Adventurer,12.67
+2328,Adventurer,12.67
+2329,Adventurer,12.67
+2330,Adventurer,21.3
+2331,Pilgrim,13.5
+2332,Adventurer,17.42
+2333,Lemur Acolyte,65.4
+2334,Lemur Thaumaturg,90.78
+2335,Grand Lemur,138.04
+2336,Spectral Principe,27.65
+2337,Spectral Triarius,36.23
+2338,Praetorian Spectre,39.6
+2339,Shadow Triton,14.7
+2340,Shadow Soldier,16.8
+2341,Vanarusian Sage,5.0
+2342,Vanabog,69.72
+2343,Vanarusian Archer,5.0
+2344,Vanarusian Huskarl,9.2
+2345,Vanarusian Huskarl,8.28
+2346,Vanarusian Hirdman,11.6
+2347,Vanarusian Hirdman,10.44
+2348,Vanarusian Hirdman,10.44
+2349,Oath-Bound,28.8
+2350,Chud Hirdman,20.12
+2351,Werebear,38.88
+2352,Chud Skinshifter,17.27
+2353,Scout,8.28
+2354,Vanarusian Herse,11.48
+2355,Vanarusian Jarl,19.47
+2356,Vanarusian Gode,22.47
+2357,Chud Jarl,33.66
+2358,Wormwood Witch,18.67
+2359,Holy Knight,34.08
+2360,Soldier of the Faith,8.43
+2361,Black Witch,9.3
+2362,Blackrose Sorceress,18.67
+2363,Gloso,54.72
+2364,Soulless Shambler,5.0
+2365,Soulless War Shambler,5.0
+2366,Soulless War Shambler,5.0
+2367,Soulless War Shambler,5.0
+2368,Gargoyle,31.32
+2369,Large Shrimp,5.0
+2370,Ichtysatyr Scout,9.17
+2371,Ichtysatyr Scout,9.17
+2372,Ichtysatyr Commander,9.17
+2373,Ichtysatyr Commander,9.17
+2374,Ichtycentaur Commander,18.0
+2375,Ichtycentaur Commander,19.8
+2376,Ichtysatyr,9.17
+2377,Ichtysatyr,9.17
+2378,Ichtysatyr Warrior,9.17
+2379,Ichtysatyr Warrior,9.17
+2380,Ichtytaur,14.0
+2381,Ichtytaur,17.57
+2382,Turtle Tribe Triton,7.67
+2383,Shark Tribe Triton,11.23
+2384,Pelagian Militia,5.0
+2385,Pelagian Soldier,10.8
+2386,Coral Clan Soldier,14.3
+2387,Pearl Guard,31.2
+2388,Merman Net Thrower,11.0
+2389,Merman Net Thrower,9.63
+2390,Pelagian Captain,15.6
+2391,Triton Rider,14.4
+2392,Aphroi Hierophant,44.6
+2393,Aphroi Hierophant,49.08
+2394,Sobek Sauromancer,99.84
+2395,Pearl Clan Priest,21.87
+2396,Pearl Mage,18.3
+2397,Pearl King,123.3
+2398,Elephant,30.45
+2399,Aphroi Lord,50.4
+2400,Aphroi Lord,58.32
+2401,Aphroi,45.9
+2402,Aphroi,53.04
+2403,Spider Clan Witch Doctor,19.67
+2404,Ichtysatyr,9.17
+2405,Ichtysatyr,9.17
+2406,Ichtysatyr,9.17
+2407,Ichtysatyr,9.17
+2408,Ichtysatyr Soldier,9.17
+2409,Ichtysatyr Soldier,9.17
+2410,Ichtycentaur Commander,21.45
+2411,Ichtycentaur Commander,23.76
+2412,Ichtytaur,14.0
+2413,Ichtytaur,17.57
+2414,Ichtytaur Warrior,14.0
+2415,Ichtytaur Warrior,17.57
+2416,Coral Clan Hoplite,15.73
+2417,Merman Priest,10.8
+2418,Merman Priest,9.9
+2419,Mermage,7.0
+2420,Mermage,6.0
+2421,Amber Clan Noble,20.02
+2422,Pearl Clan Priest,21.87
+2423,Pearl Mage,15.3
+2424,Berytian Sage,5.0
+2425,Bard,9.9
+2426,Bouda Father,20.55
+2427,Werehyena,37.34
+2428,Goetic Captain,8.7
+2429,Bride of the Gods,91.2
+2430,King of the City,222.8
+2431,Titan of the Underworld,85.33
+2432,Entu of the Moon,64.87
+2433,Favored of Enki,48.33
+2434,Teteo Inan,151.56
+2435,Annunaki of Love and War,99.72
+2436,Annunaki of the Moon,85.33
+2437,Annunaki of Growth and Rebirth,78.0
+2438,Annunaki of the Underworld,92.52
+2439,Logrian Wise Man,9.23
+2440,Sea Dragon,427.03
+2441,Great Seer of the Deeps,18.67
+2442,Teotl of War,94.56
+2443,Teotl of the Sky,85.67
+2444,Teotl of the Underworld,72.72
+2445,Neter of the Underworld,109.52
+2446,Neter of Kings,85.27
+2447,Idol of Men,14.63
+2448,Idol of Beasts,17.63
+2449,Idol of Sorcery,14.63
+2450,Horned One,153.72
+2451,Longdead,7.44
+2452,Heavy Axeman,6.9
+2453,Light Archer,5.0
+2454,Crossbowman,5.0
+2455,Longbowman,8.28
+2456,Ktonian Reanimator,17.1
+2457,Bodhisattva of Mercy,55.09
+2458,Dragon Girl,56.73
+2459,Dragon Girl,135.24
+2460,Statue of Fertility,35.1
+2461,Statue of the Bloody Mother,56.1
+2462,Golden Idol,24.6
+2463,Statue of War,39.3
+2464,Neter of the Moon,94.27
+2465,Statue of War,42.24
+2466,Kamadhenu,186.0
+2467,Bakemono Chief,9.57
+2468,Druid,23.1
+2469,Fir Bolg Druid,15.83
+2470,Hybrid Commander,13.65
+2471,Self Proclaimed Prince,5.0
+2472,Shark Tribe Brigand,9.94
+2473,Hangadrottning,90.87
+2474,White Wolf,23.04
+2475,Standard,11.48
+2476,Naga Chief,62.09
+2477,Ghoul Commander,17.73
+2478,Satyr Sniper,10.37
+2479,Centaur Sage,33.08
+2480,Dryad Hag,47.6
+2481,Ettin King,49.25
+2482,Troglodyte Slave,29.67
+2483,Troglodyte Trainer,14.04
+2484,Longdead Giant,11.6
+2485,Satyr Commander,18.2
+2486,Benjaminite Commander,16.63
+2487,Dryad Mother,48.6
+2488,XXX,11.0
+2489,Ancient Wet One,43.33
+2490,Ancient Wet One,48.53
+2491,Engraver,21.06
+2492,Great Olm,31.46
+2493,Olm Sage,43.46
+2494,Member of the Closed Council,105.0
+2495,Member of the Closed Council,111.0
+2496,Member of the Closed Council,111.0
+2497,Penumbral,31.2
+2498,God Vessel,298.8
+2499,God Vessel,355.0
+2500,God Vessel,263.23
+2501,Legion of Gods,406.28
+2502,Earth made Flesh,96.9
+2503,Golden Pillar,35.64
+2504,Zotz,5.0
+2505,Camazotz,6.36
+2506,Ancient Lord,58.5
+2507,Defender of the Halls,8.55
+2508,Shard Guard,40.53
+2509,Shard Wight,36.67
+2510,Lava-born,12.0
+2511,Lava-born Commander,13.2
+2512,Cave Cow,18.14
+2513,Cave Spider,19.18
+2514,Cave Crab,87.84
+2520,Flame Barrel Nightmare,17.03
+2521,Ktonian Alchemist,12.96
+2522,Released Sage,36.11
+2523,Released King,36.2
+2524,Released Warrior,35.82
+2525,Released One,26.79
+2526,Cave Grub,26.97
+2527,Olm Sage,40.15
+2528,Great Olm,26.5
+2529,Cave Drake,64.26
+2530,Master of Alchemical Secrets,56.99
+2531,Huskarl,8.28
+2532,Herse,11.48
+2533,Hirdman,8.7
+2534,Dragon,404.41
+2535,Plague Cult Leader,17.07
+2536,Fellow,12.3
+2537,Monk,9.45
+2538,Noble,18.04
+2539,Noble,10.63
+2540,Blood Mage,6.67
+2541,Mountain King,116.14
+2542,Guhyaka General,61.14
+2543,Mage of Spring,14.97
+2544,Mage of Summer,14.97
+2545,Mage of Autumn,14.97
+2546,Mage of Winter,14.97
+2547,Blizzard Warrior,16.2
+2548,Iron Hail Archer,20.99
+2549,Maharishi,10.2
+2550,Raksharani,39.87
+2551,Manushya Raksharani,33.19
+2552,Ahura of Wisdom,108.0
+2553,Ahura of the Oath,67.68
+2554,Ahura of the Waters,73.87
+2555,Spenta Mainyu,108.67
+2556,Celestial Carp,109.09
+2557,Airya Seraphine,25.5
+2558,Kavi Archer,16.2
+2559,Mairya Warrior,24.93
+2560,Mairya Ahu,26.64
+2561,Raptorian Warrior,8.67
+2562,Fravashi,65.28
+2563,Ancestral Fravashi,129.48
+2564,Spire Horn Militia,5.0
+2565,Spire Horn Archer,6.48
+2566,Spire Horn Warrior,6.67
+2567,Airya Light Infantry,6.0
+2568,Airya Infantry,5.4
+2569,Spire Horn Seraph,5.0
+2570,Airya Seraph,15.78
+2571,Raptorian Militia,5.0
+2572,Raptorian Warrior,8.67
+2573,Raptorian Warrior,8.67
+2574,Raptorian Warrior,7.8
+2575,Airya Noble,10.5
+2576,Iceclad,7.8
+2577,Ahu of the Kavi,49.72
+2578,Yazad King,36.2
+2579,Paighan,5.0
+2580,Turan Infantry,7.92
+2581,Turan Heavy Infantry,6.6
+2582,Turan Horse Archer,8.8
+2583,Turan Cavalry,8.8
+2584,Savaran Cataphract,13.73
+2585,Savaran Guard,21.89
+2586,Turan Elephant Rider,5.0
+2587,Zhayedan,34.08
+2588,Turan Spahbed,21.12
+2589,Airya Archer,6.48
+2590,Airya Light Infantry,6.0
+2591,Airya Infantry,5.4
+2592,Iceclad Zhayedan,16.8
+2593,Spire Horn Archer,6.48
+2594,Spire Horn Warrior,6.67
+2595,Airya Scout,5.4
+2596,Airya Spahbed,10.5
+2597,Paighan-Salar,8.58
+2598,Turan Usij,15.0
+2599,Karapan,21.0
+2600,Dastur,33.0
+2601,Turan Sorcerer,36.96
+2602,Athravan,19.5
+2603,Zaotar,31.5
+2604,Airya Seraph,29.4
+2605,Turan Shah,38.52
+2606,Airya Shah,22.5
+2607,Turan Athravan,15.0
+2608,Azi,523.55
+2609,Great Warlock,22.8
+2610,Angra Mainyu,87.33
+2611,Gannag Menog,94.8
+2612,Daeva of Evil Intentions,145.7
+2613,Daeva of Frozen Minds,145.7
+2614,Daeva of Oppression,157.7
+2615,Daeva of Discontent,147.3
+2616,Daeva of Destruction,144.3
+2617,Daeva of Aging,132.3
+2618,Renegade Harab Seraph,8.4
+2619,Harab Seraph,20.4
+2620,Yazad of Fire,81.93
+2621,Yazad of Justice,78.93
+2622,Yazad of the Stars,81.93
+2623,Yazad of the Sky,81.93
+2624,Yazad of Water,79.32
+2625,Yazad of the Earth,76.32
+2626,Flame Spirit,56.4
+2627,Daeva of Wrath,69.2
+2628,Turan Gryphon,69.55
+2629,Zhayedan Spahbed,38.48
+2630,Daeva,38.37
+2631,Jahi,25.56
+2632,Daeva of Shooting Stars,86.44
+2633,Yata,77.19
+2634,Daeva of Frost and Snow,79.53
+2635,Ahu,52.73
+2636,Pairika,75.06
+2637,Ahurani,43.32
+2638,XXX - Turan Gryphon,67.07
+2639,Fatherslayer,58.32
+2640,Giant Shaman,53.33
+2641,Giant Sorcerer,96.0
+2642,Yeti Shaman,71.42
+2643,Human Warrior,7.67
+2644,Human Warrior,7.67
+2645,Human Warrior,8.28
+2646,Human Warrior,8.28
+2647,Kuraka,12.67
+2648,Hatun Runa,5.0
+2649,Aucac Runa Spearman,8.67
+2650,Aucac Runa Maceman,7.8
+2651,Aucac Runa Axeman,7.8
+2652,Aucac Runa Archer,7.2
+2653,Sun Guard,24.42
+2654,Apu,9.6
+2655,Apusqispay,7.8
+2656,Aclla,22.5
+2657,Hurin Priest,32.4
+2658,Inca,71.1
+2659,Coya,57.45
+2660,Mallqui,5.7
+2661,Mallqui Priestess,14.7
+2662,Mallqui Priest,26.7
+2663,Royal Mallqui,70.6
+2664,Paqo of the Mountain Spirits,11.67
+2665,Paqo of the Earth Mother,9.67
+2666,Runancha,8.67
+2667,Condor Warrior,22.73
+2668,Xibalban Warrior,5.0
+2669,Xibalban Warrior,5.0
+2670,Xibalban Dart Thrower,5.0
+2671,Xibalban Guard,7.8
+2672,Sun Guide,21.3
+2673,Xibalban Scout,5.0
+2674,Batab,6.24
+2675,Ajaw,17.13
+2676,Ajaw Kan Ek',23.16
+2677,Ah K'in,15.12
+2678,Chilan,18.12
+2679,Ah Nakom,15.12
+2680,Ah Itz,7.92
+2681,Camazotz,14.13
+2682,Way,15.73
+2683,Jaguar,22.68
+2684,Ah K'in Kan Ek',33.12
+2685,Viracocha,114.84
+2686,Apu Inti,125.8
+2687,Large Scorpion,5.0
+2688,Giant Scorpion,5.25
+2689,Xibalban Scorpion,17.06
+2690,Sacred Scorpion,120.06
+2691,Xibalban Scorpion Trainer,5.0
+2692,Halach Uinic,50.4
+2693,Heavenly Condor,156.57
+2694,Condor,45.36
+2695,Sapa Inca,36.2
+2696,Stone Huaca,65.2
+2697,Huaca,37.7
+2698,Apu Illapa,106.2
+2699,Ayar,89.0
+2700,Supaya,39.33
+2701,Nazcan Longdead,6.77
+2702,Nazcan Longdead,6.09
+2703,Caelian Longdead,6.77
+2704,Caelian Longdead,6.77
+2705,Caelian Longdead,6.09
+2706,Caelian Longdead,6.09
+2707,Soulless Nazcan,5.0
+2708,Soulless Nazcan Warrior,5.0
+2709,Soulless Nazcan Warrior,5.0
+2710,Soulless Nazcan Warrior,5.0
+2711,Soulless Nazcan Warrior,5.0
+2712,Apostate Seraph,42.78
+2713,First Couple,106.67
+2714,Bacab,80.4
+2715,Muuch Ajaw,47.4
+2716,Muuch K'uhul,46.5
+2717,Ah Ha',26.16
+2718,Ah Itz,13.26
+2719,Camazotz,14.13
+2720,Muuch Scout,7.92
+2721,Muuch Militia,5.0
+2722,Muuch Dart Thrower,9.5
+2723,Muuch Warrior,8.8
+2724,Muuch Warrior,7.92
+2725,Muuch Warrior,8.8
+2726,Muuch Warrior,7.92
+2727,Muuch Jungle Warrior,7.92
+2728,Muuch Batab,10.92
+2729,Wo' Muuch,36.72
+2730,Chak Muuch Dart Thrower,24.96
+2731,Chak Muuch Obsidian Warrior,23.04
+2732,Chak Muuch Assassin,32.76
+2733,Zotz Batab,5.0
+2734,Zotz Warrior,5.0
+2735,Zotz Warrior,5.0
+2736,Onaqui,114.53
+2737,Immortal Coya,31.74
+2738,Zotz Warrior,5.0
+2739,Zotz Warrior,5.0
+2740,Zotz Dart Thrower,5.0
+2741,Zotz Guard,7.8
+2742,Zotz Guard,7.8
+2743,Obsidian Warrior,21.3
+2744,Sak Muuch Dart Thrower,9.5
+2745,Sak Muuch Warrior,8.8
+2746,Sak Muuch Warrior,7.92
+2747,Wo' Muuch,36.72
+2748,Ah Ha',26.16
+2749,Bacab,89.4
+2750,Chilan,24.12
+2751,Way,15.36
+2752,Jaguar,22.68
+2753,Ah Itz,7.92
+2754,Camazotz,17.13
+2755,Hun Came,77.22
+2756,Bolon-ti-ku,41.88
+2757,Demon of the Bone Staff,132.75
+2758,Demon of the Skull Staff,132.75
+2759,Demon of Pus,126.53
+2760,Jaundice Demon,126.53
+2761,Sweeping Demon,89.71
+2762,Stabbing Demon,89.71
+2763,Grandfather Earth,184.74
+2764,Hun Balam,228.52
+2765,Balam of the North,152.65
+2766,Balam of the North,132.53
+2767,Balam of the North,78.72
+2768,Balam of the East,152.65
+2769,Balam of the East,132.53
+2770,Balam of the East,78.72
+2771,Balam of the South,152.65
+2772,Balam of the South,132.53
+2773,Balam of the South,78.72
+2774,Balam of the West,152.65
+2775,Balam of the West,132.53
+2776,Balam of the West,78.72
+2777,Demon Macaw,100.07
+2778,Chaac of the North,131.02
+2779,Chaac of the East,131.02
+2780,Chaac of the South,131.02
+2781,Chaac of the West,131.02
+2782,Batab,5.0
+2783,Drakon,633.06
+2784,Thrice Horned Boar,195.3
+2785,Solar Eagle,186.96
+2786,Celestial Gryphon,208.32
+2787,Celestial Lion,218.72
+2788,Man-Eater,337.37
+2789,Raven of the Underworld,126.94
+2790,Myrmecoleon,297.44
+2791,Earth Serpent,358.68
+2792,Solar Serpent,251.75
+2793,Serpent of Chaos,260.1
+2794,Demonic Locust,51.3
+2795,Dog of the Underworld,119.31
+2796,Hound of Hades,276.28
+2797,Hieracosphinx,197.29
+2798,Criosphinx,185.02
+2799,Wadjet,215.35
+2800,Ormr,273.18
+2801,Linnormr,427.46
+2802,Svartalf Mastersmith,14.7
+2803,Linnormr,427.46
+2804,Ichtyid Shaman,18.48
+2805,Ichtyid Pearl Mage,8.52
+2806,Wondrous,160.92
+2807,Pelagian Shore Fighter,9.6
+2808,Pelagian Shore Fighter,9.6
+2809,Sideraspist,8.8
+2810,Sideraspist,8.8
+2811,Pelagian Shore Commander,9.0
+2812,Pelagian Shore Commander,9.9
+2813,Pelagian Explorer,6.6
+2814,Pelagian Explorer,5.7
+2815,Mermage,7.0
+2816,Mermage,6.0
+2817,Bone Tribe Hunter,10.4
+2818,Bone Tribe Beast Hunter,12.76
+2819,Bone Tribe Head Hunter,25.56
+2820,Bone Reader,24.63
+2821,Merman Hoplite,8.8
+2822,Merman Hoplite,8.8
+2823,Pelagian Mystic,12.6
+2824,Pelagian Mystic,11.7
+2825,Merman Commander,9.9
+2826,Merman Commander,9.9
+2827,Therodian Archer,5.0
+2828,Therodian Peltast,9.2
+2829,Therodian Hoplite,8.43
+2830,Therodian Scout,6.12
+2831,Therodian Commander,11.7
+2832,Strategis,32.16
+2833,Melia,37.32
+2834,Hekateride,61.92
+2835,Kabeiros,22.47
+2836,Daktyl,31.2
+2837,Korybant,19.47
+2838,Saos,19.47
+2839,Kourete,27.72
+2840,Spectral Archer,8.06
+2841,Spectral Peltast,16.56
+2842,Spectral Hoplite,27.65
+2843,Spectral Kourete,49.56
+2844,Spectral Commander,39.01
+2845,Ephor,14.04
+2846,Spectral Philosopher,5.0
+2847,Protogenos of the Sea,5.0
+2848,Father of the Sea,5.0
+2849,Father of Monsters,137.3
+2850,Statue of the Underworld,41.1
+2851,Titan of Winds and Waves,100.0
+2852,King of Frozen Bones,29.4
+2853,Ghost King,148.67
+2854,Flame Jelly,5.0
+2855,Floating Mind,5.0
+2856,Son of the Sea,113.08
+2857,Fish,6.6
+2858,Large Fish,9.24
+2859,Witness of the Deep,25.67
+2860,Soldier of the Deep,7.67
+2861,Haliade,46.2
+2862,Shambler Guard,12.48
+2863,Champion of the Closed Realm,23.76
+2864,Champion of the Closed Realm,23.76
+2865,Conqueror of the Closed Realm,30.0
+2866,Conqueror of the Closed Realm,30.0
+2867,Daduchos,5.0
+2868,Daduchos,5.0
+2869,Apostate of the Closed Realm,16.63
+2870,Apostate of the Closed Realm,16.63
+2871,Kabeiride,68.61
+2872,Kabeiride,66.27
+2873,Telkhine,104.76
+2874,Telkhine,130.44
+2875,Queen of the City,153.84
+2876,Queen of the City,183.06
+2877,Telkhine,153.84
+2878,Telkhine,183.06
+2879,Telkhine,132.84
+2880,Telkhine,162.06
+2881,Telkhine God-King,44.28
+2882,Telkhine God-King,72.66
+2883,Abodai,91.87
+2884,Androleth,12.67
+2885,Androdai,22.17
+2886,Grandmother,112.11
+2887,Lakam Ha' Warrior,12.1
+2888,Lakam Ha' Warrior,8.8
+2889,Lakam Ha' Warrior,12.1
+2890,Lakam Ha' Warrior,8.8
+2891,Lakam Ha' Batab,12.13
+2892,Priest of All Waters,35.16
+2893,Warrior of the Deep,8.43
+2894,Lord of the Deep,45.5
+2895,Mother of All Waters,54.36
+2896,Returned,21.53
+2897,Kernou Warrior,8.28
+2898,Kernou Noble Warrior,9.57
+2899,Kernou Cavalry,10.63
+2900,Kernou Chieftain,11.55
+2901,Kernou Druid,24.67
+2902,Merrow Militia,5.0
+2903,Merrow,7.6
+2904,Merrow,7.6
+2905,Merrow Chieftain,10.0
+2906,Merrow Druid,21.21
+2907,Ysian Militia,5.0
+2908,Ysian Spearman,7.6
+2909,Ysian Man at Arms,10.0
+2910,Knight of Ys,13.43
+2911,Knight of Ys,13.43
+2912,Ysian Scout,6.84
+2913,Ysian Commander,16.03
+2914,Ysian Druid,21.21
+2915,Morvarc'h Knight,33.2
+2916,Morvarc'h Knight,33.2
+2917,Morgen Champion,47.57
+2918,Morgen Champion,47.57
+2919,Morgen Princess,59.57
+2920,Morgen Princess,59.57
+2921,Morgen Sorceress,69.43
+2922,Morgen High Queen,24.33
+2923,Ysian Infantry,7.6
+2924,Queen of the North,105.47
+2925,Queen of the North,105.47
+2926,Morgen Queen,110.17
+2927,Morgen Queen,110.17
+2928,Swanherd,14.0
+2929,Swan,5.0
+2930,Hooded Spirit,81.9
+2931,Knight Commander of Ys,17.27
+2932,Knight Commander of Ys,17.27
+2933,Enkidu,11.22
+2934,Enkidu Scout,13.46
+2935,Enkidu Archer,9.79
+2936,Enkidu Spearman,12.47
+2937,Enkidu Warrior,13.5
+2938,Enkidu Heavy Archer,9.79
+2939,Enkidu Soldier,12.47
+2940,Enkidu Iron Warrior,16.74
+2941,Enkidu Royal Guard,15.12
+2942,Enkidu Commander,16.74
+2943,Ensi,51.48
+2944,Nin,23.58
+2945,Gala,25.32
+2946,Naditu,26.58
+2947,Ereshdingir,43.87
+2948,Entu,52.87
+2949,Gudu,29.07
+2950,Ishib,38.07
+2951,Ashipu,35.07
+2952,Mashmashu,47.07
+2953,Maiden of the Moon,36.5
+2954,Enkidu Shaman,24.47
+2955,Leader of the Closed Council,21.0
+2956,Centauride Cataphract,29.57
+2957,Centauride Crossbow,24.8
+2958,Golden Lion,232.93
+2959,Chiranjivi,33.24
+2960,Apkallu,42.36
+2961,Centauride Enchantress,31.12
+2962,Mushussu,174.29
+2963,Mushussu Charioteer,14.47
+2964,Mushussu - replaced,111.61
+2965,Apkallu,125.4
+2966,Umu-apkallu,150.96
+2967,Hell Spawn,18.9
+2968,Hell Spawn,24.71
+2969,Hell Spawn,28.6
+2970,Hell Spawn,31.75
+2971,Hell Spawn,9.5
+2972,Hell Spawn,9.5
+2973,Hell Spawn,19.09
+2974,Hell Spawn,8.8
+2975,Worm Mage,31.11
+2976,Algae Man,14.57
+2977,Centaur Great Sage,34.96
+2978,Master Sorcerer,13.67
+2979,Onmyo Hakase,13.67
+2980,Uttervast,502.92
+2981,Soulless Enkidu,5.0
+2982,Soulless Warrior,5.0
+2983,Soulless Warrior,5.0
+2984,Scout,8.28
+2985,Rusian Chieftain,9.57
+2986,Rusian Priest,17.1
+2987,Rusian Wizard,9.3
+2988,Thunder Priest,34.43
+2989,Rusian Hunter,11.6
+2990,Rusian Warrior,7.67
+2991,Rusian Warrior,6.9
+2992,Chud Hunter,25.48
+2993,Chud Warrior,18.63
+2994,Chud Berserker,20.12
+2995,Bear Warrior,13.86
+2996,Werebear,68.04
+2997,Chud Skinshifter,36.87
+2998,Werebear,101.04
+2999,Perkunu,67.07
+3000,Son of Heaven,60.5
+3001,Daughter of the Sun,46.98
+3002,Chud Chieftain,33.26
+3003,Great Bear,62.21
+3004,Serf Defender,5.0
+3005,Longdead Archer,7.31
+3006,Humanbred,8.8
+3007,Bug Soul Vessel,7.2
+3008,Rusian Chieftain,16.24
+3009,Buffalo,29.95
+3010,Architect,5.0
+3011,Architect,5.0
+3012,Shrimp Soul Vessel,5.0
+3013,Triton Militia,5.0
+3014,Triton Soldier,10.8
+3015,Triton Hoplite,15.73
+3016,Triton Knight,22.75
+3017,Triton Noble,26.0
+3018,Thyreophorite,9.6
+3019,Thyreophorite,9.6
+3020,Erytheian Phalangite,11.0
+3021,Erytheian Phalangite,11.0
+3022,Erytheian Hoplite,8.8
+3023,Erytheian Hoplite,8.8
+3024,Machimos,6.12
+3025,Machimos Commander,6.9
+3026,Erytheian Commander,9.9
+3027,Erytheian Commander,9.9
+3028,Erytheian Scout,10.56
+3029,Erytheian Scout,10.56
+3030,Erytheian Crossbowman,8.64
+3031,Erytheian Crossbowman,8.64
+3032,Daduchos,18.6
+3033,Daduchos,17.7
+3034,Mermage,7.0
+3035,Mermage,6.0
+3036,Erytheian Priest,13.8
+3037,Erytheian Priest,12.9
+3038,Pearl Mage,15.3
+3039,Mystic,6.3
+3040,Nomarch,21.6
+3041,Nomarch,20.7
+3042,Prince of the Setting Sun,29.85
+3043,Prince of the Setting Sun,28.86
+3044,Princess of the Setting Sun,29.4
+3045,Princess of the Setting Sun,28.5
+3046,King of Both Worlds,16.5
+3047,King of Both Worlds,15.4
+3048,Queen of Land and Water,15.84
+3049,Queen of Land and Water,14.85
+3050,Triton Priest,15.87
+3051,Soldier of the Setting Sun,22.77
+3052,Soldier of the Setting Sun,22.77
+3053,Grand Hierophant,11.7
+3054,Firstborn of the Star,27.14
+3055,Grand Hydromancer,12.67
+3056,Aphroi Sage,28.6
+3057,Aphroi Sage,29.88
+3058,God-King of the Deep,29.4
+3059,Magister Supreme,8.1
+3060,Master,21.61
+3061,Hell Spawn,45.31
+3062,Hellbred Giant,51.8
+3063,Hellbred Horite,14.25
+3064,Anzu,163.11
+3065,Marble Lion,67.97
+3066,Hamadryad,42.3
+3067,Spectral Lictor,53.0
+3068,Kusarikku,69.52
+3069,Namanari,8.97
+3070,Chunari,24.0
+3071,Vanarusian Berserker,10.3
+3072,Kami of the Sun,124.2
+3073,Kami of the Moon,80.64
+3074,Kami of Storms,112.8
+3075,Little Soulless,5.0
+3076,Morrigna,120.27
+3077,Morrigna,115.27
+3078,Morrigna,115.27
+3079,Duiu of Thunder,119.16
+3080,Duiu of Farming,102.0
+3081,Duiu of War,103.86
+3082,Matrona of the Healing Spring,88.2
+3083,Hound,32.34
+3084,Amanojaku,69.98
+3085,Oni Spirit,59.14
+3086,Deives of the Sun,75.0
+3087,Lar,51.0
+3088,Dharmapala of the Underworld,86.46
+3089,Kulullu,15.2
+3090,Kulullu Soldier,15.2
+3091,Kulullu Sage,15.48
+3092,Kuliltu Queen,37.95
+3093,Kulullu Commander,20.0
+3094,Kulullu King,58.2
+3095,Ugallu,87.98
+3096,Mage of the Deep,19.0
+3097,Spider Archer,5.0
+3098,First Spawn,98.73
+3099,Bogarusian Scout,6.12
+3100,Perioeci Peltast,9.2
+3101,Helote Peltast,6.8
+3102,Neodamode Peltast,9.2
+3103,Helote Ekdromos,5.67
+3104,Neodamode Ekdromos,7.67
+3105,Helote Hoplite,6.23
+3106,Neodamode Hoplite,8.43
+3107,Perioeci Scout,6.8
+3108,Neodamode Commander,9.57
+3109,Gigante Ekdromos,33.33
+3110,Gigante Hoplite,33.33
+3111,Lochos,39.2
+3112,Polemarch,81.07
+3113,Kryptes,21.66
+3114,Geronte,50.25
+3115,Ephor,56.25
+3116,Archon,56.25
+3117,Basileus,81.03
+3118,Elder Cyclops,59.4
+3119,Spartae,11.4
+3120,Discobolus,39.92
+3121,Eldest Cyclops,81.8
+3122,King of Pallene,112.67
+3123,Gladiatrix,29.33
+3124,Titan of Forethought,75.0
+3125,Member of the Third Tier,39.3
+3126,Member of the Third Tier,39.3
+3127,Ker,59.14
+3128,Orphic Mystic,12.3
+3129,Trophimos Commander,9.57
+3130,Trophimos Priest,14.07
+3131,Trophimos Sage,5.0
+3132,Helote Archer,5.0
+3133,Helote Warrior,6.12
+3134,Helote Soldier,6.23
+3135,Cyclops Chieftain,31.73
+3136,Cyclops Warrior,26.87
+3137,Cyclops Hurler,29.02
+3138,Elder Cyclops,59.4
+3139,Phlegran Tyrant,95.0
+3140,Gigante Warrior,52.8
+3141,Cyclops Shepherd Shaman,34.73
+3142,Great Mouflon,10.8
+3143,Phaeacian Militia,5.0
+3144,Phaeacian Archer,5.0
+3145,Phaeacian Light Infantry,9.2
+3146,Phaeacian Infantry,6.9
+3147,Phaeacian Heavy Infantry,7.8
+3148,Colossi Heavy Infantry,13.5
+3149,Lochos,35.0
+3150,Gigante,24.07
+3151,Mage Pilot,7.5
+3152,Wind Caller,13.5
+3153,Phaeacian Scout,8.28
+3154,Phaeacian Captain,8.7
+3155,Colossi Weaver,16.08
+3156,Colossi Storm Captain,33.42
+3157,Colossi Queen,61.8
+3158,Prince Consort,60.6
+3159,Orichalcum Guard,36.72
+3160,Hesperide,76.68
+3161,Shackled Mage,5.0
+3162,Trophimos Oppressor,7.5
+3163,Theurg Tyrant,68.55
+3164,Keledone,5.88
+3165,Colossi Light Infantry,18.0
+3166,Phaeacian Priest,14.07
+3167,Drakon Hesperios,611.98
+3168,Hound of Twilight,83.89
+3169,Kuon Argyreos,56.39
+3170,Kuon Khryseos,62.1
+3171,Khalkotauros,294.32
+3172,Cerulean Commander,19.68
+3173,Aegaeide,45.9
+3174,Phaeacian Princess,49.35
+3175,Triple-Headed,58.4
+3176,Herdsman,27.27
+3177,Red Cattle,20.59
+3178,Wight Shaman,55.8
+3179,Wight Murmurer,93.5
+3180,Wight Mage,34.0
+3181,Wight Mage,49.47
+3182,Commander,6.9
+3183,Ekdromos,7.67
+3184,Hoplite,8.43
+3185,Heavy Infantry,6.9
+3186,Commander,6.9
+3187,Heavy Cavalry,7.67
+3188,Heavy Infantry,7.67
+3189,Wight Oracle,145.67
+3190,Bone Mother,18.5
+3191,Enkidu Great Sage,18.87
+3192,Great Camazotz,12.0
+3193,Jotun Draug,63.3
+3194,Jotun Draug,63.3
+3195,Wight Mage,89.0
+3196,Wight Mage,86.5
+3197,Melissa,17.07
+3198,Archousa,23.07
+3199,Neokoros,17.07
+3200,Panageis,23.07
+3201,Hydrophoros of the East,20.07
+3202,Hydrophoros of the West,20.07
+3203,Titan of the Hunt,104.4
+3204,Grey One,15.9
+3205,Titan of Crossroads,84.1
+3206,Titan of Crossroads,78.7
+3207,Titan of Crossroads,86.44
+3208,Titan of the Spring,76.53
+3209,Titan of Growth,71.4
+3210,Lampad,23.7
+3211,Helote Archer,5.0
+3212,Helote Crossbowman,5.0
+3213,Helote Soldier,5.1
+3214,Iron Bound,5.1
+3215,Mouflon Cataphract,10.12
+3216,Iron Guard,10.44
+3217,Phlegran Commander,7.59
+3218,Phlegran Priest,14.07
+3219,Phlegran Cataphract Commander,16.8
+3220,Shackled Mage,5.0
+3221,Phlegran Oppressor,7.5
+3222,Oppressor General,12.57
+3223,Cyclope Commander,40.32
+3224,Cyclope Soldier,35.36
+3225,Cyclope Smith,44.4
+3226,Laestrygonian Tyrant,238.18
+3227,Laestrygonian,167.41
+3228,Oppressor Archon,34.5
+3229,First of the Gigantes,312.81
+3230,King of the Gigantes,301.12
+3231,Elder Cyclops,75.47
+3232,Iron Fly,39.69
+3233,Archer Illusion,9.36
+3234,Son of the Bear,81.33
+3235,Son of the Bear,117.43
+3236,Cambion,71.43
+3237,Sinister Hawk,6.62
+3238,Sinister Wolf,8.37
+3239,Fay,63.03
+3240,Raven,5.0
+3241,Daughter of the Thunder,83.76
+3242,Daughter of the Oak,78.3
+3243,Disciple of Myrddin,17.07
+3244,Blood Countess,33.99
+3245,Vampire Countess,25.53
+3246,Tengu King,84.88
+3247,Kitsune,43.8
+3248,Kitsune,43.77
+3249,Dragon of the Cave,50.83
+3250,Dragon of the Cave,130.75
+3251,Vampire Count,40.26
+3252,Vivisectionist,30.53
+3253,Vampire Count,31.62
+3254,Vampire Lord,26.76
+3255,Blood Graf,58.96
+3256,Werebear,122.04
+3257,Last Perkunu,88.07
+3258,Great Bear,62.21
+3259,Varyag,56.04
+3260,Grandmother Earth,159.72
+3261,Red Face,92.24
+3262,Jorogumo,37.82
+3263,Jorogumo,70.58
+3264,Okami,23.04
+3265,Tanuki,23.28
+3266,Tanuki,24.6
+3267,Bakeneko,10.37
+3268,Bakeneko,10.08
+3269,Omukade,92.36
+3270,Araburu-kami,87.36
+3271,Araburu-kami,100.8
+3272,Mujina,31.8
+3273,Mujina,24.6
+3274,Vampire Count,30.6
+3275,Landless Knight,9.57
+3276,Cynocephalian Hunter,19.35
+3277,Cynocephalian Warrior,29.7
+3278,Cynocephalian Chieftain,33.84
+3279,Cynocephalian Shaman,30.42
+3280,Mirror Guard,23.43
+3281,Baculite,23.83
+3282,Soldier Priest,17.7
+3283,Archer Priest,16.92
+3284,Abbot Sage,24.3
+3285,Abbot Magus,37.67
+3286,Abbot Magus Supreme,46.67
+3287,Bishop General,28.47
+3288,Archbishop Marshal,32.43
+3289,Primate King,47.03
+3290,Bishop Vicomte,28.47
+3291,Viceroy Primate,39.63
+3292,Azenach Archer,8.64
+3293,Cannibal Warrior,14.08
+3294,Agrimandri Warrior,15.05
+3295,Fommepori Warrior,16.63
+3296,Vintefolei Horseman,12.76
+3297,Cannibal Shaman Chief,13.63
+3298,Cynocephalian Hunter,19.35
+3299,Cynocephalian Flesh-Eater,29.7
+3300,Cynocephalian Chieftain,27.07
+3301,Cynocephalian Shaman,19.38
+3302,Piconye Peasant,5.0
+3303,Piconye Slinger,6.55
+3304,Piconye Spearman,6.93
+3305,Piconye Soldier,9.12
+3306,Piconye King,11.88
+3307,Satyr Slave,6.6
+3308,Centaur Charioteer,9.33
+3309,XXX,24.75
+3310,Lady Warrior,8.7
+3311,Lady Knight,16.4
+3312,Feminie Queen,20.68
+3313,Cannibal Warlord,21.12
+3314,Feminie Sorceress,9.67
+3315,Gog Reaver,31.1
+3316,Magog Flesh-Hunter,36.55
+3317,Gog Dog-Father,38.25
+3318,Magog Bitch-Mother,45.46
+3319,Centaur Slave,13.91
+3320,Giant of the Lost Tribe,47.52
+3321,King of the Lost Tribe,58.75
+3322,Piconye Scholar,14.88
+3323,Orionde Crossbowman,6.12
+3324,Orionde Warrior,6.9
+3325,Orionde Knight,11.6
+3326,Orionde King,18.04
+3327,Strange Bird,5.0
+3328,God Block,93.6
+3329,Betyl of the Sun,45.6
+3330,Betyl of Writing,45.6
+3331,Betyl of the Stars,45.6
+3332,Nabaean Desert Warrior,8.28
+3333,Nabaean Camel Rider,11.48
+3334,Sheikh,11.48
+3335,'Adite Elite Soldier,21.42
+3336,'Adite Archer,11.02
+3337,'Adite General,22.68
+3338,Nabaean Soldier,6.9
+3339,Hermit Sahir,12.3
+3340,Sahir,53.7
+3341,Malikah,71.76
+3342,Jann Guard,37.44
+3343,Jann Emir,53.31
+3344,Statue of Beginnings,42.6
+3345,Wooden Colossus,29.16
+3346,Bronze Colossus,135.12
+3347,Nabaean Scout,8.28
+3348,Damned Admiral,54.06
+3349,Damned Captain,32.7
+3350,Damned Boatswain,30.9
+3351,Damned Buccaneer,23.4
+3352,Damned Buccaneer,23.4
+3353,Jinn,58.44
+3354,Jinn Warrior,63.36
+3355,'Adite Light Infantry,20.4
+3356,Nabaean Light Infantry,9.2
+3357,Mukarrib,28.2
+3358,Karib,17.07
+3359,Lady Archer,8.28
+3360,Longdead,7.31
+3361,Longdead,7.31
+3362,Piconye Castellan,10.26
+3363,Lion of Strange Color,28.76
+3364,Lion of Strange Color,27.54
+3365,Lion of Strange Color,28.22
+3366,Lion of Strange Color,24.3
+3367,Hinn,33.12
+3368,Bronze Colossus,135.12
+3369,Ilahat of Fate,77.4
+3370,Ilahat of Might,87.96
+3371,Falcon,8.86
+3372,Ifrit,116.7
+3373,Shaytan,66.96
+3374,Marid,280.73
+3375,Houri,55.74
+3376,Marid,236.09
+3377,Prester King,58.56
+3378,Arch Pope,75.67
+3379,Great Huntress,33.66
+3380,Protopope,47.67
+3381,Cyclops,26.87
+3382,Yllerion,143.34
+3383,Yllerion,143.34
+3384,Sahira,40.68
+3385,Queen of Na'Ba,112.2
+3386,Ilah of the Sky,120.86
+3387,Ilah of the Sacred Mountain,83.28
+3388,Ilah of the Moon,111.83
+3389,Jinn Block,51.6
+3390,Hoburg Slinger,6.55
+3391,Hoburg Spearman,6.07
+3392,Hoburg Pikeman,6.67
+3393,Hoburg Defender,6.72
+3394,Serpent of the Underworld,207.42
+3395,Demiurge,212.57
+3396,King in Yellow,102.51
+3397,Gygja,19.67
+3398,Jarnvidja,30.53
+3399,Thrymsgode,95.7
+3400,Thrymshirding,65.25
+3401,Vaetti Archer,5.51
+3402,Light Vaetti Infantry,5.0
+3403,Vaetti Spearman,5.1
+3404,Vaetti Berserker,7.8
+3405,Hirdvaetti,8.7
+3406,Rimvaetti,22.5
+3407,Vaetti Hag,5.0
+3408,Vaetti Gygja,22.5
+3409,Jotun Gygja,51.67
+3410,Vaetti Jarl,11.4
+3411,Vaetti Gode,23.7
+3412,Vaetti Crossbowman,5.51
+3413,Wolf Brother,9.6
+3414,Dimvaetti,13.28
+3415,Moose Rider,5.51
+3416,Great Archon,132.64
+3417,Light Vaetti Infantry,5.1
+3418,Wolf Rider,5.1
+3419,Plague Doctor,11.67
+3420,Rimvaetti,13.5
+3421,Jotun Hurler,14.36
+3422,Jotun Axeman,17.64
+3423,Vaetti Archer,5.51
+3424,Undying,66.33
+3425,Dwarf of the North,66.9
+3426,Dwarf of the South,66.9
+3427,Dwarf of the East,66.9
+3428,Dwarf of the West,66.9
+3429,Jotun Skratti,44.07
+3430,Jotun Werewolf,97.24
+3431,Jotun Wolf,56.68
+3432,Jotun Skratti,38.07
+3433,Jotun Werewolf,91.24
+3434,Jotun Wolf,50.68
+3435,Vaetti Herse,9.6
+3436,Human Godihuskarl,6.9
+3437,Human Godihuskarl,7.67
+3438,Human Hirdman,8.7
+3439,Norna of the Past,72.3
+3440,Norna of the Present,75.3
+3441,Norna of the Future,72.3
+3442,Jotun Skinshifter,46.17
+3443,Jotun Werewolf,105.44
+3444,Wight Hag,44.43
+3445,Wight Mage,133.33
+3446,Wight Mage,115.0
+3447,Wight Mage,17.2
+3448,Wight Mage,15.48
+3449,Wight Hag,15.48
+3450,Wight Mage,61.0
+3451,Necrodai,117.65
+3452,Necrodai,66.56
+3453,Ubaran Desert Warrior,8.28
+3454,Ubaran Camel Rider,11.48
+3455,Ubaran Soldier,6.8
+3456,Brazen Guard,11.55
+3457,Ubaran Scout,8.28
+3458,Ubaran Commander,6.9
+3459,Ubaran Sheikh,11.48
+3460,Kahin,14.07
+3461,Tubba,27.24
+3462,Human Sahir,9.3
+3463,Jinn Warrior,32.76
+3464,Ifrit Warrior,102.24
+3465,Ifrit Sultan,191.22
+3466,Houri,14.04
+3467,Guardian of the Forbidden Chambers,43.2
+3468,Jinn Sahir,46.74
+3469,Jinn Emir,54.36
+3470,Ubaran Archer,5.0
+3471,Qarin,17.88
+3472,Shaytan,60.96
+3473,Firstborn of the Smokeless Flame,140.52
+3474,Banu Si'lat,38.25
+3475,Black King,286.34
+3476,Binn,42.34
+3477,Ghul,32.51
+3478,Ghul,86.83
+3479,Ghul,32.51
+3480,Ghul,86.83
+3481,Ghulah,40.98
+3482,Ghulah,107.09
+3483,Si'lat,27.96
+3484,Mother Ghul,65.16
+3485,Mother Ghul,128.09
+3486,Initiate of the Hidden Order,5.97
+3487,Adept of the Hidden Order,5.97
+3488,Master of the Hidden Order,17.97
+3489,Veiled Enchantress,15.3
+3490,Gray Enchantress,12.3
+3491,Tenebrous Enchantress,15.3
+3492,Wizard's Apprentice,5.0
+3493,Wizard of Fire and Flame,12.67
+3494,Wizard of the Earth,12.67
+3495,Wizard of Ice and Water,12.67
+3496,Wizard of Storms and Thunder,12.67
+3497,Wizard of the Stars,12.67
+3498,Wizard of Many Colors,12.67
+3499,Wizard of Dark Arts,12.67
+3500,Test Gygja,14.4
+3501,Test Soldier,6.9
+3502,Arch Wizard of the Hidden Flame,24.67
+3503,Arch Wizard of the Deeper Earth,24.67
+3504,Arch Wizard of Waters Underneath,24.67
+3505,Arch Wizard of the Sky,24.67
+3506,Arch Wizard of the Spheres,24.67
+3507,Arch Wizard of Unseen Colors,24.67
+3508,Arch Wizard of Black Arcana,24.67
+3509,Wizard's Apprentice,5.0
+3510,Orchard of Souls,1949.79
+3511,Tree of Tainted Fruits,14.47
+3512,Tainted Soul,31.08
+3513,Riding Horse,5.88
+3514,War Horse,9.0
+3515,War Horse,9.0
+3516,Cataphracted War Horse,13.05
+3517,Destrier,14.4
+3518,Destrier,16.83
+3519,Black Destrier,16.83
+3520,Shadow Steed,45.9
+3521,Fay Horse,36.0
+3522,Helhestur,36.0
+3523,Disahestur,40.32
+3524,Unicorn,22.03
+3525,Armored Unicorn,29.16
+3526,Black Unicorn,22.03
+3527,Armored Black Unicorn,29.16
+3528,Nisean War Horse,22.68
+3529,Demon Steed,25.65
+3530,Great Mouflon,12.24
+3531,Cataphracted Mouflon,15.3
+3532,Wolf,8.37
+3533,Jade Lizard,39.36
+3534,Armored Jade Lizard,39.36
+3535,Serpent,45.03
+3536,Armored Serpent,26.22
+3537,Armored Serpent,43.32
+3538,Camel,10.8
+3539,Camel,10.8
+3540,War Elephant,35.52
+3541,War Elephant,35.52
+3542,Mammoth,35.52
+3543,* Behemoth,35.52
+3544,Gryphon,37.91
+3545,Sacred Gryphon,67.07
+3546,Turan Gryphon,67.07
+3547,Tiger,25.92
+3548,Armored Tiger,25.92
+3549,Sacred Tiger,43.2
+3550,Armored Sacred Tiger,43.2
+3551,Moose,14.69
+3552,Armored Moose,20.7
+3553,Cave Drake,64.26
+3554,Great Spider,36.78
+3555,Hunter Spider,126.84
+3556,Pegasus,34.68
+3557,Armored Pegasus,34.68
+3558,Skeletal Horse,8.7
+3559,Skeletal War Horse,8.7
+3560,Flayed Horse,57.3
+3561,Nightmare,23.97
+3562,Skeletal Beast,21.0
+3563,Chariot,13.5
+3564,Chariot,13.5
+3565,Cataphracted Chariot,17.55
+3566,Centaur Chariot,24.75
+3567,Centaur Chariot,19.8
+3568,Lizard Chariot,29.76
+3569,Tomb Chariot,18.81
+3570,War Cart,27.0
+3571,Mushussu,128.46
+3572,Fay Horse Chariot,49.98
+3573,Steppe Horse,5.88
+3574,Armored Steppe Horse,9.0
+3575,Armored Steppe Horse,9.0
+3576,Cataphracted Steppe Horse,13.05
+3577,Steppe Horse,5.88
+3578,Armored Steppe Horse,11.7
+3579,Armored Steppe Horse,25.2
+3580,Cataphracted Steppe Horse,26.55
+3581,Cataphracted War Horse,26.55
+3582,Destrier,28.8
+3583,Destrier,35.19
+3584,Black Destrier,35.19
+3585,Bearer,5.0
+3586,Bearer,5.0
+3587,Bekryde,10.56
+3588,Bekryde Warrior,8.8
+3589,Bekryde Scout,8.8
+3590,Bekryde Champion,12.0
+3591,Bekryde Infantry,8.8
+3592,Bekryde Heavy Infantry,8.8
+3593,Bebryx Guard,21.6
+3594,Bekryde Commander,12.0
+3595,Bebryx,28.92
+3596,Bekryde Shaman,21.12
+3597,Mairu Warrior,32.07
+3598,Mairu Hurler,30.6
+3599,Mairu Champion,49.44
+3600,Basajaun,56.0
+3601,Basandere,49.56
+3602,Jentil,126.5
+3603,Sorgina,49.5
+3604,Black Cat,16.8
+3605,Tartalo,32.67
+3606,Bekryde Shepherd,5.0
+3607,Pyrènian Crossbowman,6.73
+3608,Pyrènian Spearman,8.43
+3609,Pyrènian Footman,7.59
+3610,Pyrènian Man at Arms,10.44
+3611,Pyrènian Swordsman,11.6
+3612,Pyrènian Knight,19.68
+3613,Emerald Knight,36.92
+3614,Pyrènian Castellan,9.57
+3615,Pyrènian Marquess,21.32
+3616,Emerald Count,34.2
+3617,Pyrènian Monk,15.3
+3618,Pyrènian Priest,17.1
+3619,Pyrènian Bishop,26.31
+3620,Sorgina,31.5
+3621,Black Cat,10.5
+3622,Akerbeltz,44.58
+3623,Sacred Mouflon,32.4
+3624,Phantasmal Warrior,31.68
+3625,Phantasmal Wolf,26.4
+3626,Phantasmal Beast,223.95
+3627,Phantasmal Knight,48.0
+3628,Phantasmal Steed,44.16
+3629,Aatxe,51.84
+3630,Fir Bolg Cattle Raider,16.4
+3631,Milesian Man at Arms,8.7
+3632,Mother of Storms,89.4
+3633,Bekryde,10.56
+3634,Fir Bolg Charioteer,15.12
+3635,Mandeha,165.18
+3636,Mandeha,165.18
+3637,Captain Illusion,9.6
+3638,Falconeer,6.9
+3639,Crystal Soul,120.5
+3640,Dark Crystal,85.5
+3641,Dragon,368.41
+3642,Great Sage,18.67
+3643,Elephant Spearman,8.43
+3644,Hippocampus,15.91
+3645,Sacred Hippocampus,37.94
+3646,Kelpie,13.44
+3647,Kelpie,13.44
+3648,Armored Morvarc'h,41.31
+3649,Armored Morvarc'h,49.57
+3650,Immortal Gorgon,54.48
+3651,God Spider,275.46
+3652,Anansi,22.8
+3653,Great Spider,36.78
+3654,Weaver of Tales,18.67
+3655,Great Spider,50.45
+3656,Shark,28.35
+3657,Asp,6.48
+3658,Salamander Asp,8.28
+3659,Homunculus,5.0
+3660,Hydra Tamer,18.79
+3661,Elephant Idol,51.69
+3662,Asura,136.2
+3663,Daitya,158.04
+3664,Garuda,50.69
+3665,Kimpurusha,64.63
+3666,Angiri,47.23
+3667,Marut,74.78
+3668,Vidyadhara,78.96
+3669,Nidadrott,19.47
+3670,Nidajarl,16.92
+3671,Nidherse,17.71
+3672,Crow Clan Scout,9.11
+3673,Crow Clan Archer,8.28
+3674,Wolf Clan Reaver,11.48
+3675,Cub-Warrior,8.7
+3676,Bear Clan Warrior,12.8
+3677,Nidbathed,29.6
+3678,Nidylva,17.42
+3679,Bear Clan Seithberender,32.49
+3680,Wolf Clan Seithberender,31.8
+3681,Crow Clan Seithberender,42.67
+3682,Bear Clan Cub-Mother,15.2
+3683,Weaver of Nightmares,15.3
+3684,Calydonian Boar,95.12
+3685,Nidhere,36.37
+3686,Great Bear,62.21
+3687,Wolf,16.47
+3688,Crow,5.0
+3689,Bekryde Hunter,8.58
+3690,War Horse,25.2
+3691,Praefectus Equitum,37.08
+3692,Great Stag,139.63
+3693,Great White Stag,139.63
+3694,Bard,9.9
+3695,Bush,5.0
+3696,Shrub,5.0
+3697,Small Shrub,5.0
+3698,Large Stone,6.3
+3699,Large Boulder,14.7
+3700,Small Boulder,10.5
+3701,Giant Puff Shroom,5.0
+3702,Giant Fungus,5.0
+3703,Giant Fungus,5.0
+3704,Giant Fungus,5.0
+3705,Giant Fungus,5.0
+3706,Giant Fungus,5.0
+3707,Swamp Flower,5.0
+3708,Desert Flower,5.0
+3709,Cactus,5.0
+3710,Dragon,368.41
+3711,Storm Father,18.67
+3712,Spine Frog,32.4
+3713,Ministry Guardsman,8.67
+3714,Fire Elemental,120.0
+3715,Fire Elemental,98.0
+3716,Fire Elemental,80.0
+3717,Fire Elemental,62.0
+3718,Fire Elemental,48.0
+3719,Fire Elemental,34.0
+3720,Fire Elemental,24.0
+3721,Fire Elemental,14.0
+3722,Air Elemental,219.0
+3723,Air Elemental,160.8
+3724,Air Elemental,117.93
+3725,Air Elemental,80.67
+3726,Air Elemental,55.53
+3727,Air Elemental,34.4
+3728,Air Elemental,19.2
+3729,Air Elemental,10.4
+3730,Water Elemental,217.16
+3731,Water Elemental,156.61
+3732,Water Elemental,109.64
+3733,Water Elemental,61.99
+3734,Water Elemental,32.76
+3735,Water Elemental,15.66
+3736,Water Elemental,8.28
+3737,Water Elemental,5.52
+3738,Earth Elemental,175.19
+3739,Earth Elemental,130.64
+3740,Earth Elemental,104.1
+3741,Earth Elemental,62.4
+3742,Earth Elemental,46.8
+3743,Earth Elemental,32.13
+3744,Earth Elemental,17.22
+3745,Earth Elemental,11.07
+3746,Ice Elemental,167.4
+3747,Ice Elemental,133.96
+3748,Ice Elemental,105.41
+3749,Ice Elemental,66.6
+3750,Ice Elemental,50.4
+3751,Ice Elemental,35.4
+3752,Ice Elemental,19.11
+3753,Ice Elemental,11.76
+3754,Illearth,161.25
+3755,Illearth,119.81
+3756,Illearth,93.64
+3757,Illearth,72.0
+3758,Illearth,44.1
+3759,Illearth,30.24
+3760,Illearth,15.54
+3761,Illearth,9.72
+3762,Living Mercury,171.72
+3763,Living Mercury,152.28
+3764,Living Mercury,110.7
+3765,Living Mercury,94.5
+3766,Living Mercury,65.25
+3767,Living Mercury,51.75
+3768,Seaweed,5.0
+3769,Seaweed,5.0
+3770,Seaweed,5.0
+3771,Seaweed,5.0
+3772,Seaweed,5.0
+3773,Seaweed,5.0
+3774,Crystal,5.0
+3775,Crystal,5.0
+3776,Crystal,5.0
+3777,Crystal,5.0
+3778,Stalagmite,10.5
+3779,Stalagmite,8.4
+3780,Dark Flower,5.0
+3781,Dark Flower,5.0
+3782,Dark Flower,5.0
+3783,Piconye Militia,5.0
+3784,Piconye Slinger,6.55
+3785,Piconye Crossbowman,6.55
+3786,Piconye Spearman,6.93
+3787,Piconye Soldier,9.12
+3788,Piconye Defender,9.84
+3789,Soldier Priest,17.76
+3790,Crosswielder,19.58
+3791,Baculite,22.2
+3792,Bird Knight,13.2
+3793,War Bird,8.42
+3794,Piconye Bishop General,19.32
+3795,Prester King,51.6
+3796,Bird Knight Commander,16.8
+3797,Piconye Sage,13.26
+3798,Piconye Sage-Priest,32.4
+3799,Piconye Bishop,22.98
+3800,Piconye Arch Bishop,31.2
+3801,Piconye Pope,40.2
+3802,Piconye Scout,8.35
+3803,Feminie Militia,5.0
+3804,Feminie Archer,8.28
+3805,Feminie City Guard,7.67
+3806,Feminie Soldier,7.67
+3807,Feminie Swordswoman,8.7
+3808,Lady at Arms,12.3
+3809,Lady Knight,19.36
+3810,Feminie Scout,8.28
+3811,Feminie Commander,13.53
+3812,Lady Commander,22.0
+3813,Feminie Savant,6.3
+3814,Feminie Sorceress,30.67
+3815,Loremistress,12.3
+3816,Sage-Queen,60.3
+3817,Cloistered Lady,15.3
+3818,Feminie Abbess,21.3
+3819,Veiled One,27.13
+3820,Unseen One,32.4
+3821,Peasant,5.0
+3822,Commoner,5.0
+3823,Commoner,5.0
+3824,Barrel,5.0
+3825,Crate,5.0
+3826,Table,5.0
+3827,Counter,5.0
+3828,Bookshelf,5.0
+3829,Sacred Skeletal Horse,17.7
+3830,Seithberender Apprentice,16.8
+3831,Iron Gryphon,9.18
+3832,Divine Hero,56.0
+3833,Divine Sibyl,42.45
+3834,Divine Daughter,22.77
+3835,Divine Son,38.16
+3836,Bekryde,10.56
+3837,Bekryde,10.56
+3838,Bekryde Warrior,8.8
+3839,Bekryde Champion,12.0
+3840,Calystri Militia,14.56
+3841,Calystri City Guard,24.64
+3842,Calystri Crossbowman,15.72
+3843,Calystri Footman,21.28
+3844,Calystri Soldier,21.28
+3845,Calystri Pikeneer,23.41
+3846,Calystri Man at Arms,28.2
+3847,Calystri Senatorial Guard,32.0
+3848,Calystri Scout,22.98
+3849,Calystri Commander,27.0
+3850,Tomb Flame Wielder,20.88
+3851,Carrion Commander,17.47
+3852,Void Dreamer,7.56
+3853,Void Herald,18.72
+3854,Falchioneer,12.24
+3855,Halberdier,12.47
+3856,C'tissian Heavy Infantry,6.6
+3857,Starspawn,25.54
+3858,Starspawn,54.12
+3859,Mirror Mage,5.0
+3860,Master of Mirrors,10.35
+3861,Royal Alchemist,12.3
+3862,Imp Trainer,8.28
+3863,Imp Pet,11.09
+3864,Alchemical Amalgam of Fire,20.37
+3865,Alchemical Amalgam of Air,31.68
+3866,Alchemical Amalgam of Water,22.4
+3867,Alchemical Amalgam of Earth,20.5
+3868,Deliverer of Justice,19.08
+3869,Harbinger of the Choir,64.15
+3870,Angel of the Host,33.93
+3871,Longdead Zotz,5.46
+3872,Longdead Zotz,6.07
+3873,Soulless Zotz,5.0
+3874,Nagasiddha,63.62
+3875,Nagasiddha,31.34
+3876,Sacred Geyser,91.1
+3877,Firstborn of the Lost,213.3
+3878,Giant of the Lost Tribe,47.52
+3879,King of the Lost Tribe,58.75
+3880,Howler,31.1
+3881,Seithmathr Bear,55.35
+3882,Great Bear,66.82
+3883,Seithmathr Wolf,55.8
+3884,Wolf,16.47
+3885,Seithmathr Crow,78.67
+3886,Crow,5.0
+3887,Milesian Mage,7.5
+3888,Dracolich,308.12
+3889,Master Lich,34.8
+3890,Cave Kobold,13.2
+3891,Bluecap,21.36
+3892,Blue Flame,40.8
+3893,Sky Metal Adept,21.3
+3894,Serpent of Heavenly Fires,221.76
+3895,Ferryman,69.27
+3896,Soulless Warrior,5.0
+3897,Destrier,14.4
+3898,Destrier,35.19
+3899,Unicorn,40.39
+3900,Armored Unicorn,48.6
+3901,Fay Knight,27.56
+3902,Fay Steed,22.95
+3903,Fay Footman,13.53
+3904,Fay Prince,48.96
+3905,Royal Fay Steed,27.54
+3906,Unseelie Soldier,13.53
+3907,Unseelie Knight,27.56
+3908,Unseelie Steed,22.95
+3909,Unseelie Prince,48.96
+3910,Royal Unseelie Steed,27.54
+3911,Water Kobold,12.09
+3912,Fay Folk,6.9
+3913,Fay Folk,7.8
+3914,Fay Folk,6.6
+3915,Fay Folk,7.45
+3916,Fay Folk,9.72
+3917,Fay Folk,5.51
+3918,Crossbowman,5.0
+3919,Calystri Presbyter,32.02
+3920,Apprentice Magus,17.98
+3921,Calystri Magus,31.64
+3922,Calystri Magistrate,29.02
+3923,Presbyter Magistrate,41.24
+3924,Magistrate Magus,47.24
+3925,Calystri Senator,65.24
+3926,Devi of Strength,107.0
+3927,Vahana,222.52
+3928,White Tiger of the West,228.52
+3929,Azure Dragon of the East,208.16
+3930,Celestial Bureaucrat,41.25
+3931,Vermilion Bird of the South,118.88
+3932,Black Tortoise of the North,302.01
+3933,Fay Horse,21.6
+3934,Divine Stallion,114.48
+3935,Master of the Way,14.07
+3936,Student of the Way,14.07
+3937,Student of the Five Elements,11.07
+3938,Horse Vale Stallion,9.6
+3939,Machaka War Elephant,44.46
+3940,Sacred Stag,33.6
+3941,Lich,41.16
+3942,Lich Hag,66.4
+3943,Lich,78.6
+3944,Lich Hag,39.9
+3945,Lich,66.0
+3946,Saurolich,45.54
+3947,Lich,58.37
+3948,Lich,70.0
+3949,Lich,36.9
+3950,Lich,36.9
+3951,God Lich,102.15
+3952,God Lich,111.99
+3953,Jotun Scout,40.48
+3954,Jotun Herse,50.37
+3955,Jotun Jarl,59.88
+3956,Jotun Gode,57.3
+3957,Gygja,23.4
+3958,Muspel Herse,61.65
+3959,Muspel Gode,64.44
+3960,Muspelgygja,29.42
+3961,Muspel Jarl,148.14
+3962,Jotun Bondi,13.2
+3963,Jotun Warrior,19.6
+3964,Jotun Warrior,22.18
+3965,Jotun Hurler,14.36
+3966,Jotun Huskarl,26.4
+3967,Godihuskarl,36.8
+3968,Jotun Hirdman,33.12
+3969,Muspel Huskarl,40.48
+3970,Muspel Hirdman,35.88
+3971,Muspel Giant,101.52
+3972,Muspeldottir,19.67
+3973,Calystri General,30.53
+3974,Serene One,48.16
+3975,Serene Master,56.4
+3976,Howler Champion,35.25
+3977,Serpent Carcass,68.73
+3978,Tupilak Mount,46.87
+3979,General,19.68
+3980,Morvarc'h,41.31
+3981,Morvarc'h,49.57
+3982,Gnome,5.0
+3983,Phantasmal Sea Dog,34.32
+3984,Phantasmal Triton,31.68
+3985,Phantasmal Knight,52.0
+3986,Phantasmal Hippocampus,49.25
+3987,Animated Bush,10.8
+3988,Animated Shrub,7.65
+3989,Small Animated Shrub,5.0
+3990,Void Flame,616.9
+3991,Storm Drake,33.05
+3992,Armored Hippocampus,15.91
+3993,Armored Sacred Hippocampus,37.94
+3994,Armored Kelpie,13.44
+3995,Armored Kelpie,13.44
+3996,War Hog,6.93
+3997,Queen of Winter,64.35
+3998,Unseelie Sprite,10.62
+3999,Moonvine Enchanter,15.3
+4000,Horse,9.0
+4001,Arch Emperor,19.8
+4002,First Queen,6.3
+4003,Divine Consul,19.64
+4004,Tree,5.0
+4005,Tree,5.0
+4006,Tree,5.0
+4007,Animated Tree,113.17
+4008,Animated Tree,115.82
+4009,Animated Tree,81.65
+4010,Nagasiddha,131.47
+4011,Nagasiddha,86.38
+4012,Vaetti Archer,5.51
+4013,Elephant Archer,5.0
+4014,Chariot Archer,5.0
+4015,Mammoth Archer,6.48
+4016,Chariot Archer,5.0
+4017,Elephant Archer,6.48
+4018,Elephant Archer,5.0
+4019,Elephant Archer,5.0
+4020,Armored Unicorn,48.6
+4021,Lich Oracle,61.0
+4022,Student of the Sword,16.92
+4023,Master of the Sword,25.49
+4024,Mother Mandragora,181.12
+4025,Titan Mandragora,205.12
+4026,Black Minotaur,51.33
+4027,Carrion Fury,71.5
+4028,Carrion Enkidu,8.36
+4029,Carrion Ogre,9.24
+4030,Carrion Giant,12.76
+4031,Carrion Titan,85.2
+4032,Worm Soul,31.11
+4033,Worm Soul,31.11
+4034,Pyrènian Crossbowman,6.73
+4035,Pyrènian Spearman,8.43
+4036,Pyrènian Footman,7.59
+4037,Pyrènian Man at Arms,10.44
+4038,Pyrènian Swordsman,11.6
+4039,Pyrènian Knight,19.68
+4040,Pyrènian Scout,9.11
+4041,Pyrènian Castellan,9.57
+4042,Pyrènian Marquess,21.32
+4043,Pyrènian Monk,21.3
+4044,Pyrènian Priest,18.3
+4045,Blood Bishop,35.1
+4046,Sorgina,16.5
+4047,Black Cat,16.5
+4048,Cambion King,76.8
+4049,Cambion Count,52.48
+4050,Cambion Knight,40.04
+4051,Cambion Queen,56.82
+4052,Cambion Countess,39.69
+4053,Incubus,40.02
+4054,Cambion Progeny,19.92
+4055,Cambion Progeny,16.53
+4056,Black Goat,41.61
+4057,Markata Mystic,40.31
+4058,Black Goat,41.61
+4059,Red Mistress,96.57
+4060,Crimson King,105.52
+4061,Centaur Manikin,21.25
+4062,C'tissian Medium Infantry,7.33
+4063,Azenach Shaman Chief,12.11
+4064,Agrimandri Shaman Chief,15.54
+4065,Fommepori Shaman Chief,19.86
+4066,Vintefolei Shaman Chief,18.76
+4067,Spirit Horse,21.42
+4068,Zemaite Archer,5.0
+4069,Zemaite Warrior,9.2
+4070,Zemaite Warrior,8.28
+4071,Zemaite Infantry,9.2
+4072,Zemaite Heavy Infantry,6.9
+4073,Zemaite Chud Warrior,20.12
+4074,Zemaite Crossbowman,9.11
+4075,Zemaite Pikeneer,9.28
+4076,Zemaite Castle Guard,9.57
+4077,Zemaite Skinshifter,11.84
+4078,Werewolf,40.95
+4079,Zemaite Chud Skinshifter,17.27
+4080,Werebear,38.88
+4081,Scout,8.28
+4082,Zemaite Chieftain,11.48
+4083,Seniunas,24.24
+4084,Chud Seniunas,33.66
+4085,Vedun,11.67
+4086,Chud Vedun,45.73
+4087,Antlered Vedun,58.07
+4088,Vedun Mage Smith,19.63
+4089,Antlered Hochmeister,65.06
+4090,Sylvan Knight,50.4
+4091,Sacred Moose,72.07
+4092,Lauma,53.7
+4093,Fay Folk Stablehand,5.0
+4094,Fay Folk Musician,7.49
+4095,Fay Folk Cat Knight,11.67
+4096,Fay Cat,11.59
+4097,Fay Folk Snail Knight,12.37
+4098,Snail,5.0
+4099,Fay Folk Emperor,5.0
+4100,Wight Hag,19.74
+4101,Wight Spider,33.87
+4102,Wight Hag,26.13
+4103,Wight Mage,28.51
+4104,Fay Folk Sheep Knight,5.0
+4105,Ram,5.0
+4106,Fay Folk Donkey-In-Waiting,11.52
+4107,Great Moose,180.64
+4108,Ghost Moose,265.2
+4109,Moose Vedun,61.78
+4110,Lost Knight,92.83
+4111,Fay Moose,74.84
+4112,Longdead,6.77
+4113,Longdead,6.77
+4114,Longdead,6.09
+4115,Buraq,96.0
+4116,Fay Archer,12.6
+4117,Unseelie Archer,12.6
+4118,Unseelie Folk,6.9
+4119,Unseelie Folk,7.8
+4120,Unseelie Folk,7.33
+4121,Unseelie Folk,13.6
+4122,Unseelie Folk,5.51
+4123,Unseelie Stablehand,5.0
+4124,Unseelie Musician,7.49
+4125,Unseelie Cat Knight,11.67
+4126,Unseelie Cat,11.59
+4127,Fay Folk Swan Knight,11.67
+4128,Fay Swan,7.92
+4129,Unseelie Raven Knight,9.4
+4130,Unseelie Raven,6.93
+4131,Shah of Horses,42.75
+4132,Debug Senpai,14.4
+4133,Debug Kohai,6.9

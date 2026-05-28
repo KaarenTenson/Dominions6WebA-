@@ -64,6 +64,7 @@ export interface Unit {
 
   weapons: Weapon[];
   armors: Armor[];
+  mountmnr:number;
 
   resources?: number;
 

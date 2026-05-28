@@ -4,12 +4,20 @@ import { parseUnitsCsv } from "./draftParser/unitparser.js";
 import { Pretender } from "./draftypes/pretender.js";
 import { Unit } from "./draftypes/unit.js";
 import { MagicSite, SiteGemEffect, SiteLevel } from "./draftypes/magicSite.js";
+import { parseChassisValues } from "./draftParser/chasisParser.js";
+import { addMountGoldAndResources } from "./utils/draf-card-utils.js";
 
 const pretenderPool = parsePretendersCsv("pretenders_export.csv");
-const unitAndCommanderPool = parseUnitsCsv("units_export.csv").filter((u) => u.basecost >= 10000);
-
-const commanderPool = unitAndCommanderPool.filter((unit) => unit.commander);
-const unitPool = unitAndCommanderPool.filter((unit) => !unit.commander);
+const chasisValues = parseChassisValues("chassis_values.csv");
+const unitAndCommanderPool = parseUnitsCsv("units_export.csv");
+const commanderFilter = (unit) => unit.commander;
+const baseCostFilter = (u) => u.basecost >= 10000;
+const chasisValueFilter = (u) => 150 > chasisValues.get(u.id) && chasisValues.get(u.id)  > 50; 
+const commanderPool = unitAndCommanderPool.filter(commanderFilter).filter(baseCostFilter);
+commanderPool.forEach(u => addMountGoldAndResources(u, unitAndCommanderPool));
+const heroPool = unitAndCommanderPool.filter(commanderFilter).filter(chasisValueFilter);
+const unitPool = unitAndCommanderPool.filter((unit) => !unit.commander).filter(baseCostFilter);
+unitPool.forEach(u => addMountGoldAndResources(u, unitPool));
 
 // ----------------------------------------------------
 // Helpers
@@ -258,6 +266,18 @@ const generate_pretender = (): DraftCard<Pretender> => {
         data: pretender,
     };
 };
+const generate_hero = (): DraftCard<Unit> => {
+    const hero =
+        heroPool[
+            Math.floor(Math.random() * heroPool.length)
+        ];
+
+    return {
+        id: crypto.randomUUID(),
+        type: "hero",
+        data: hero,
+    };
+};
 
 const generate_commander = (): DraftCard<Unit> => {
     const commander =
@@ -293,6 +313,10 @@ const generatePack = (
 
 export const generate_unit_pack = (): DraftCard<any>[] => {
     return generatePack(generate_unit);
+};
+
+export const generate_hero_pack = (): DraftCard<any>[] => {
+    return generatePack(generate_hero);
 };
 
 export const generate_commander_pack = (): DraftCard<any>[] => {

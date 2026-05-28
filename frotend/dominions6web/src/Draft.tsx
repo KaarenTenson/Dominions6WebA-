@@ -391,6 +391,7 @@ const DraftPackSection = ({
                                     <UnitCard
                                         key={card.id}
                                         unit={card.data}
+                                        type={card.type}
                                         selected={selected}
                                         onClick={() => selectCards(card)}
                                     />

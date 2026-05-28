@@ -207,7 +207,7 @@ export function parsePretendersCsv(filePath: string): Pretender[] {
       nametype: toNumber(row.nametype),
 
       keywords: parseKeywords(row.keywords),
-      
+      startdom: toNumber(row.startdom),
     };
     pretender.research = calculateResearch(pretender as unknown as Unit);
     pretender.prot = calculateProtection(pretender as unknown as Unit);

@@ -506,3 +506,30 @@ export function calculateArmorProtection(armor: Armor): ArmorProtectionResult {
     protHeadFinal,
   };
 }
+const unitMap = new Map<number, Unit>();
+function makeUnitsMap(unitPool:Unit[]) {
+  if (unitMap.size == 0) {
+    unitPool.forEach((u) => {
+      unitMap.set(u.id, u);
+    })
+  }
+}
+export function addMountGoldAndResources(unit:Unit, unitPool:Unit[]):void {
+  makeUnitsMap(unitPool);
+  if (!unit.mountmnr) {
+    return;
+  }
+  if (unit.mountmnr && !unitMap.get(unit.mountmnr)) {
+    console.log(unit.mountmnr);
+    return;
+  }
+  const gold = calculateGold(unitMap.get(unit.mountmnr));
+  if (gold) {
+    unit.gold += gold;
+  }
+  const resources = calculateGold(unitMap.get(unit.resources));
+  if (resources) {
+    unit.resources += resources;
+  }
+
+}

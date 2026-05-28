@@ -20,7 +20,7 @@ type CardSelectionProps = {
     chooseStartingLocation: (loc: StartLocation) => void;
 };
 
-const LIMITS = { pretender: 4, commanders: 8, units: 8, magicSites: 2 };
+const LIMITS = { pretender: 4, commanders: 8, units: 8, magicSites: 2, heros:1};
 
 /* -------------------------------------------------------------------------- */
 /*  PROGRESS CARD                                                              */
@@ -410,10 +410,11 @@ const CardSelection = ({
     chooseHeat,
     chooseStartingLocation,
 }: CardSelectionProps) => {
-    const { commanders, units, pretenders, magicSites } = useDraftStore();
+    const { commanders, units, pretenders, magicSites , heros} = useDraftStore();
 
     const cmdCount = chosenDraftedCards.commanders.length;
     const unitCount = chosenDraftedCards.units.length;
+    const heroCount = chosenDraftedCards.heros.length;
     const pretCount = chosenDraftedCards.pretenders.length;
     const siteCount = chosenDraftedCards.magicSites.length;
     const isReady = pretCount === 4 && cmdCount === LIMITS.commanders && unitCount === LIMITS.units;
@@ -424,6 +425,7 @@ const CardSelection = ({
         if (cmdCount < LIMITS.commanders) parts.push(`${LIMITS.commanders - cmdCount} more commander${LIMITS.commanders - cmdCount > 1 ? "s" : ""}`);
         if (unitCount < LIMITS.units) parts.push(`${LIMITS.units - unitCount} more unit${LIMITS.units - unitCount > 1 ? "s" : ""}`);
         if (siteCount < LIMITS.magicSites) parts.push(`${LIMITS.magicSites - siteCount} more site${LIMITS.magicSites - siteCount > 1 ? "s" : ""}`);
+        if (heroCount < LIMITS.heros) parts.push(`${LIMITS.heros - siteCount} more hero${LIMITS.heros - siteCount > 1 ? "s" : ""}`);
         return parts;
     }, [pretCount, cmdCount, unitCount, siteCount]);
 
@@ -487,6 +489,7 @@ const CardSelection = ({
                 <ProgressCard label="Commanders" current={cmdCount} target={LIMITS.commanders} />
                 <ProgressCard label="Units" current={unitCount} target={LIMITS.units} />
                 <ProgressCard label="Sites" current={siteCount} target={LIMITS.magicSites} />
+                <ProgressCard label="Heros" current={heroCount} target={LIMITS.heros} />
             </div>
 
             {/* ── HEAT + START LOCATION ─────────────────────────────── */}
@@ -523,6 +526,7 @@ const CardSelection = ({
                                 <UnitCard
                                     key={card.id}
                                     unit={card.data}
+                                    type={card.type}
                                     selected={chosenDraftedCards.pretenders.some((c) => c.id === card.id)}
                                     onClick={() => chooseDraftedCards(card)}
                                 />
@@ -537,6 +541,7 @@ const CardSelection = ({
                                 <UnitCard
                                     key={card.id}
                                     unit={card.data}
+                                    type={card.type}
                                     selected={chosenDraftedCards.commanders.some((c) => c.id === card.id)}
                                     onClick={() => chooseDraftedCards(card)}
                                 />
@@ -551,7 +556,22 @@ const CardSelection = ({
                                 <UnitCard
                                     key={card.id}
                                     unit={card.data}
+                                    type={card.type}
                                     selected={chosenDraftedCards.units.some((c) => c.id === card.id)}
+                                    onClick={() => chooseDraftedCards(card)}
+                                />
+                            ))}
+                        </CardSection>
+                    )}
+                      {/* ── HEROS ─────────────────────────────────────── */}
+                    {heros.length > 0 && (
+                        <CardSection icon="⚔" label="Heros" current={heroCount} target={LIMITS.heros}>
+                            {heros.map((card) => (
+                                <UnitCard
+                                    key={card.id}
+                                    unit={card.data}
+                                    type={card.type}
+                                    selected={chosenDraftedCards.heros.some((c) => c.id === card.id)}
                                     onClick={() => chooseDraftedCards(card)}
                                 />
                             ))}

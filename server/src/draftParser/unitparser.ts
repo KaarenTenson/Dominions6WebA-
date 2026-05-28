@@ -142,6 +142,7 @@ export function parseUnitsCsv(filePath: string): Unit[] {
 
       startage: toNumber(row.startage),
       maxage: toNumber(row.maxage),
+      mountmnr: toNumber(row.mountmnr),
 
       magicPaths: {
         fire: toNumber(row.F),
