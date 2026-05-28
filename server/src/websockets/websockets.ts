@@ -306,14 +306,14 @@ const new_pack_event = () => {
     }
     let pack: DraftCard<any>[];
     if (draftSession.turn == 1) {
-      pack = generate_hero_pack();
+       pack = generate_magic_site_pack();
     } else if (draftSession.turn == 2 || draftSession.turn == 3) {
       pack = generate_commander_pack();
     } else if (draftSession.turn == 5 || draftSession.turn == 4) {
       pack = generate_unit_pack();
-    }  else if (draftSession.turn == 7)  {
-      pack = generate_magic_site_pack();
-    } else if (draftSession.turn == 6) {
+    }  else if (draftSession.turn == 6)  {
+      pack = generate_hero_pack();
+    } else if (draftSession.turn == 7) {
      pack = generate_pretender_pack();
     } else {
       cardSelectionEvent();
