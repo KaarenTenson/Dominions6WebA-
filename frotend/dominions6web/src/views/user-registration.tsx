@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import type { Nation } from "../../types";
 import { useUserStore } from "../user-store";
 import { useNavigate } from "react-router-dom";
 import { ToLoginButton } from "../components/to-login-button";
@@ -7,19 +6,12 @@ import { globalStyle } from "../global-styles";
 import { SERVER_ENDPOINT } from "../constants";
 
 export const CreateUserPage = () => {
-  const { setNation, setUserName, user, getDom6Nations } = useUserStore();
+  const {setUserName, user} = useUserStore();
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [kasPass, setKasPass] = useState(true);
   const navigate = useNavigate();
-  const [nations, setNations] = useState<Nation[]>([]);
-  useEffect(() => {
-    const getNations = async () => {
-      setNations(await getDom6Nations());
-    };
-    getNations();
-  }, []);
 
   useEffect(() => {
     const hasCookie = document.cookie.includes("session=");
