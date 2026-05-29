@@ -17,12 +17,6 @@ const GEM_COLORS: Record<string, { bg: string; text: string; border: string; glo
     blood: { bg: "#1a0606", text: "#c03030", border: "#4a1010", glow: "rgba(192,48,48,0.25)" },
 };
 
-const GEM_LABELS: Record<string, string> = {
-    fire: "FIRE", air: "AIR", water: "WATER", earth: "EARTH",
-    astral: "ASTRAL", death: "DEATH", nature: "NATURE",
-    glamour: "GLAMOUR", blood: "BLOOD",
-};
-
 const GEM_ICONS: Record<string, string> = {
     fire: "src/assets/magic/Gem_F.png",
     air: "src/assets/magic/Gem_A.png",
