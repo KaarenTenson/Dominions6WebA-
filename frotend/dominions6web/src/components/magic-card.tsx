@@ -24,8 +24,17 @@ const GEM_LABELS: Record<string, string> = {
 };
 
 const GEM_ICONS: Record<string, string> = {
-    fire: "🔥", air: "💨", water: "💧", earth: "⛰️",
-    astral: "⭐", death: "💀", nature: "🌿", glamour: "✨", blood: "🩸",
+    fire: "src/assets/magic/Gem_F.png",
+    air: "src/assets/magic/Gem_A.png",
+    water: "src/assets/magic/Gem_W.png",
+    earth: "src/assets/magic/Gem_E.png",
+    astral: "src/assets/magic/Gem_S.png",
+    death: "src/assets/magic/Gem_D.png",
+    nature: "src/assets/magic/Gem_N.png",
+    glamour: "src/assets/magic/Gem_G.png",
+    blood: "src/assets/magic/Gem_B.png",
+    holy: "src/assets/magic/Gem_H.png",
+    rand: "src/assets/magic/Gem_U.png",
 };
 
 const LEVEL_LABELS: Record<number, string> = {
@@ -296,8 +305,11 @@ function GemPill({ effect }: { effect: SiteGemEffect }) {
                 gap: "4px",
             }}
         >
-            <span>{GEM_ICONS[effect.type]}</span>
-            <span>{GEM_LABELS[effect.type] ?? effect.type}</span>
+            <img
+                src={GEM_ICONS[effect.type] ?? "/icons/magic/unknown.png"}
+                alt={GEM_ICONS[effect.type]}
+                style={{ width: "14px", height: "14px", imageRendering: "pixelated", verticalAlign: "middle" }}
+            />
             <span style={{ opacity: 0.7 }}>×{effect.gemAmount}</span>
         </span>
     );

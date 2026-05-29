@@ -16,7 +16,7 @@ const chasisValueFilter = (u) => 150 > chasisValues.get(u.id) && chasisValues.ge
 const commanderPool = unitAndCommanderPool.filter(commanderFilter).filter(baseCostFilter);
 commanderPool.forEach(u => addMountGoldAndResources(u, unitAndCommanderPool));
 const heroPool = unitAndCommanderPool.filter(commanderFilter).filter(chasisValueFilter);
-const unitPool = unitAndCommanderPool.filter((unit) => !unit.commander).filter(baseCostFilter);
+const unitPool = unitAndCommanderPool.filter((unit) => !unit.commander).filter(baseCostFilter).filter(u => u.id != 845);
 unitPool.forEach(u => addMountGoldAndResources(u, unitPool));
 
 // ----------------------------------------------------
@@ -117,7 +117,7 @@ const generateGemEffects = (
     level: SiteLevel,
     hasUnit: boolean
 ): SiteGemEffect[] | undefined => {
-    if (chance(10)) return undefined; // was 35
+    if (chance(5)) return undefined; // was 35
 
     const effects: SiteGemEffect[] = [];
     const maxTotalGems = hasUnit ? 3 : 5;
@@ -157,7 +157,7 @@ const generateGemEffects = (
 };
 
 const generateMagicSiteData = (): MagicSite => {
-    const level: SiteLevel = rand([1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 4]);
+    const level: SiteLevel = rand([1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4]);
 
     const site: MagicSite = { level, name: generateSiteName() };
 
@@ -178,8 +178,8 @@ const generateMagicSiteData = (): MagicSite => {
     if (chance(40)) {
         site.resource = pickRound(
             level === 4 ? [30, 40, 50]
-            : level === 3 ? [20, 30, 40]
-            : [10, 20, 30]
+            : level === 3 ? [20, 30]
+            : [10, 20]
         );
     }
 

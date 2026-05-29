@@ -24,10 +24,18 @@ const MAGIC_COLORS: Record<string, any> = {
     rand: { bg: "#fae41d", text: "#000000", border: "#bb9716", }
 } as any;
 
-const MAGIC_LABELS: Record<string, string> = {
-    fire: "🔥", air: "💨", water: "💧", earth: "⛰️",
-    astral: "⭐", death: "💀", nature: "🌿", glamour: "✨", blood: "🩸",
-    rand: "❓"
+const MAGIC_ICONS: Record<string, string> = {
+    fire: "src/assets/magic/Path_F.png",
+    air: "src/assets/magic/Path_A.png",
+    water: "src/assets/magic/Path_W.png",
+    earth: "src/assets/magic/Path_E.png",
+    astral: "src/assets/magic/Path_S.png",
+    death: "src/assets/magic/Path_D.png",
+    nature: "src/assets/magic/Path_N.png",
+    glamour: "src/assets/magic/Path_G.png",
+    blood: "src/assets/magic/Path_B.png",
+    holy:"src/assets/magic/Path_H.png",
+    rand: "src/assets/magic/Path_U.png",
 };
 
 const toCorrectId = (cardId: number) =>
@@ -332,8 +340,8 @@ export default function UnitCard({ unit, selected, type, onClick }: UnitCardProp
                         <span style={s.badgeCommander}>Commander</span>
                     )}
                     {type === "hero" && (
-                            <span style={s.heroBadge}>Hero</span>
-                        )
+                        <span style={s.heroBadge}>Hero</span>
+                    )
                     }
                     {unit.pretender && (
                         <span style={s.badgeCommander}>Pretender</span>
@@ -353,7 +361,7 @@ export default function UnitCard({ unit, selected, type, onClick }: UnitCardProp
                     {unit.capitalOnly && (
                         <span style={s.badgeCapital}>Capital Only</span>
                     )}
-                     {type==="pretender" && unit.startdom && (
+                    {type === "pretender" && unit.startdom && (
                         <span style={s.badgeCapital}>dom strength: {unit.startdom}</span>
                     )}
                 </div>
@@ -394,7 +402,12 @@ export default function UnitCard({ unit, selected, type, onClick }: UnitCardProp
                                         border: `1px solid ${colors.border}`,
                                     }}
                                 >
-                                    {MAGIC_LABELS[path] ?? path[0].toUpperCase()}{level}
+                                    <img
+                                        src={MAGIC_ICONS[path] ?? "/icons/magic/unknown.png"}
+                                        alt={path}
+                                        style={{ width: "14px", height: "14px", imageRendering: "pixelated", verticalAlign: "middle" }}
+                                    />
+                                    {level}
                                 </span>
                             );
                         })}

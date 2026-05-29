@@ -126,11 +126,25 @@ function concatGemEffect(se1:SiteGemEffect[], se2:SiteGemEffect[]) {
         }
     })
 }
+function gemTypeToId(type:string):number {
+    const typesToId = {
+        "fire":0,
+        "air":1,
+        "water":2,
+        "earth":3,
+        "astral":4,
+        "death":5,
+        "nature":6,
+        "glamour":7,
+        "blood":8
+    };
+    return typesToId[type];
+}
 function extractMagicSiteEffect(site: MagicSite): string {
 
     const siteEffects:string[] = [];
     site.gemEffects?.forEach((e) => {
-        siteEffects.push(`gems ${e.type} ${e.gemAmount}`);
+        siteEffects.push(`#gems ${gemTypeToId(e.type)} ${e.gemAmount}`);
     })
     if (site.gold && site.gold > 0) {
         siteEffects.push(`gold ${site.gold}`);
