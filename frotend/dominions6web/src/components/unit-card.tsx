@@ -25,17 +25,17 @@ const MAGIC_COLORS: Record<string, any> = {
 } as any;
 
 const MAGIC_ICONS: Record<string, string> = {
-    fire: "src/assets/magic/Path_F.png",
-    air: "src/assets/magic/Path_A.png",
-    water: "src/assets/magic/Path_W.png",
-    earth: "src/assets/magic/Path_E.png",
-    astral: "src/assets/magic/Path_S.png",
-    death: "src/assets/magic/Path_D.png",
-    nature: "src/assets/magic/Path_N.png",
-    glamour: "src/assets/magic/Path_G.png",
-    blood: "src/assets/magic/Path_B.png",
-    holy:"src/assets/magic/Path_H.png",
-    rand: "src/assets/magic/Path_U.png",
+    fire: "/magic/Path_F.png",
+    air: "/magic/Path_A.png",
+    water: "/magic/Path_W.png",
+    earth: "/magic/Path_E.png",
+    astral: "/magic/Path_S.png",
+    death: "/magic/Path_D.png",
+    nature: "/magic/Path_N.png",
+    glamour: "/magic/Path_G.png",
+    blood: "/magic/Path_B.png",
+    holy:"/magic/Path_H.png",
+    rand: "/magic/Path_U.png",
 };
 
 const toCorrectId = (cardId: number) =>
