@@ -157,7 +157,13 @@ const generateGemEffects = (
 };
 
 const generateMagicSiteData = (): MagicSite => {
-    const level: SiteLevel = rand([1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4]);
+    let level: SiteLevel = rand([2, 3]);
+    if (chance(1)) {
+        level = 4;
+    }
+    if (chance(1)) {
+        level = 1;
+    }
 
     const site: MagicSite = { level, name: generateSiteName() };
 
