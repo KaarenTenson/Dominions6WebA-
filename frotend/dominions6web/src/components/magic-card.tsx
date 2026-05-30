@@ -18,17 +18,17 @@ const GEM_COLORS: Record<string, { bg: string; text: string; border: string; glo
 };
 
 const GEM_ICONS: Record<string, string> = {
-    fire: "src/assets/magic/Gem_F.png",
-    air: "src/assets/magic/Gem_A.png",
-    water: "src/assets/magic/Gem_W.png",
-    earth: "src/assets/magic/Gem_E.png",
-    astral: "src/assets/magic/Gem_S.png",
-    death: "src/assets/magic/Gem_D.png",
-    nature: "src/assets/magic/Gem_N.png",
-    glamour: "src/assets/magic/Gem_G.png",
-    blood: "src/assets/magic/Gem_B.png",
-    holy: "src/assets/magic/Gem_H.png",
-    rand: "src/assets/magic/Gem_U.png",
+    fire: "/magic/Gem_F.png",
+    air: "/magic/Gem_A.png",
+    water: "/magic/Gem_W.png",
+    earth: "/magic/Gem_E.png",
+    astral: "/magic/Gem_S.png",
+    death: "/magic/Gem_D.png",
+    nature: "/magic/Gem_N.png",
+    glamour: "/magic/Gem_G.png",
+    blood: "/magic/Gem_B.png",
+    holy: "/magic/Gem_H.png",
+    rand: "/magic/Gem_U.png",
 };
 
 const LEVEL_LABELS: Record<number, string> = {
